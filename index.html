@@ -331,6 +331,20 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .ponte .seta-p { transform: rotate(90deg); }
 }
 @media (max-width: 600px) { .pilares, .ganhos { grid-template-columns: 1fr; } }
+
+/* Competências recolhíveis */
+details.skill-card { display: block; }
+details.skill-card > summary ~ * { margin-top: 16px; }
+.skills, .creds { align-items: start; }
+details.skill-card > summary { list-style: none; cursor: pointer; }
+details.skill-card > summary::-webkit-details-marker { display: none; }
+details.skill-card > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
+details.skill-card .sk-chev { margin-left: auto; width: 9px; height: 9px; border-right: 2px solid var(--text-3); border-bottom: 2px solid var(--text-3); transform: rotate(45deg); transition: transform .2s; flex-shrink: 0; }
+details.skill-card[open] .sk-chev { transform: rotate(-135deg); }
+details.skill-card:not([open]) > summary { margin-bottom: 0; }
+details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
+@keyframes abrir { from { opacity: 0; transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { details.skill-card[open] > summary ~ * { animation: none; } details.skill-card .sk-chev { transition: none; } }
 </style>
 </head>
 <body>
@@ -625,21 +639,21 @@ E deve exibir o período aplicado acima da lista</pre></div>
         </div>
       </div>
       <div class="skills">
-        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#34D399"><path d="M10 2v7.5L4.5 19A2 2 0 0 0 6.3 22h11.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 2h7M7 16h10"/></svg></span><div><h3>Testes manuais</h3><small>Análise e execução</small></div></div><div class="sk-tags"><span class="main">Funcionais</span><span class="main">Exploratórios</span><span>Regressão</span><span>UAT</span><span>Análise de requisitos</span><span>Casos de teste</span><span>BDD / Gherkin</span><span>Gestão de bugs</span></div></div>
-        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><h3>Automação</h3><small>Testes de ponta a ponta</small></div></div><div class="sk-tags"><span class="main">Cypress</span><span class="main">Playwright</span><span>JavaScript</span><span>Selenium</span><span>Node.js</span></div></div>
-        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M12 22v-5M9 8V2M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg></span><div><h3>APIs e dados</h3><small>Contratos e massa de dados</small></div></div><div class="sk-tags"><span class="main">Postman</span><span class="main">SQL</span><span>SoapUI</span><span>Git</span><span>GitHub</span></div></div>
-        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><path d="M20 17a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4l-2-3H8a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2z"/><path d="M2 8v11a2 2 0 0 0 2 2h14"/></svg></span><div><h3>Gestão e melhoria</h3><small>Planejamento, rastreio e métricas</small></div></div><div class="sk-tags"><span class="main">Jira</span><span>Xray</span><span>Azure DevOps</span><span>TestRail</span><span>SilkCentral</span><span>TFS</span><span>Métricas de qualidade</span><span>IA aplicada a QA</span></div></div>
+        <details class="skill-card reveal"><summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#34D399"><path d="M10 2v7.5L4.5 19A2 2 0 0 0 6.3 22h11.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 2h7M7 16h10"/></svg></span><div><h3>Testes manuais</h3><small>Análise e execução</small></div><span class="sk-chev" aria-hidden="true"></span></summary><div class="sk-tags"><span class="main">Funcionais</span><span class="main">Exploratórios</span><span>Regressão</span><span>UAT</span><span>Análise de requisitos</span><span>Casos de teste</span><span>BDD / Gherkin</span><span>Gestão de bugs</span></div></details>
+        <details class="skill-card reveal"><summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><h3>Automação</h3><small>Testes de ponta a ponta</small></div><span class="sk-chev" aria-hidden="true"></span></summary><div class="sk-tags"><span class="main">Cypress</span><span class="main">Playwright</span><span>JavaScript</span><span>Selenium</span><span>Node.js</span></div></details>
+        <details class="skill-card reveal"><summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M12 22v-5M9 8V2M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg></span><div><h3>APIs e dados</h3><small>Contratos e massa de dados</small></div><span class="sk-chev" aria-hidden="true"></span></summary><div class="sk-tags"><span class="main">Postman</span><span class="main">SQL</span><span>SoapUI</span><span>Git</span><span>GitHub</span></div></details>
+        <details class="skill-card reveal"><summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><path d="M20 17a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4l-2-3H8a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2z"/><path d="M2 8v11a2 2 0 0 0 2 2h14"/></svg></span><div><h3>Gestão e melhoria</h3><small>Planejamento, rastreio e métricas</small></div><span class="sk-chev" aria-hidden="true"></span></summary><div class="sk-tags"><span class="main">Jira</span><span>Xray</span><span>Azure DevOps</span><span>TestRail</span><span>SilkCentral</span><span>TFS</span><span>Métricas de qualidade</span><span>IA aplicada a QA</span></div></details>
       </div>
       <div class="creds">
-        <div class="skill-card reveal">
-          <div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div><h3>Formação</h3><small>Acadêmica</small></div></div>
+        <details class="skill-card reveal">
+          <summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div><h3>Formação</h3><small>Acadêmica</small></div><span class="sk-chev" aria-hidden="true"></span></summary>
           <div class="edu">
             <div class="edu-item"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><b>Pós-graduação em Engenharia da Qualidade de Software</b><small>Centro Universitário Senac · 2023–2024</small></div></div>
             <div class="edu-item"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#22D3EE"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 20h20"/></svg></span><div><b>Bacharelado em Sistemas de Informação</b><small>UNINASSAU · 2018–2021 · Mentora em Testes de Software</small></div></div>
           </div>
-        </div>
-        <div class="skill-card reveal">
-          <div class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></span><div><h3>Certificações</h3><small>Técnicas e de negócio</small></div></div>
+        </details>
+        <details class="skill-card reveal">
+          <summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></span><div><h3>Certificações</h3><small>Técnicas e de negócio</small></div><span class="sk-chev" aria-hidden="true"></span></summary>
           <div class="cert-grid">
             <div class="cert"><span class="cert-sigla">CTFL</span><div><b>Certified Tester Foundation Level</b><small>ISTQB</small></div></div>
             <div class="cert"><span class="cert-sigla">CPA</span><div><b>Certificado Profissional ANBIMA</b><small>ANBIMA</small></div></div>
@@ -648,7 +662,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
             <div class="cert"><span class="cert-sigla">LSS</span><div><b>Lean Six Sigma White Belt</b><small>Melhoria de processos</small></div></div>
             <div class="cert"><span class="cert-sigla">LGPD</span><div><b>Lei Geral de Proteção de Dados</b><small>Privacidade e dados</small></div></div>
           </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
