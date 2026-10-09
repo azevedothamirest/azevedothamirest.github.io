@@ -72,6 +72,12 @@ img { max-width: 100%; display: block; }
 .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 14px var(--font); padding: 13px 22px; border-radius: 10px; border: 1px solid var(--line-2); color: var(--text); background: transparent; cursor: pointer; transition: transform .15s, background .15s, border-color .15s; }
 .btn:hover { transform: translateY(-1px); border-color: var(--text-3); }
+/* Botão de currículo com escolha de idioma: um só botão, dois destinos */
+.cv-split { display: inline-flex; align-items: stretch; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; }
+.cv-lbl { display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; font: 600 14px var(--font); color: var(--text); }
+.cv-lbl .ic { color: var(--text-2); }
+.cv-split a { display: grid; place-items: center; min-width: 52px; padding: 13px 0; font: 700 13px var(--mono); letter-spacing: .5px; color: var(--text-2); border-left: 1px solid var(--line-2); transition: background .15s, color .15s; }
+.cv-split a:hover { background: var(--text); color: var(--bg); }
 .btn-solid { background: var(--text); color: var(--bg); border-color: var(--text); }
 .btn-solid:hover { background: #fff; }
 .disp { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 26px; font-size: 13.5px; color: var(--text-2); }
@@ -327,8 +333,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         </div>
         <div class="actions">
           <a class="btn btn-solid" href="#projetos">Ver projetos →</a>
-          <a class="btn" href="assets/Thamires_Azevedo_CV.pdf" download>Baixar currículo</a>
-          <a class="btn" href="assets/Thamires_Azevedo_Resume_EN.pdf" download lang="en">Resume (EN)</a>
+          <div class="cv-split" role="group" aria-label="Baixar currículo">
+            <span class="cv-lbl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Currículo</span>
+            <a href="assets/Thamires_Azevedo_CV.pdf" download title="Currículo em português">PT</a>
+            <a href="assets/Thamires_Azevedo_Resume_EN.pdf" download lang="en" title="Resume in English">EN</a>
+          </div>
         </div>
         <div class="tags">
           <span class="tag">Testes manuais</span><span class="tag">Automação</span><span class="tag">Cypress</span><span class="tag">Playwright</span><span class="tag">API</span><span class="tag">BDD</span><span class="tag">Métricas</span><span class="tag">IA aplicada a QA</span>
