@@ -299,6 +299,33 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .hero { padding-top: 96px; }
   .mock-kpis small { display: none; }
 }
+
+/* ── Como atuo ─────────────────────────── */
+#atuacao h2 .dim { color: var(--text-2); }
+.ponte { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 10px; margin-bottom: 40px; }
+.ponte .no { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; text-align: center; }
+.ponte .no b { display: block; font-size: 15px; }
+.ponte .no small { color: var(--text-2); font-size: 12.5px; }
+.ponte .no.eu { border-color: rgba(var(--accent-rgb),.55); box-shadow: 0 0 0 4px rgba(var(--accent-rgb),.07); }
+.ponte .no.eu b { color: var(--accent); }
+.ponte .seta-p { color: var(--text-3); font-family: var(--mono); text-align: center; }
+.pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pilar { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.pilar .n { font-family: var(--mono); color: var(--accent); font-size: 12px; }
+.pilar h3 { font-size: 17px; margin: 6px 0 8px; }
+.pilar p { color: var(--text-2); font-size: 14.5px; }
+.ganhos { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.ganho { border-top: 2px solid var(--line-2); padding-top: 14px; }
+.ganho b { display: block; font-size: 17px; margin-bottom: 4px; }
+.ganho small { color: var(--text-2); font-size: 13.5px; line-height: 1.5; display: block; }
+.ganhos-nota { margin-top: 18px; color: var(--text-3); font-size: 12.5px; }
+@media (max-width: 900px) {
+  .pilares { grid-template-columns: 1fr 1fr; }
+  .ganhos { grid-template-columns: 1fr 1fr; }
+  .ponte { grid-template-columns: 1fr; }
+  .ponte .seta-p { transform: rotate(90deg); }
+}
+@media (max-width: 600px) { .pilares, .ganhos { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -309,6 +336,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menu">☰</button>
     <div class="menu" id="menu">
       <a href="#inicio">Início</a>
+      <a href="#atuacao">Como atuo</a>
       <a href="#projetos">Projetos</a>
       <a href="#perfil">Perfil</a>
       <a href="#competencias">Competências</a>
@@ -326,13 +354,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <a class="otw" href="#contato"><i></i><b>Open to work</b><span>Disponível para novas oportunidades</span></a>
         <div class="eyebrow">QA Sênior</div>
         <h1>Qualidade que entende<br>a regra de negócio,<br><span class="dim">não só o requisito.</span></h1>
-        <p class="lead">Sete anos garantindo a qualidade de produtos — cinco deles no mercado financeiro. Faço <strong>testes manuais</strong> com olhar de negócio e <strong>automação</strong> com Cypress e Playwright, testo <strong>APIs</strong>, modelo cenários em <strong>BDD</strong> e construo ferramentas que tornam o trabalho de QA mais rápido e mais confiável.</p>
+        <p class="lead">Sete anos garantindo a qualidade de produtos — cinco deles no mercado financeiro. Faço <strong>testes manuais</strong> com olhar de negócio e <strong>automação</strong> com Cypress e Playwright, testo <strong>APIs</strong>, modelo cenários em <strong>BDD</strong> e faço a ponte entre <strong>Produto e Desenvolvimento</strong> desde o refinamento, para o cliente receber o que foi combinado.</p>
         <div class="disp" aria-label="Disponibilidade">
           <span>Presencial ou híbrido em Recife e região</span>
           <span>Remoto no Brasil e no exterior</span>
         </div>
         <div class="actions">
-          <a class="btn btn-solid" href="#projetos">Ver projetos →</a>
+          <a class="btn btn-solid" href="#atuacao">Como atuo →</a>
           <div class="cv-split" role="group" aria-label="Baixar currículo">
             <span class="cv-lbl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Currículo</span>
             <a href="assets/Thamires_Azevedo_CV.pdf" download title="Currículo em português">PT</a>
@@ -366,12 +394,52 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     </div>
   </header>
 
+  <!-- ══ Como atuo ══ -->
+  <section class="block" id="atuacao">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-label">Como atuo como QA</div>
+          <h2>A ponte entre Produto e Dev,<br><span class="dim">pensando em quem usa.</span></h2>
+        </div>
+        <p>Meu papel não começa quando a tarefa chega em teste. Trabalho junto de Produto e Desenvolvimento desde o refinamento, para que o time inteiro entregue a mesma coisa: um produto que funciona do jeito que o cliente precisa.</p>
+      </div>
+
+      <div class="ponte reveal" aria-label="Fluxo de atuação">
+        <div class="no"><b>Produto</b><small>regra de negócio e prioridade</small></div>
+        <div class="seta-p">⇄</div>
+        <div class="no eu"><b>QA</b><small>pergunta, alinha e valida</small></div>
+        <div class="seta-p">⇄</div>
+        <div class="no"><b>Desenvolvimento</b><small>solução e testes técnicos</small></div>
+        <div class="seta-p">→</div>
+        <div class="no"><b>Cliente</b><small>recebe o que foi combinado</small></div>
+      </div>
+
+      <div class="pilares">
+        <div class="pilar reveal"><span class="n">01 · shift-left</span><h3>Qualidade desde o refinamento</h3><p>Analiso cada demanda antes do código: aponto ambiguidades, casos de exceção e regras faltando enquanto ainda é barato mudar.</p></div>
+        <div class="pilar reveal"><span class="n">02 · comunicação</span><h3>Contato direto com Produto e Dev</h3><p>Traduzo regra de negócio em cenário testável para o Dev e devolvo para Produto o risco real de cada decisão. Menos ruído, menos "não era isso".</p></div>
+        <div class="pilar reveal"><span class="n">03 · critérios</span><h3>Um só entendimento de "pronto"</h3><p>Construí com o time critérios de bug crítico e padrões de caso de teste usados igualmente por QA, Produto e Dev.</p></div>
+        <div class="pilar reveal"><span class="n">04 · automação</span><h3>Regressão que libera o time</h3><p>Estabilizei a regressão automatizada e passei a criar fluxos novos já automatizados. O que antes levava horas de conferência manual virou minutos.</p></div>
+        <div class="pilar reveal"><span class="n">05 · exploratório</span><h3>Tempo para ir além do roteiro</h3><p>Com o repetitivo automatizado, meu tempo vai para testes exploratórios e para os cenários que ninguém escreveu nos critérios de aceite.</p></div>
+        <div class="pilar reveal"><span class="n">06 · métricas</span><h3>Dados para decidir, não para culpar</h3><p>Acompanho retrabalho e bugs por entrega com metas claras e uso os números para achar a causa, junto com o time.</p></div>
+      </div>
+
+      <div class="ganhos reveal">
+        <div class="ganho"><b>Retrabalho quase zerado</b><small>Correções antes da entrega caíram para uma fração do que eram em poucos meses.</small></div>
+        <div class="ganho"><b>Menos bug no cliente</b><small>Bugs em produção por entrega reduzidos a uma fração do ponto de partida.</small></div>
+        <div class="ganho"><b>Mais entregas por mês</b><small>Com menos idas e voltas, o time passou a entregar várias vezes mais.</small></div>
+        <div class="ganho"><b>Teste deixou de ser gargalo</b><small>A etapa de teste ficou bem mais curta que a de desenvolvimento.</small></div>
+      </div>
+      <p class="ganhos-nota">Resultados da minha última squad, descritos sem dados internos da empresa ou do time.</p>
+    </div>
+  </section>
+
   <!-- ══ Projetos ══ -->
   <section class="block" id="projetos">
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="sec-label">Projetos de portfólio</div>
+          <div class="sec-label">Projetos paralelos</div>
           <h2>Ferramentas feitas por QA,<br>para times de QA.</h2>
         </div>
         <p>Dois projetos que resolvem dores reais do dia a dia: medir a qualidade das entregas e acelerar a análise de cada task. O código é privado; as telas aqui usam dados fictícios.</p>
