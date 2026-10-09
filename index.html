@@ -316,6 +316,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 .pilar p { color: var(--text-2); font-size: 14.5px; }
 .ganhos { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .ganho { border-top: 2px solid var(--line-2); padding-top: 14px; }
+.ganho .num { display: block; font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+.ganho .num i { font-style: normal; color: var(--text-3); font-weight: 400; }
 .ganho b { display: block; font-size: 17px; margin-bottom: 4px; }
 .ganho small { color: var(--text-2); font-size: 13.5px; line-height: 1.5; display: block; }
 .ganhos-nota { margin-top: 18px; color: var(--text-3); font-size: 12.5px; }
@@ -355,6 +357,82 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <div class="eyebrow">QA Sênior</div>
         <h1>Qualidade que entende<br>a regra de negócio,<br><span class="dim">não só o requisito.</span></h1>
         <p class="lead">Sete anos garantindo a qualidade de produtos — cinco deles no mercado financeiro. Faço <strong>testes manuais</strong> com olhar de negócio e <strong>automação</strong> com Cypress e Playwright, testo <strong>APIs</strong>, modelo cenários em <strong>BDD</strong> e faço a ponte entre <strong>Produto e Desenvolvimento</strong> desde o refinamento, para o cliente receber o que foi combinado.</p>
+        <div class="disp" aria-label="Disponibilidade">
+          <span>Presencial ou híbrido em Recife e região</span>
+          <span>Remoto no Brasil e no exterior</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-solid" href="#atuacao">Como atuo →</a>
+          <div class="cv-split" role="group" aria-label="Baixar currículo">
+            <span class="cv-lbl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Currículo</span>
+            <a href="assets/Thamires_Azevedo_CV.pdf" download title="Currículo em português">PT</a>
+            <a href="assets/Thamires_Azevedo_Resume_EN.pdf" download lang="en" title="Resume in English">EN</a>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">Testes manuais</span><span class="tag">Automação</span><span class="tag">Cypress</span><span class="tag">Playwright</span><span class="tag">API</span><span class="tag">BDD</span><span class="tag">Métricas</span><span class="tag">IA aplicada a QA</span>
+        </div>
+      </div>
+
+      <div class="terminal reveal" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
+        <div class="term-body">
+          <div><span class="c">$</span> <span class="k">npm test</span></div>
+          <div class="ok"><b>✔</b> qa-pulse ....... 101 passando</div>
+          <div class="ok"><b>✔</b> qa-sidekick .... 29 passando</div>
+          <div class="c">  0 falhas · 0 dependências de teste</div>
+          <br>
+          <div><span class="c">$</span> <span class="k">/analisar TA-101</span></div>
+          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Analisando TA-101...</div>
+          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Comentários corrigem: limite de 6 → 12 meses</div>
+          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><path d="M12 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v4"/><path d="M14 2v6h6"/><path d="m18.4 13.6 2 2L15 21h-2v-2z"/></svg> Roteiro: 6 casos além dos critérios de aceite</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
+          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
+          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ Como atuo ══ -->
+  <section class="block" id="atuacao">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-label">Como atuo como QA</div>
+          <h2>A ponte entre Produto e Dev,<br><span class="dim">pensando em quem usa.</span></h2>
+        </div>
+        <p>Meu papel não começa quando a tarefa chega em teste. Trabalho junto de Produto e Desenvolvimento desde o refinamento, para que o time inteiro entregue a mesma coisa: um produto que funciona do jeito que o cliente precisa.</p>
+      </div>
+
+      <div class="ponte reveal" aria-label="Fluxo de atuação">
+        <div class="no"><b>Produto</b><small>regra de negócio e prioridade</small></div>
+        <div class="seta-p">⇄</div>
+        <div class="no eu"><b>QA</b><small>pergunta, alinha e valida</small></div>
+        <div class="seta-p">⇄</div>
+        <div class="no"><b>Desenvolvimento</b><small>solução e testes técnicos</small></div>
+        <div class="seta-p">→</div>
+        <div class="no"><b>Cliente</b><small>recebe o que foi combinado</small></div>
+      </div>
+
+      <div class="pilares">
+        <div class="pilar reveal"><span class="n">01 · shift-left</span><h3>Qualidade desde o refinamento</h3><p>Analiso cada demanda antes do código: aponto ambiguidades, casos de exceção e regras faltando enquanto ainda é barato mudar.</p></div>
+        <div class="pilar reveal"><span class="n">02 · comunicação</span><h3>Contato direto com Produto e Dev</h3><p>Traduzo regra de negócio em cenário testável para o Dev e devolvo para Produto o risco real de cada decisão. Menos ruído, menos "não era isso".</p></div>
+        <div class="pilar reveal"><span class="n">03 · critérios</span><h3>Um só entendimento de "pronto"</h3><p>Construí com o time critérios de bug crítico e padrões de caso de teste usados igualmente por QA, Produto e Dev.</p></div>
+        <div class="pilar reveal"><span class="n">04 · automação</span><h3>Regressão que libera o time</h3><p>Estabilizei a regressão automatizada e passei a criar fluxos novos já automatizados. O que antes levava horas de conferência manual virou minutos.</p></div>
+        <div class="pilar reveal"><span class="n">05 · exploratório</span><h3>Tempo para ir além do roteiro</h3><p>Com o repetitivo automatizado, meu tempo vai para testes exploratórios e para os cenários que ninguém escreveu nos critérios de aceite.</p></div>
+        <div class="pilar reveal"><span class="n">06 · métricas</span><h3>Dados para decidir, não para culpar</h3><p>Acompanho retrabalho e bugs por entrega com metas claras e uso os números para achar a causa, junto com o time.</p></div>
+      </div>
+
+      <div class="ganhos reveal">
+        <div class="ganho"><span class="num">~70% <i>→</i> ~2%</span><b>Retrabalho</b><small>Entregas que voltavam para correção antes de ir para produção.</small></div>
+        <div class="ganho"><span class="num">~90% <i>→</i> ~13%</span><b>Bugs em produção</b><small>Por entrega. Menos problema chegando ao cliente.</small></div>
+        <div class="ganho"><span class="num">~3x</span><b>Mais entregas por mês</b><small>Com menos idas e voltas, o time passou a entregar muito mais.</small></div>
+        <div class="ganho"><span class="num">~3h <i>→</i> 30 min</span><b>Regressão</b><small>De conferência manual para suíte automatizada e estável.</small></div>
+      </div>
+      <p class="ganhos-nota">Valores aproximados da minha última squad, comparando um semestre com o seguinte. Sem dados internos da empresa ou do time.</p>
         <div class="disp" aria-label="Disponibilidade">
           <span>Presencial ou híbrido em Recife e região</span>
           <span>Remoto no Brasil e no exterior</span>
