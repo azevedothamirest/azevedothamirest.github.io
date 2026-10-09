@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thamires Azevedo | QA Sênior</title>
+<meta name="description" content="Thamires Azevedo — QA Sênior. Automação com Cypress, Playwright, testes de API, BDD e ferramentas de qualidade construídas do zero.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --bg-2: #111111;
+  --card: #151515;
+  --card-2: #1C1C1C;
+  --line: #262626;
+  --line-2: #3A3A3A;
+  --text: #F2F2F2;
+  --text-2: #A3A3A3;
+  --text-3: #6B6B6B;
+  --accent: #1FD65F; /* único ponto de cor: sinais de status, nada de fundo */
+  --accent-rgb: 31,214,95;
+  --radius: 14px;
+  --font: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Navegação ─────────────────────────── */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; background: rgba(10,10,10,.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.nav.scrolled { border-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
+.brand-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--text); color: var(--bg); display: grid; place-items: center; font: 700 12px var(--mono); }
+.menu { display: flex; gap: 6px; align-items: center; }
+.menu a { font-size: 13.5px; color: var(--text-2); padding: 7px 14px; border-radius: 999px; transition: color .15s, background .15s; }
+.menu a:hover, .menu a.active { color: var(--text); background: var(--card-2); }
+.menu a.cta { color: var(--text); border: 1px solid var(--line-2); }
+.nav-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 7px; vertical-align: 1px; }
+.menu-btn { display: none; background: none; border: 1px solid var(--line-2); color: var(--text); border-radius: 8px; width: 38px; height: 34px; font-size: 16px; cursor: pointer; }
+
+/* ── Hero ──────────────────────────────── */
+.hero { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: 110px 0 70px; background: var(--bg); }
+.hero > .wrap { position: relative; z-index: 1; }
+#grade { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; background:
+  radial-gradient(900px 500px at 85% 15%, rgba(255,255,255,.06), transparent 60%),
+  linear-gradient(to bottom, transparent 70%, var(--bg)); }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+/* Selo "Open to work": o destaque mais forte da página, com o ponto pulsando */
+.otw { display: flex; width: fit-content; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; margin-bottom: 18px; border: 1px solid rgba(var(--accent-rgb),.35); background: rgba(var(--accent-rgb),.07); border-radius: 999px; font-size: 13px; color: var(--text-2); transition: border-color .2s; }
+.otw:hover { border-color: rgba(var(--accent-rgb),.7); }
+.otw b { color: var(--accent); font-weight: 700; letter-spacing: .2px; }
+.otw span { padding-left: 10px; border-left: 1px solid rgba(var(--accent-rgb),.25); }
+.otw i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.otw i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: pulso 1.8s ease-out infinite; }
+@keyframes pulso { from { transform: scale(1); opacity: .7; } to { transform: scale(3); opacity: 0; } }
+@media (max-width: 680px) { .otw span { display: none; } }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 600 11.5px var(--mono); letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-2); margin-bottom: 22px; }
+.eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); }
+.hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.04; letter-spacing: -2px; font-weight: 800; margin-bottom: 22px; }
+.hero h1 .dim { color: var(--text-3); }
+.hero p.lead { font-size: 17px; color: var(--text-2); max-width: 540px; margin-bottom: 32px; }
+.hero p.lead strong { color: var(--text); font-weight: 600; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 14px var(--font); padding: 13px 22px; border-radius: 10px; border: 1px solid var(--line-2); color: var(--text); background: transparent; cursor: pointer; transition: transform .15s, background .15s, border-color .15s; }
+.btn:hover { transform: translateY(-1px); border-color: var(--text-3); }
+.btn-solid { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-solid:hover { background: #fff; }
+.disp { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 26px; font-size: 13.5px; color: var(--text-2); }
+.disp span { display: inline-flex; align-items: center; gap: 8px; }
+.disp span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(var(--accent-rgb),.12); }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { font: 500 12px var(--mono); color: var(--text-2); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+.terminal { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.55); }
+.term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
+/* Botões de janela no estilo macOS: vermelho, amarelo, verde */
+.term-bar i:nth-child(1) { background: #FF5F57; }
+.term-bar i:nth-child(2) { background: #FEBC2E; }
+.term-bar i:nth-child(3) { background: #28C840; }
+.term-bar span { margin-left: 8px; font: 500 11.5px var(--mono); color: var(--text-3); }
+.term-body { padding: 18px 18px 20px; font: 12.5px/1.75 var(--mono); color: var(--text-2); }
+.term-body .c { color: var(--text-3); }
+.term-body .k { color: var(--text); font-weight: 600; }
+.term-body .ok { color: #D4D4D4; }
+.term-body .ok b { color: var(--accent); font-weight: 600; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.stat { padding: 14px 16px; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: none; }
+.stat b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+.stat small { font-size: 11.5px; color: var(--text-3); }
+
+/* ── Seções ────────────────────────────── */
+section.block { padding: 100px 0; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+.sec-label { font: 600 11.5px var(--mono); letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -1.2px; line-height: 1.1; font-weight: 800; }
+.sec-head p { color: var(--text-2); max-width: 420px; font-size: 15px; }
+
+/* ── Projetos ──────────────────────────── */
+.projects { display: grid; gap: 28px; }
+.project { display: grid; grid-template-columns: 1.05fr .95fr; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: border-color .25s; }
+.project:hover { border-color: var(--line-2); }
+.project.flip .shot { order: 2; border-right: none; border-left: 1px solid var(--line); }
+.shot { background: var(--bg-2); border-right: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.shot-cap { font: 500 11.5px var(--mono); color: var(--text-3); display: flex; justify-content: space-between; }
+.p-body { padding: 34px 36px; display: flex; flex-direction: column; gap: 16px; }
+.p-top { display: flex; align-items: center; gap: 12px; }
+.p-emoji { width: 46px; height: 46px; flex: none; border-radius: 13px; display: grid; place-items: center; font-size: 22px; background: var(--card-2); border: 1px solid var(--line-2); }
+.p-kind { font: 600 11px var(--mono); letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-3); }
+.project h3 { font-size: 26px; letter-spacing: -.7px; line-height: 1.1; }
+.project p { color: var(--text-2); font-size: 15px; }
+.p-stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.p-stats div { padding: 12px 14px; border-right: 1px solid var(--line); }
+.p-stats div:last-child { border-right: none; }
+.p-stats b { display: block; font-size: 19px; letter-spacing: -.4px; }
+.p-stats small { font-size: 11.5px; color: var(--text-3); }
+.bullets { list-style: none; display: grid; gap: 9px; }
+.bullets li { font-size: 14px; color: var(--text-2); display: grid; grid-template-columns: 22px 1fr; gap: 6px; }
+.bullets li span { font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 11.5px var(--mono); color: var(--text-2); background: var(--card-2); border-radius: 6px; padding: 4px 9px; }
+.privado { font-size: 12.5px; color: var(--text-3); padding: 10px 12px; border: 1px dashed var(--line-2); border-radius: 10px; }
+.p-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 4px; flex-wrap: wrap; }
+.p-actions .btn { padding: 11px 18px; font-size: 13.5px; }
+@media (max-width: 900px) {
+  .project { grid-template-columns: 1fr; }
+  .project.flip .shot { order: 0; border-left: none; }
+  .shot { border-right: none; border-bottom: 1px solid var(--line); }
+  .p-body { padding: 26px 22px; }
+}
+
+/* mini-mocks dos projetos */
+.mock { height: 230px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; grid-template-columns: 22% 1fr; overflow: hidden; }
+.mock-side { border-right: 1px solid var(--line); padding: 10px 8px; display: grid; align-content: start; gap: 6px; }
+.mock-side i { height: 7px; border-radius: 3px; background: var(--card-2); }
+.mock-side i:first-child { background: var(--line-2); width: 70%; margin-bottom: 6px; }
+.mock-main { padding: 10px; display: grid; grid-template-rows: auto 1fr; gap: 8px; }
+.mock-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mock-kpis div { background: var(--card); border-radius: 6px; padding: 7px; }
+.mock-kpis b { display: block; font: 700 13px var(--mono); }
+.mock-kpis small { font-size: 8px; color: var(--text-3); text-transform: uppercase; letter-spacing: .4px; }
+.mock-chart { background: var(--card); border-radius: 6px; padding: 8px; }
+.mock-chart svg { width: 100%; height: 100%; }
+.cli { min-height: 230px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); padding: 12px 14px; font: 11px/1.7 var(--mono); color: var(--text-2); overflow: hidden; }
+.cli .k { color: var(--text); font-weight: 600; }
+.cli .c { color: var(--text-3); }
+
+/* detalhes (modal) */
+dialog { margin: auto; max-width: 720px; width: calc(100% - 32px); background: var(--card); color: var(--text); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 0; }
+dialog::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(4px); }
+.dlg-head { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+.dlg-head h4 { font-size: 17px; }
+.dlg-close { background: none; border: 1px solid var(--line-2); color: var(--text-2); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 15px; }
+.dlg-body { padding: 22px 24px 26px; display: grid; gap: 14px; max-height: 70vh; overflow-y: auto; }
+.case { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--bg-2); }
+.case-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+.case-top b { font-size: 14px; }
+.case-top span { font: 600 10.5px var(--mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+.case p { font-size: 13.5px; color: var(--text-2); }
+.case pre { margin-top: 8px; font: 12px/1.65 var(--mono); color: var(--text-2); white-space: pre-wrap; }
+
+/* ── Perfil ────────────────────────────── */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.about-head { margin-bottom: 28px; }
+/* A linha do tempo começa na altura do título da seção, não do rótulo acima dele */
+.about > .timeline { margin-top: 26px; }
+@media (max-width: 900px) { .about > .timeline { margin-top: 0; } }
+.about p { color: var(--text-2); font-size: 16px; margin-bottom: 14px; }
+.about p strong { color: var(--text); font-weight: 600; }
+.highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.hl { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.hl b { display: block; font-size: 17px; letter-spacing: -.3px; }
+.hl b { margin-bottom: 4px; }
+.hl small { display: block; color: var(--text-3); font-size: 12.5px; line-height: 1.4; }
+.timeline { position: relative; display: grid; gap: 26px; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 4px; top: 12px; bottom: 6px; width: 1px; background: var(--line-2); }
+.job { position: relative; }
+.job::before { content: ''; position: absolute; left: -25.5px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--text-2); }
+.job .when.agora { color: var(--accent); font-weight: 600; }
+.job-link { display: inline-block; font-size: 13.5px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--line-2); padding-bottom: 1px; }
+.job-link:hover { border-color: var(--accent); }
+.job.atual::before { background: var(--accent); border-color: var(--accent);  }
+/* Anel que se expande a partir da bolinha, igual ao selo Open to work */
+.job.atual::after { content: ''; position: absolute; left: -25.5px; top: 6px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); animation: pulso 1.8s ease-out infinite; pointer-events: none; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.job h3 { font-size: 17px; line-height: 24px; }
+.job .when { font: 500 12px var(--mono); color: var(--text-3); }
+.job .role { color: var(--text-2); font-size: 13.5px; margin: 2px 0 10px; }
+.job ul { list-style: none; display: grid; gap: 6px; }
+.job li { font-size: 14px; color: var(--text-2); display: grid; grid-template-columns: 20px 1fr; }
+.job li::before { content: '—'; color: var(--text-3); }
+
+/* ── Competências ─────────────────────── */
+.skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.skill-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; transition: border-color .2s; }
+.skill-card:hover { border-color: var(--line-2); }
+.sk-head { display: flex; align-items: center; gap: 12px; }
+.sk-emoji { width: 40px; height: 40px; flex: none; border-radius: 11px; display: grid; place-items: center; font-size: 19px; background: var(--card-2); border: 1px solid var(--line-2); }
+.sk-head h3 { font-size: 15.5px; letter-spacing: -.2px; }
+.sk-head small { display: block; color: var(--text-3); font-size: 12px; }
+.sk-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.sk-tags span { font-size: 13px; padding: 6px 11px; border-radius: 8px; background: var(--bg-2); border: 1px solid var(--line); color: var(--text); }
+.sk-tags span.main { border-color: var(--line-2); background: var(--card-2); font-weight: 600; }
+.creds { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; margin-top: 16px; }
+.edu { display: grid; gap: 14px; }
+.edu-item { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; padding: 14px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); }
+.edu-item b { display: block; font-size: 14.5px; line-height: 1.35; }
+.edu-item small { color: var(--text-3); font-size: 12.5px; }
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cert { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); }
+.cert-sigla { min-width: 48px; height: 34px; padding: 0 8px; border-radius: 8px; display: grid; place-items: center; font: 700 11.5px var(--mono); background: var(--card-2); border: 1px solid var(--line-2); }
+.cert b { display: block; font-size: 13.5px; line-height: 1.3; font-weight: 600; }
+.cert small { color: var(--text-3); font-size: 12px; }
+@media (max-width: 680px) { .cert-grid { grid-template-columns: 1fr; } }
+
+/* ── Contato ───────────────────────────── */
+.contact { padding: 110px 0; border-top: 1px solid var(--line); }
+.contact-card { display: grid; grid-template-columns: 1.1fr .9fr; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--bg-2); }
+.contact-main { position: relative; overflow: hidden; padding: 48px; background: radial-gradient(500px 260px at 0% 0%, rgba(var(--accent-rgb),.07), transparent 70%); }
+#grade-contato { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.contact-main > *:not(canvas) { position: relative; }
+.contact-main .otw { margin-bottom: 26px; }
+.contact h2 { font-size: clamp(32px, 4.6vw, 48px); letter-spacing: -1.6px; line-height: 1.05; font-weight: 800; margin-bottom: 16px; }
+.contact-main > p { color: var(--text-2); max-width: 440px; margin-bottom: 28px; }
+.modos { display: grid; gap: 10px; }
+.modo { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(10,10,10,.6); }
+.modo-ic { width: 34px; height: 34px; flex: none; border-radius: 9px; display: grid; place-items: center; background: var(--card-2); font-size: 17px; }
+.modo b { display: block; font-size: 14.5px; }
+.modo small { color: var(--text-3); font-size: 12.5px; }
+.modo .ok { margin-left: auto; font: 600 11px var(--mono); color: var(--accent); letter-spacing: .6px; }
+.contact-links { border-left: 1px solid var(--line); display: flex; flex-direction: column; }
+.c-link { display: flex; align-items: center; gap: 16px; padding: 26px 32px; border-bottom: 1px solid var(--line); flex: 1; transition: background .2s; }
+.c-link:last-child { border-bottom: none; }
+.c-link:hover { background: var(--card); }
+.c-link:hover .seta { transform: translate(3px, -3px); color: var(--text); }
+.c-ic { width: 42px; height: 42px; flex: none; border-radius: 11px; display: grid; place-items: center; color: #fff; }
+.c-ic.mail { background: #EA4335; }
+.c-ic.in { background: #0A66C2; }
+.c-ic.gh { background: #F2F2F2; color: #0D1117; }
+.c-ic.cv { background: #E5252A; }
+.c-txt small { display: block; font: 600 10.5px var(--mono); letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-3); margin-bottom: 3px; }
+.c-txt b { font-size: 15px; font-weight: 600; word-break: break-all; }
+.seta { margin-left: auto; color: var(--text-3); font-size: 18px; transition: transform .2s, color .2s; }
+@media (max-width: 900px) { .contact-card { grid-template-columns: 1fr; } .contact-links { border-left: none; border-top: 1px solid var(--line); } }
+@media (max-width: 680px) { .contact-main { padding: 30px 22px; } .c-link { padding: 20px 22px; } .contact { padding: 72px 0; } }
+footer { border-top: 1px solid var(--line); padding: 26px 0; color: var(--text-3); font-size: 13px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+/* ── Responsivo ────────────────────────── */
+@media (max-width: 900px) {
+  .hero-grid, .about, .creds { grid-template-columns: 1fr; }
+  .skills { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .wrap { padding: 0 16px; }
+  .menu { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px 16px; }
+  .menu.open { display: flex; }
+  .menu a { padding: 11px 14px; }
+  .menu-btn { display: block; }
+  .skills, .highlights { grid-template-columns: 1fr; }
+  section.block { padding: 72px 0; }
+  .hero { padding-top: 96px; }
+  .mock-kpis small { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#inicio" class="brand"><span class="brand-mark">TA</span>Thamires Azevedo</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Abrir menu">☰</button>
+    <div class="menu" id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#perfil">Perfil</a>
+      <a href="#competencias">Competências</a>
+      <a href="#contato" class="cta"><span class="nav-dot"></span>Open to work</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- ══ Início ══ -->
+  <header class="hero" id="inicio">
+    <canvas id="grade" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div>
+        <a class="otw" href="#contato"><i></i><b>Open to work</b><span>Disponível para novas oportunidades</span></a>
+        <div class="eyebrow">QA Sênior</div>
+        <h1>Qualidade que entende<br>a regra de negócio,<br><span class="dim">não só o requisito.</span></h1>
+        <p class="lead">Sete anos garantindo a qualidade de produtos — cinco deles no mercado financeiro. Automatizo com <strong>Cypress</strong> e <strong>Playwright</strong>, testo <strong>APIs</strong>, modelo cenários em <strong>BDD</strong> e construo as ferramentas que tornam o trabalho de QA mais rápido e mais confiável.</p>
+        <div class="disp" aria-label="Disponibilidade">
+          <span>Presencial ou híbrido em Recife e região</span>
+          <span>Remoto no Brasil e no exterior</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-solid" href="#projetos">Ver projetos →</a>
+          <a class="btn" href="assets/Thamires_Azevedo_CV.pdf" download>Baixar currículo</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Cypress</span><span class="tag">Playwright</span><span class="tag">API</span><span class="tag">BDD</span><span class="tag">Métricas</span><span class="tag">IA aplicada a QA</span>
+        </div>
+      </div>
+
+      <div class="terminal reveal" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
+        <div class="term-body">
+          <div><span class="c">$</span> <span class="k">npm test</span></div>
+          <div class="ok"><b>✔</b> qa-pulse ....... 101 passando</div>
+          <div class="ok"><b>✔</b> qa-sidekick .... 29 passando</div>
+          <div class="c">  0 falhas · 0 dependências de teste</div>
+          <br>
+          <div><span class="c">$</span> <span class="k">/analisar TA-101</span></div>
+          <div>🔎 Analisando TA-101...</div>
+          <div>💬 Comentários corrigem: limite de 6 → 12 meses</div>
+          <div>📝 Roteiro: 6 casos além dos critérios de aceite</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
+          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
+          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ Projetos ══ -->
+  <section class="block" id="projetos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-label">Projetos de portfólio</div>
+          <h2>Ferramentas feitas por QA,<br>para times de QA.</h2>
+        </div>
+        <p>Dois projetos que resolvem dores reais do dia a dia: medir a qualidade das entregas e acelerar a análise de cada task. O código é privado; as telas aqui usam dados fictícios.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project reveal">
+          <div class="shot" aria-hidden="true">
+            <div class="mock">
+              <div class="mock-side"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="mock-main">
+                <div class="mock-kpis">
+                  <div><b>488</b><small>Entregas</small></div>
+                  <div><b>446</b><small>Concluídas</small></div>
+                  <div><b>189</b><small>Bugs int.</small></div>
+                  <div><b>73</b><small>Bugs ext.</small></div>
+                </div>
+                <div class="mock-chart">
+                  <svg viewBox="0 0 300 90" preserveAspectRatio="none">
+                    <path d="M0 62 L33 58 L66 66 L100 48 L133 52 L166 38 L200 42 L233 28 L266 32 L300 20" fill="none" stroke="#1FD65F" stroke-width="2"/>
+                    <path d="M0 62 L33 58 L66 66 L100 48 L133 52 L166 38 L200 42 L233 28 L266 32 L300 20 L300 90 L0 90Z" fill="rgba(var(--accent-rgb),.08)"/>
+                    <path d="M0 74 L33 70 L66 76 L100 68 L133 72 L166 64 L200 70 L233 60 L266 66 L300 58" fill="none" stroke="#6B6B6B" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="shot-cap"><span>Visão geral · dados de demonstração</span><span>localhost:3000</span></div>
+          </div>
+          <div class="p-body">
+            <div class="p-top"><span class="p-emoji">📊</span><div><div class="p-kind">01 · Dashboard</div><h3>QA Pulse</h3></div></div>
+            <p>Conecta no Jira, transforma issues em indicadores de qualidade por time e aponta sozinho onde vale olhar.</p>
+            <div class="p-stats">
+              <div><b>13</b><small>regras de insight</small></div>
+              <div><b>4</b><small>períodos de relatório</small></div>
+              <div><b>101</b><small>testes automatizados</small></div>
+            </div>
+            <ul class="bullets">
+              <li><span>📈</span>Taxa de rejeição, bugs externos e score por time, com metas configuráveis</li>
+              <li><span>🔎</span>Cada alerta leva direto às issues que o geraram</li>
+              <li><span>📄</span>Relatório PDF de um ou vários times, do mensal ao anual</li>
+            </ul>
+            <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">SQLite</span><span class="chip">OAuth 2.0</span><span class="chip">PDFKit</span></div>
+            <div class="privado">🔒 Código em repositório privado.</div>
+            <div class="p-actions">
+              <button class="btn btn-solid" data-open="dlg-pulse">Como funciona</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project flip reveal">
+          <div class="shot" aria-hidden="true">
+            <div class="cli">
+              <div><span class="c">›</span> <span class="k">/analisar TA-101</span></div>
+              <div>🔎 Analisando TA-101...</div>
+              <div class="k">### 📋 Análise</div>
+              <div>✅ Claro — 5 critérios de aceite numerados</div>
+              <div>⚠️ Falta — mensagem para datas invertidas</div>
+              <div>💬 Comentários corrigem — limite agora é 12 meses</div>
+              <div class="c">---</div>
+              <div><span class="k">É isso que vou colocar no campo. Confirma?</span></div>
+            </div>
+            <div class="shot-cap"><span>Claude Code · modo demonstração</span><span>TA-101</span></div>
+          </div>
+          <div class="p-body">
+            <div class="p-top"><span class="p-emoji">🤖</span><div><div class="p-kind">02 · Assistente de QA</div><h3>QA Sidekick</h3></div></div>
+            <p>Lê uma entrega do Jira como um QA experiente, monta o roteiro de teste e escreve bugs no padrão do time — sempre pedindo confirmação antes de escrever.</p>
+            <div class="p-stats">
+              <div><b>11</b><small>comandos</small></div>
+              <div><b>0</b><small>dependências</small></div>
+              <div><b>29</b><small>testes automatizados</small></div>
+            </div>
+            <ul class="bullets">
+              <li><span>💬</span>Lê os comentários e usa o que foi corrigido neles como a versão que vale</li>
+              <li><span>🛑</span>Para quando a entrega não está pronta para teste</li>
+              <li><span>🐞</span>Bugs internos e externos montados em conversa, com severidade pelo impacto real</li>
+            </ul>
+            <div class="chips"><span class="chip">Claude Code</span><span class="chip">Node.js</span><span class="chip">Jira REST API</span><span class="chip">BDD/Gherkin</span></div>
+            <div class="privado">🔒 Código em repositório privado.</div>
+            <div class="p-actions">
+              <button class="btn btn-solid" data-open="dlg-sidekick">Como funciona</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalhes: QA Pulse -->
+  <dialog id="dlg-pulse" aria-labelledby="dlg-pulse-t">
+    <div class="dlg-head"><h4 id="dlg-pulse-t">QA Pulse — decisões de qualidade</h4><button class="dlg-close" data-close aria-label="Fechar">✕</button></div>
+    <div class="dlg-body">
+      <div class="case"><div class="case-top"><b>Números honestos</b><span>Indicadores</span></div><p>Time sem entrega no período aparece como <em>n/d</em>, não como 0% nem 100%. Antes, um time com 0 entregas e 1 bug caía para o último lugar do ranking sem ter base de cálculo nenhuma.</p></div>
+      <div class="case"><div class="case-top"><b>Amostra pequena não ganha destaque</b><span>Ranking</span></div><p>Com menos de 5 entregas, o time continua no ranking, sinalizado, mas não concorre a "destaque do período". Sem isso, 2 entregas sem bug venciam 40 entregas com score 88.</p></div>
+      <div class="case"><div class="case-top"><b>Score ponderado por entregas</b><span>Organização</span></div><p>O score da organização pondera pelo volume de cada time. Quando diverge da média simples em 8 pontos ou mais, o painel avisa: o volume está concentrado em times com qualidade diferente da média.</p></div>
+      <div class="case"><div class="case-top"><b>Status genéricos</b><span>Configuração</span></div><p>Qualquer fluxo do Jira cai em quatro etapas — Backlog, Em Desenvolvimento, Em Teste e Concluído — para o painel servir a times diferentes sem ajuste de código.</p></div>
+    </div>
+  </dialog>
+
+  <!-- Detalhes: QA Sidekick -->
+  <dialog id="dlg-sidekick" aria-labelledby="dlg-sidekick-t">
+    <div class="dlg-head"><h4 id="dlg-sidekick-t">QA Sidekick — exemplos de saída</h4><button class="dlg-close" data-close aria-label="Fechar">✕</button></div>
+    <div class="dlg-body">
+      <div class="case"><div class="case-top"><b>Título de caso de teste</b><span>Padrão</span></div><p>Verbo de ação + objeto + condição, nunca "validar" ou "verificar".</p><pre>CT01 - Impedir filtro com data final anterior à inicial
+CT02 - Exibir pedidos dos dois dias das pontas do período
+CT03 - Manter filtro aplicado ao voltar do detalhe do pedido</pre></div>
+      <div class="case"><div class="case-top"><b>Cenário em Gherkin</b><span>BDD</span></div><pre>Dado que o cliente tem 3 pedidos em setembro
+Quando informa o período de 01/09 a 30/09
+E clica em "Filtrar"
+Então o sistema deve exibir os 3 pedidos de setembro
+E deve exibir o período aplicado acima da lista</pre></div>
+      <div class="case"><div class="case-top"><b>Bug externo</b><span>Severidade · Alto</span></div><p>[Checkout] Cupom de desconto é aplicado duas vezes ao voltar da tela de pagamento. Classificado como Alto, e não Crítico: há perda financeira, mas só ocorre ao usar o voltar do navegador.</p></div>
+      <div class="case"><div class="case-top"><b>Comentários que corrigem</b><span>Análise</span></div><p>A descrição dizia "limite de 6 meses"; um comentário do PO mudou para 12. A análise aponta a divergência e usa a versão corrigida no roteiro.</p></div>
+    </div>
+  </dialog>
+
+  <!-- ══ Perfil ══ -->
+  <section class="block" id="perfil">
+    <div class="wrap">
+      <div class="about">
+        <div class="reveal">
+          <div class="sec-head about-head">
+        <div>
+          <div class="sec-label">Perfil profissional</div>
+          <h2>Técnica e negócio<br>no mesmo teste.</h2>
+        </div>
+      </div>
+
+          <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy: automação com <strong>Cypress, Playwright e JavaScript</strong>, validação de APIs com <strong>Postman</strong> e modelagem de cenários em <strong>BDD/Gherkin</strong>.</p>
+          <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
+          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos acima nasceram dessa prática.</p>
+          <div class="highlights">
+            <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
+            <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
+            <div class="hl"><b>CTFL + CPA</b><small>técnica e negócio</small></div>
+          </div>
+        </div>
+        <div class="timeline reveal">
+          <div class="job atual">
+            <div class="job-head"><h3>Buscando nova oportunidade</h3><span class="when agora">agora</span></div>
+            <div class="role">Disponível como QA Sênior — presencial ou híbrido em Recife e região, remoto no Brasil e no exterior</div>
+            <a class="job-link" href="#contato">Vamos conversar →</a>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
+            <div class="role">Senior QA Analyst · QA Pleno · QA Júnior III — fintech, remoto</div>
+            <ul>
+              <li>Estruturei a regressão automatizada de uma squad, redesenhando mais de 50 cenários em Cypress</li>
+              <li>Ampliei a cobertura para fluxos de exceção e reduzi falsos positivos na suíte</li>
+              <li>Padronizei a nomenclatura de casos e os critérios de análise de bugs críticos</li>
+              <li>Criei dashboards de métricas de qualidade e documentação usada por QA, Produto e Dev</li>
+              <li>Fui referência de negócio para outras squads e apoiei QAs menos experientes</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Accenture</h3><span class="when">2019 – 2021</span></div>
+            <div class="role">Analista de Teste / QA — consultoria, Recife</div>
+            <ul>
+              <li>Testes funcionais, de regressão, integração, UAT e desempenho em sistemas financeiros</li>
+              <li>Scripts de automação para execuções repetitivas e SQL para validação de dados em massa</li>
+              <li>Gestão de bugs e evidências com interação direta com stakeholders</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Competências ══ -->
+  <section class="block" id="competencias">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="sec-label">Competências e ferramentas</div>
+          <h2>O que uso no dia a dia.</h2>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji">🤖</span><div><h3>Automação</h3><small>Testes de ponta a ponta</small></div></div><div class="sk-tags"><span class="main">Cypress</span><span class="main">Playwright</span><span>JavaScript</span><span>Selenium</span><span>Node.js</span></div></div>
+        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji">🔌</span><div><h3>APIs e dados</h3><small>Contratos e massa de dados</small></div></div><div class="sk-tags"><span class="main">Postman</span><span class="main">SQL</span><span>SoapUI</span><span>Git</span><span>GitHub</span></div></div>
+        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji">🗂️</span><div><h3>Gestão de testes</h3><small>Planejamento e rastreio</small></div></div><div class="sk-tags"><span class="main">Jira</span><span>Xray</span><span>Azure DevOps</span><span>TestRail</span><span>SilkCentral</span><span>TFS</span></div></div>
+        <div class="skill-card reveal"><div class="sk-head"><span class="sk-emoji">🧭</span><div><h3>Práticas</h3><small>Como eu trabalho</small></div></div><div class="sk-tags"><span class="main">BDD / Gherkin</span><span>Regressão</span><span>Exploratórios</span><span>UAT</span><span>Métricas de qualidade</span><span>IA aplicada a QA</span></div></div>
+      </div>
+      <div class="creds">
+        <div class="skill-card reveal">
+          <div class="sk-head"><span class="sk-emoji">🎓</span><div><h3>Formação</h3><small>Acadêmica</small></div></div>
+          <div class="edu">
+            <div class="edu-item"><span class="sk-emoji">📘</span><div><b>Pós-graduação em Engenharia da Qualidade de Software</b><small>Centro Universitário Senac · 2023–2024</small></div></div>
+            <div class="edu-item"><span class="sk-emoji">💻</span><div><b>Bacharelado em Sistemas de Informação</b><small>UNINASSAU · 2018–2021 · Mentora em Testes de Software</small></div></div>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="sk-head"><span class="sk-emoji">🏅</span><div><h3>Certificações</h3><small>Técnicas e de negócio</small></div></div>
+          <div class="cert-grid">
+            <div class="cert"><span class="cert-sigla">CTFL</span><div><b>Certified Tester Foundation Level</b><small>ISTQB</small></div></div>
+            <div class="cert"><span class="cert-sigla">CPA</span><div><b>Certificado Profissional ANBIMA</b><small>ANBIMA</small></div></div>
+            <div class="cert"><span class="cert-sigla">SFPC</span><div><b>Scrum Foundation Professional</b><small>CertiProf</small></div></div>
+            <div class="cert"><span class="cert-sigla">DEPC</span><div><b>DevOps Essentials Professional</b><small>CertiProf</small></div></div>
+            <div class="cert"><span class="cert-sigla">LSS</span><div><b>Lean Six Sigma White Belt</b><small>Melhoria de processos</small></div></div>
+            <div class="cert"><span class="cert-sigla">LGPD</span><div><b>Lei Geral de Proteção de Dados</b><small>Privacidade e dados</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Contato ══ -->
+  <section class="contact" id="contato">
+    <div class="wrap reveal">
+      <div class="contact-card">
+        <div class="contact-main">
+          <canvas id="grade-contato" aria-hidden="true"></canvas>
+          <a class="otw" href="mailto:azevedothamirest@gmail.com"><i></i><b>Open to work</b><span>Disponível para novas oportunidades</span></a>
+          <h2>Vamos conversar?</h2>
+          <p>Procuro uma posição como QA Sênior em um time que leve qualidade a sério desde o requisito. Estes são os formatos em que posso atuar:</p>
+          <div class="modos">
+            <div class="modo"><span class="modo-ic">📍</span><div><b>Presencial ou híbrido</b><small>Recife e região metropolitana</small></div><span class="ok">● disponível</span></div>
+            <div class="modo"><span class="modo-ic"><svg width="20" height="14" viewBox="0 0 20 14" aria-label="Bandeira do Brasil" role="img"><rect width="20" height="14" rx="2" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/><path d="M7 6.3c2-.6 4.2-.4 6 .6" stroke="#fff" stroke-width=".7" fill="none"/></svg></span><div><b>Remoto no Brasil</b><small>Qualquer estado</small></div><span class="ok">● disponível</span></div>
+            <div class="modo"><span class="modo-ic">🌎</span><div><b>Remoto no exterior</b><small>Empresas fora do Brasil</small></div><span class="ok">● disponível</span></div>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a class="c-link" href="mailto:azevedothamirest@gmail.com"><span class="c-ic mail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="c-txt"><small>E-mail</small><b>azevedothamirest@gmail.com</b></span><span class="seta">↗</span></a>
+          <a class="c-link" href="https://www.linkedin.com/in/qathamiresazevedo" target="_blank" rel="noopener"><span class="c-ic in"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></span><span class="c-txt"><small>LinkedIn</small><b>in/qathamiresazevedo</b></span><span class="seta">↗</span></a>
+          <a class="c-link" href="https://github.com/azevedothamirest" target="_blank" rel="noopener"><span class="c-ic gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span><span class="c-txt"><small>GitHub</small><b>azevedothamirest</b></span><span class="seta">↗</span></a>
+          <a class="c-link" href="assets/Thamires_Azevedo_CV.pdf" download><span class="c-ic cv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6m-3-3 3 3 3-3"/></svg></span><span class="c-txt"><small>Currículo</small><b>Baixar em PDF</b></span><span class="seta">↓</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Thamires Azevedo</span><span>QA Sênior · Recife, PE</span></div>
+</footer>
+
+<script>
+// Grade ondulada: linhas finas deslocadas por ondas que se movem devagar.
+// Usada no topo da página e, mais intensa, no cartão de contato.
+function gradeOndulada(cv, { cel = 48, amp = 9, vel = .006, alfa = .07 } = {}) {
+  const ctx = cv.getContext('2d');
+  const PASSO = 8;
+  let w, h, t = 0, visivel = true;
+
+  function medir() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = cv.clientWidth; h = cv.clientHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  // Deslocamento do ponto (x, y): duas ondas cruzadas, como um tecido em movimento
+  const dx = (x, y) => amp * Math.sin(y / 140 + t) + amp * .5 * Math.sin((x + y) / 260 - t * .7);
+  const dy = (x, y) => amp * Math.sin(x / 160 - t * .8) + amp * .5 * Math.cos((x - y) / 240 + t * .6);
+
+  function desenhar() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = `rgba(255,255,255,${alfa})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = -cel; x <= w + cel; x += cel) {
+      for (let y = -cel; y <= h + cel; y += PASSO) {
+        const px = x + dx(x, y), py = y + dy(x, y);
+        y === -cel ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+    }
+    for (let y = -cel; y <= h + cel; y += cel) {
+      for (let x = -cel; x <= w + cel; x += PASSO) {
+        const px = x + dx(x, y), py = y + dy(x, y);
+        x === -cel ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+    }
+    ctx.stroke();
+  }
+  function quadro() {
+    if (visivel) { t += vel; desenhar(); }
+    requestAnimationFrame(quadro);
+  }
+  medir(); desenhar();
+  addEventListener('resize', () => { medir(); desenhar(); });
+  // Para de animar fora da tela, para não gastar bateria
+  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }).observe(cv);
+  requestAnimationFrame(quadro);
+}
+gradeOndulada(document.getElementById('grade'));
+gradeOndulada(document.getElementById('grade-contato'), { cel: 34, amp: 16, vel: .012, alfa: .09 });
+
+// Borda da navegação ao rolar
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), { passive: true });
+
+// Menu no celular
+const menu = document.getElementById('menu');
+document.getElementById('menu-btn').addEventListener('click', () => menu.classList.toggle('open'));
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') menu.classList.remove('open'); });
+
+// Link ativo conforme a seção visível
+const links = [...menu.querySelectorAll('a')];
+const ativo = new IntersectionObserver(entradas => {
+  entradas.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) ativo.observe(s); });
+
+// Aparecer ao rolar
+const revelar = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revelar.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => revelar.observe(el));
+
+// Detalhes dos projetos
+document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.open).showModal()));
+document.querySelectorAll('dialog').forEach(d => {
+  d.querySelector('[data-close]').addEventListener('click', () => d.close());
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
+});
+</script>
+</body>
+</html>
