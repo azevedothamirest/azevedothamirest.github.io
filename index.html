@@ -372,6 +372,22 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .proj > .project:hover { border-color: var(--line); }
 @media (max-width: 600px) { .proj > summary { flex-direction: column; align-items: flex-start; padding: 22px; } .proj-toggle { margin-left: 0; } }
 @media (prefers-reduced-motion: reduce) { .proj > .project { animation: none; } .proj .sk-chev { transition: none; } }
+
+/* Terminal: cenário Gherkin se escrevendo */
+.term-body .g-kw { color: #A78BFA; }
+.term-body .g-cen { padding-left: 2ch; }
+.term-body .g-step { padding-left: 4ch; text-indent: -2ch; color: #D4D4D4; }
+.term-body .g-step .g-st { color: var(--accent); font-weight: 600; display: inline-block; width: 1ch; text-indent: 0; }
+.term-body .g-step.run { color: var(--text-3); }
+.term-body .g-step.run .g-st { color: var(--text-3); }
+.term-body .g-blank { height: .9em; }
+.term-body .g-imed { color: var(--accent); }
+.term-body .g-imed i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: 1px; animation: g-pisca 1.6s infinite; }
+.term-body .g-cur { display: inline-block; width: .6em; height: 1.1em; background: var(--text-2); vertical-align: -3px; margin-left: 6px; animation: g-cursor 1s steps(1) infinite; }
+.term-body [data-l].oculto { visibility: hidden; }
+@keyframes g-pisca { 50% { opacity: .3; } }
+@keyframes g-cursor { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .term-body .g-imed i, .term-body .g-cur { animation: none; } }
 </style>
 </head>
 <body>
@@ -420,16 +436,20 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 
       <div class="terminal reveal" aria-hidden="true">
         <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
-        <div class="term-body">
-          <div><span class="c">$</span> <span class="k">npm test</span></div>
-          <div class="ok"><b>✔</b> qa-pulse ....... 101 passando</div>
-          <div class="ok"><b>✔</b> qa-sidekick .... 29 passando</div>
-          <div class="c">  0 falhas · 0 dependências de teste</div>
-          <br>
-          <div><span class="c">$</span> <span class="k">/analisar TA-101</span></div>
-          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Analisando TA-101...</div>
-          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Comentários corrigem: limite de 6 → 12 meses</div>
-          <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#FEBC2E"><path d="M12 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v4"/><path d="M14 2v6h6"/><path d="m18.4 13.6 2 2L15 21h-2v-2z"/></svg> Roteiro: 6 casos além dos critérios de aceite</div>
+        <div class="term-body" id="term">
+          <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js contratar.feature</span></div>
+          <div class="g-blank" data-l></div>
+          <div data-l><span class="g-kw">Funcionalidade:</span> Contratar a Thamires</div>
+          <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
+          <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
+          <div class="g-blank" data-l></div>
+          <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
+          <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>início imediato</span><span class="g-cur"></span></div>
         </div>
         <div class="stats">
           <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
@@ -841,6 +861,42 @@ document.querySelectorAll('dialog').forEach(d => {
   d.querySelector('[data-close]').addEventListener('click', () => d.close());
   d.addEventListener('click', e => { if (e.target === d) d.close(); });
 });
+
+// Terminal: roda o cenário Gherkin linha a linha (texto completo fica visível sem JS ou com movimento reduzido)
+(function () {
+  const term = document.getElementById('term');
+  if (!term || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const linhas = [...term.querySelectorAll('[data-l]')];
+  const cmd = term.querySelector('[data-type] .k');
+  const textoCmd = cmd.textContent;
+  const tempo = document.getElementById('g-time');
+  const SPIN = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
+  const espera = ms => new Promise(r => setTimeout(r, ms));
+  async function rodar() {
+    linhas.forEach(l => l.classList.add('oculto'));
+    cmd.textContent = '';
+    linhas[0].classList.remove('oculto');
+    for (const ch of textoCmd) { cmd.textContent += ch; await espera(38); }
+    await espera(350);
+    const t0 = performance.now();
+    for (const l of linhas.slice(1)) {
+      l.classList.remove('oculto');
+      if (l.classList.contains('g-step')) {
+        const st = l.querySelector('.g-st');
+        l.classList.add('run');
+        for (let i = 0; i < 6; i++) { st.textContent = SPIN[i % SPIN.length]; await espera(70); }
+        st.textContent = '✔'; l.classList.remove('run');
+      } else {
+        await espera(l.classList.contains('g-blank') ? 120 : 220);
+      }
+      if (l.contains(tempo)) tempo.textContent = '0m' + ((performance.now() - t0) / 1000).toFixed(1) + 's';
+    }
+    await espera(7000);
+    rodar();
+  }
+  // Começa quando o terminal aparece na tela
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); rodar(); } }).observe(term);
+})();
 </script>
 </body>
 </html>
