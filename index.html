@@ -305,7 +305,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
 /* ── Como atuo ─────────────────────────── */
 #atuacao h2 .dim { color: var(--text-2); }
-.ponte { display: grid; gap: 16px; margin-bottom: 40px; }
+.ponte { display: grid; gap: 16px; }
 .pt-cena { background: var(--bg-2); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
 .pt-cena svg { display: block; width: 100%; height: auto; }
 .pt-legenda { display: grid; gap: 6px; padding: 14px 18px; border-top: 1px solid var(--line); font: 500 12.5px var(--mono); color: var(--text-2); }
@@ -340,6 +340,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 .numeros-head { margin-top: 48px; }
 .numeros-head h3 { font-size: 22px; letter-spacing: -.01em; }
 .numeros-head p { color: var(--text-2); font-size: 14.5px; margin-top: 4px; }
+.carrossel { margin-top: 20px; }
 .ganhos { margin-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .ganho { border-top: 2px solid var(--line-2); padding-top: 14px; }
 .ganho .num { display: block; font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 6px; }
@@ -550,6 +551,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
+      <div class="numeros-head reveal"><h3>Como trabalho no dia a dia</h3><p>Seis práticas que levo para qualquer time. Use as setas ou deslize para ver todas.</p></div>
       <div class="carrossel reveal" id="pilares" aria-roledescription="carrossel" aria-label="Como trabalho no dia a dia">
         <div class="pilares" tabindex="0">
           <div class="pilar"><span class="n">01 · shift-left</span><h3>Qualidade desde o refinamento</h3><p>Analiso cada demanda antes do código: aponto ambiguidades, casos de exceção e regras faltando enquanto ainda é barato mudar.</p></div>
