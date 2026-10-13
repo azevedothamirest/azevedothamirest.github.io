@@ -549,7 +549,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .midia-video, .midia-fotos { display: grid; gap: 12px; min-width: 0; }
 .midia .reel iframe { min-height: 0; aspect-ratio: auto; height: 560px; }
 .midia .pola-palco { height: 400px; }
-.midia .polaroid { width: 240px; margin-left: -120px; }
+.midia .polaroid { width: 240px; margin-left: -120px; transform: translateX(calc(var(--pos, 0) * 150px)) scale(.68) rotate(var(--tilt)); }
+.midia .polaroid.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .4)); }
+@media (max-width: 600px) { .midia .polaroid { width: 200px; margin-left: -100px; transform: translateX(calc(var(--pos, 0) * 92px)) scale(.6) rotate(var(--tilt)); } .midia .polaroid.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .4)); } .midia .pola-palco { height: 380px; } }
 .midia-fotos .marcos { margin-bottom: 8px; }
 @media (max-width: 760px) { .midia { grid-template-columns: 1fr; } .midia .reel iframe { height: 600px; } .midia .pola-palco { height: 420px; } }
 
@@ -1356,9 +1358,10 @@ document.querySelectorAll('dialog').forEach(d => {
     it.addEventListener('click', () => ir(i));
   });
   function ir(i) {
-    atual = Math.max(0, Math.min(itens.length - 1, i));
+    const n = itens.length;
+    atual = ((i % n) + n) % n;
     itens.forEach((it, k) => {
-      const pos = k - atual;
+      let pos = k - atual; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n;
       it.style.setProperty('--pos', pos);
       it.classList.toggle('centro', pos === 0);
       it.classList.toggle('vizinho', Math.abs(pos) === 1);
