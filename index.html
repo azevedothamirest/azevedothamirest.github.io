@@ -550,6 +550,20 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .midia .reel iframe { min-height: 0; aspect-ratio: auto; height: 560px; }
 .midia .pola-palco { height: 470px; }
 @media (max-width: 760px) { .midia { grid-template-columns: 1fr; } .midia .reel iframe { height: 600px; } .midia .pola-palco { height: 420px; } }
+
+/* Como trabalho: carrossel em destaque (o do meio maior), detalhes em lilás */
+#pilares .pilares { display: block; position: relative; height: 250px; overflow: hidden; scroll-snap-type: none; touch-action: pan-y; border-radius: 0; }
+#pilares .pilares .pilar { position: absolute; top: 14px; left: 50%; width: min(560px, 82%); min-height: 0; height: 210px; margin: 0; transform: translateX(calc(-50% + var(--pos, 0) * 66%)) scale(.84); opacity: .35; filter: saturate(.4); cursor: pointer;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .45s, filter .45s, border-color .45s, box-shadow .45s; z-index: 1; overflow: hidden; }
+#pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); opacity: 1; filter: none; z-index: 3; cursor: default; border-color: rgba(var(--dest-rgb),.45); box-shadow: 0 0 0 4px rgba(var(--dest-rgb),.06), 0 20px 50px rgba(0,0,0,.4); background: linear-gradient(135deg, rgba(var(--dest-rgb),.1), rgba(var(--dest-rgb),.02) 60%), var(--card); }
+#pilares .pilares .pilar.vizinho { z-index: 2; }
+#pilares .pilares .pilar.longe { opacity: 0; pointer-events: none; }
+#pilares .pilar .n { color: var(--dest-claro); }
+#pilares .car-dots button.on { background: var(--dest); }
+#pilares .car-btn:hover { border-color: var(--dest); }
+#pilares .car-btn:focus-visible, #pilares .pilares:focus-visible { outline-color: var(--dest); }
+@media (max-width: 600px) { #pilares .pilares { height: 330px; } #pilares .pilares .pilar h3 { font-size: 19px; } #pilares .pilares .pilar p { font-size: 14.5px; } #pilares .pilares .pilar { height: 296px; width: 84%; transform: translateX(calc(-50% + var(--pos, 0) * 80%)) scale(.84); } #pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); } }
+@media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
 </style>
 </head>
 <body>
@@ -692,7 +706,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-      <div class="numeros-head reveal"><h3>Como trabalho no dia a dia</h3><p>Seis práticas que levo para qualquer time. Use as setas ou deslize para ver todas.</p></div>
+      <div class="numeros-head reveal"><h3>Como trabalho no dia a dia</h3><p>Seis práticas que levo para qualquer time. Use as setas, clique nos lados ou deslize para ver todas.</p></div>
       <div class="carrossel reveal" id="pilares" aria-roledescription="carrossel" aria-label="Como trabalho no dia a dia">
         <div class="pilares" tabindex="0">
           <div class="pilar"><span class="n">01 · shift-left</span><h3>Qualidade desde o refinamento</h3><p>Analiso cada demanda antes do código: aponto ambiguidades, casos de exceção e regras faltando enquanto ainda é barato mudar.</p></div>
@@ -1237,30 +1251,40 @@ document.querySelectorAll('dialog').forEach(d => {
   new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); ini = performance.now(); requestAnimationFrame(quadro); } }).observe(time.ownerSVGElement);
 })();
 
-// Carrossel dos cartões de "Como atuo": setas, bolinhas, teclado e deslizar com o dedo
+// Carrossel dos cartões de "Como atuo": o do meio em destaque, vizinhos menores e apagados
 (function () {
   const car = document.getElementById('pilares'); if (!car) return;
   const trilho = car.querySelector('.pilares'), itens = [...trilho.children];
   const [ant, prox] = car.querySelectorAll('.car-btn'), num = car.querySelector('.car-num'), dots = car.querySelector('.car-dots');
-  let atual = 0, alvo = 0, parou;
-  const ir = i => { alvo = Math.max(0, Math.min(itens.length - 1, i)); trilho.scrollTo({ left: itens[alvo].offsetLeft - itens[0].offsetLeft }); };
+  let atual = 0;
   itens.forEach((it, i) => {
     it.setAttribute('aria-roledescription', 'slide'); it.setAttribute('aria-label', (i + 1) + ' de ' + itens.length);
     const d = document.createElement('button'); d.tabIndex = -1; d.addEventListener('click', () => ir(i)); dots.appendChild(d);
+    it.addEventListener('click', () => ir(i));
   });
-  function marcar() {
-    atual = Math.round(trilho.scrollLeft / trilho.clientWidth);
+  function ir(i) {
+    atual = Math.max(0, Math.min(itens.length - 1, i));
+    itens.forEach((it, k) => {
+      const pos = k - atual;
+      it.style.setProperty('--pos', pos);
+      it.classList.toggle('centro', pos === 0);
+      it.classList.toggle('vizinho', Math.abs(pos) === 1);
+      it.classList.toggle('longe', Math.abs(pos) > 1);
+      it.setAttribute('aria-hidden', pos !== 0);
+    });
     num.textContent = (atual + 1) + ' / ' + itens.length;
     [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
     ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
   }
-  ant.addEventListener('click', () => ir(alvo - 1)); prox.addEventListener('click', () => ir(alvo + 1));
+  ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
   trilho.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); ir(alvo - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); ir(alvo + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); ir(atual - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); ir(atual + 1); }
   });
-  trilho.addEventListener('scroll', () => { requestAnimationFrame(marcar); clearTimeout(parou); parou = setTimeout(() => { alvo = atual; }, 150); }, { passive: true });
-  marcar();
+  let x0 = null;
+  trilho.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  trilho.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) ir(atual + (dx < 0 ? 1 : -1)); x0 = null; });
+  ir(0);
 })();
 
 // Fotos de palestras: polaroids, a do meio fica em destaque com a descrição
