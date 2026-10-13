@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
+  --dest: #F472B6; --dest-claro: #F9A8D4; --dest-rgb: 244,114,182; /* cor de destaque do @qa.thami */
   --bg: #0A0A0A;
   --bg-2: #111111;
   --card: #151515;
@@ -429,14 +430,14 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .foto-perfil figcaption, .fc-cap { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
 
 /* @qa.thami em destaque: rosa suave */
-.proj-destaque { --rosa-rgb: 244,114,182; background: linear-gradient(135deg, rgba(var(--rosa-rgb),.11), rgba(var(--rosa-rgb),.04) 60%), var(--card); border-color: rgba(var(--rosa-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--rosa-rgb),.05), 0 24px 60px rgba(var(--rosa-rgb),.06); }
-.proj-destaque:hover { border-color: rgba(var(--rosa-rgb),.55); }
-.proj-destaque > .project, .proj-destaque > .project:hover { background: transparent; border-top-color: rgba(var(--rosa-rgb),.25); transition: none; }
-.proj-destaque .p-emoji { background: rgba(var(--rosa-rgb),.12); border-color: rgba(var(--rosa-rgb),.3); }
-.proj-destaque .proj-toggle { border-color: rgba(var(--rosa-rgb),.4); }
-.proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--rosa-rgb),.2); }
-.proj-destaque .marcos { border-left-color: rgba(var(--rosa-rgb),.35); }
-.p-selo { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 99px; font-size: 10px; letter-spacing: .08em; color: #F9A8D4; background: rgba(244,114,182,.12); border: 1px solid rgba(244,114,182,.3); vertical-align: 1px; }
+.proj-destaque {  background: linear-gradient(135deg, rgba(var(--dest-rgb),.11), rgba(var(--dest-rgb),.04) 60%), var(--card); border-color: rgba(var(--dest-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--dest-rgb),.05), 0 24px 60px rgba(var(--dest-rgb),.06); }
+.proj-destaque:hover { border-color: rgba(var(--dest-rgb),.55); }
+.proj-destaque > .project, .proj-destaque > .project:hover { background: transparent; border-top-color: rgba(var(--dest-rgb),.25); transition: none; }
+.proj-destaque .p-emoji { background: rgba(var(--dest-rgb),.12); border-color: rgba(var(--dest-rgb),.3); }
+.proj-destaque .proj-toggle { border-color: rgba(var(--dest-rgb),.4); }
+.proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--dest-rgb),.2); }
+.proj-destaque .marcos { border-left-color: rgba(var(--dest-rgb),.35); }
+.p-selo { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 99px; font-size: 10px; letter-spacing: .08em; color: var(--dest-claro); background: rgba(var(--dest-rgb),.12); border: 1px solid rgba(var(--dest-rgb),.3); vertical-align: 1px; }
 
 /* Vídeos do @qa.thami */
 .reels-head { display: flex; align-items: baseline; gap: 10px; }
@@ -444,24 +445,24 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .reels-head small { color: var(--text-3); font-size: 12.5px; }
 .reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .reel { display: grid; gap: 8px; min-width: 0; }
-.reel iframe { width: 100%; aspect-ratio: 9 / 16; min-height: 420px; border: 1px solid rgba(244,114,182,.25); border-radius: 14px; background: #fff; }
-.reel a { font: 600 12px var(--mono); color: #F9A8D4; justify-self: start; }
+.reel iframe { width: 100%; aspect-ratio: 9 / 16; min-height: 420px; border: 1px solid rgba(var(--dest-rgb),.25); border-radius: 14px; background: #fff; }
+.reel a { font: 600 12px var(--mono); color: var(--dest-claro); justify-self: start; }
 @media (max-width: 760px) {
   .reels { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .reel { scroll-snap-align: start; }
 }
 
 /* Destaques no título dos projetos */
-.h-rosa { background: linear-gradient(90deg, #F472B6, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.h-rosa { background: linear-gradient(90deg, var(--dest), var(--dest-claro)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .h-verde { color: var(--accent); }
 
 /* @qa.thami: avatar, frase e números */
-.avatar-ig { width: 56px; height: 56px; flex: none; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, #F472B6, #FEBC2E, #F472B6, #A78BFA, #F472B6); }
+.avatar-ig { width: 56px; height: 56px; flex: none; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, var(--dest), #FEBC2E, var(--dest), #A78BFA, var(--dest)); }
 .avatar-ig img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--card); display: block; }
 .proj-destaque .frase-qa { font-size: clamp(20px, 2.6vw, 26px); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; color: var(--text); text-wrap: balance; }
 .proj-destaque .frase-sub { font-size: 14.5px; color: var(--text-2); max-width: 62ch; margin-top: -4px; }
 .nums-qa { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 4px; }
-.nums-qa b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: #F9A8D4; font-variant-numeric: tabular-nums; }
+.nums-qa b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--dest-claro); font-variant-numeric: tabular-nums; }
 .nums-qa small { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 
 /* Fotos de palestras como polaroids: a do meio em destaque */
@@ -483,14 +484,14 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .acts-topo { margin-top: 0; padding-top: 0; }
 .temas { display: flex; margin-top: 6px; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
 .temas .chips { display: contents; }
-.temas-lbl { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #F9A8D4; margin-right: 4px; }
+.temas-lbl { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--dest-claro); margin-right: 4px; }
 
 .proj-destaque .p-top h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
-.ig-mini { display: inline-flex; align-items: center; gap: 5px; line-height: 1.2; font: 600 11px var(--mono); color: #F9A8D4; border: 1px solid rgba(244,114,182,.4); background: rgba(244,114,182,.1); padding: 3px 8px 3px 6px; border-radius: 99px; transition: background .15s; }
+.ig-mini { display: inline-flex; align-items: center; gap: 5px; line-height: 1.2; font: 600 11px var(--mono); color: var(--dest-claro); border: 1px solid rgba(var(--dest-rgb),.4); background: rgba(var(--dest-rgb),.1); padding: 3px 8px 3px 6px; border-radius: 99px; transition: background .15s; }
 .ig-mini svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
-.ig-mini:hover { background: rgba(244,114,182,.22); }
-.link-rosa { color: #F9A8D4; text-decoration: underline; text-decoration-color: rgba(244,114,182,.45); text-underline-offset: 3px; }
-.link-rosa:hover { text-decoration-color: #F9A8D4; }
+.ig-mini:hover { background: rgba(var(--dest-rgb),.22); }
+.link-rosa { color: var(--dest-claro); text-decoration: underline; text-decoration-color: rgba(var(--dest-rgb),.45); text-underline-offset: 3px; }
+.link-rosa:hover { text-decoration-color: var(--dest-claro); }
 .link-rosa em { color: inherit; }
 
 /* Perfil: polaroids pequenas passando sozinhas */
