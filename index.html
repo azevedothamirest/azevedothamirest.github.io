@@ -435,6 +435,19 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--rosa-rgb),.2); }
 .proj-destaque .marcos { border-left-color: rgba(var(--rosa-rgb),.35); }
 .p-selo { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 99px; font-size: 10px; letter-spacing: .08em; color: #F9A8D4; background: rgba(244,114,182,.12); border: 1px solid rgba(244,114,182,.3); vertical-align: 1px; }
+
+/* Vídeos do @qa.thami */
+.reels-head { display: flex; align-items: baseline; gap: 10px; }
+.reels-head b { font-size: 15px; }
+.reels-head small { color: var(--text-3); font-size: 12.5px; }
+.reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.reel { display: grid; gap: 8px; min-width: 0; }
+.reel iframe { width: 100%; aspect-ratio: 9 / 16; min-height: 420px; border: 1px solid rgba(244,114,182,.25); border-radius: 14px; background: #fff; }
+.reel a { font: 600 12px var(--mono); color: #F9A8D4; justify-self: start; }
+@media (max-width: 760px) {
+  .reels { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .reel { scroll-snap-align: start; }
+}
 </style>
 </head>
 <body>
@@ -698,6 +711,12 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
               <div class="marco"><span>2023</span><p>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</p></div>
               <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
+            </div>
+            <div class="reels-head"><b>Vídeos</b><small>Dicas e conteúdos do @qa.thami</small></div>
+            <div class="reels" aria-label="Vídeos do @qa.thami">
+              <div class="reel"><iframe src="https://www.instagram.com/reel/C8aeILEO84g/embed/" title="Vídeo do @qa.thami no Instagram (1 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
+              <div class="reel"><iframe src="https://www.instagram.com/reel/CyGQhepgRIP/embed/" title="Vídeo do @qa.thami no Instagram (2 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CyGQhepgRIP/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
+              <div class="reel"><iframe src="https://www.instagram.com/reel/CqNyq5jOCkf/embed/" title="Vídeo do @qa.thami no Instagram (3 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CqNyq5jOCkf/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
             </div>
             <div class="palco" aria-label="Fotos de palestras">
               <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
