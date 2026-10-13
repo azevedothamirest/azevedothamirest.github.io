@@ -566,7 +566,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
 
 /* Terminal no final, junto do contato */
-.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: start; }
+.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: stretch; }
 .contato-grid .contact-card { grid-template-columns: 1fr; }
 .contato-grid .contact-links { border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
 .contato-grid .c-link { padding: 18px 22px; border-right: 1px solid var(--line); }
@@ -576,7 +576,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .contato-grid .c-cv { grid-column: 1 / -1; border-right: 0; }
 .contato-grid .c-link { gap: 12px; padding: 18px 18px; }
 @media (max-width: 600px) { .contato-grid .contact-links { grid-template-columns: 1fr; } .contato-grid .c-link { border-right: 0; } }
-.contato-term { display: grid; gap: 16px; position: sticky; top: 90px; }
+.contato-term { display: flex; flex-direction: column; gap: 16px; }
+.contato-term .terminal { flex: 1; display: flex; flex-direction: column; }
+.contato-term .term-body { flex: 1; }
 .lt-tag { font: 600 12px var(--mono); color: var(--dest-claro); }
 .lt-head h3 { font-size: 26px; letter-spacing: -.02em; line-height: 1.15; margin: 6px 0 6px; }
 .lt-head p { color: var(--text-2); font-size: 14.5px; }
