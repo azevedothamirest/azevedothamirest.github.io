@@ -411,14 +411,19 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @media (prefers-reduced-motion: reduce) { .term-body .g-imed i, .term-body .g-cur { animation: none; } }
 
 /* Fotos: perfil e palestras */
+.fotos-perfil { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; margin: 0 0 22px; }
+.fotos-perfil .foto-perfil { margin: 0; max-width: none; }
+.fotos-perfil .foto-perfil img { aspect-ratio: auto; height: 100%; min-height: 220px; }
+.foto-formatura { max-width: none; margin: 0 0 14px; }
+.foto-formatura img { aspect-ratio: 16 / 9 !important; object-position: 50% 20% !important; }
 .foto-perfil { margin: 0 0 22px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); position: relative; max-width: 420px; }
 .foto-perfil img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; }
 .foto-perfil figcaption, .palco figcaption { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
-.palco { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.palco { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .palco figure { margin: 0; position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
 .palco img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; display: block; transition: transform .4s; }
 .palco figure:hover img { transform: scale(1.04); }
-@media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } .palco figure:first-child { grid-column: 1 / -1; } .palco figure:first-child img { aspect-ratio: 16 / 10; } }
+@media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { .palco img { transition: none; } }
 </style>
 </head>
@@ -603,7 +608,10 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-          <figure class="foto-perfil"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption>Palestrante no TDC 2024</figcaption></figure>
+          <div class="fotos-perfil">
+            <figure class="foto-perfil"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption>Palestrante no TDC 2024</figcaption></figure>
+            <figure class="foto-perfil"><img src="assets/palestras/pernambuco.jpg" alt="Thamires de costas, sorrindo, com a bandeira de Pernambuco aberta nos braços" width="754" height="900" loading="lazy"><figcaption>Recife, PE</figcaption></figure>
+          </div>
           <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
           <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
           <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
@@ -765,6 +773,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió</figcaption></figure>
               <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
               <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa" width="814" height="900" loading="lazy"><figcaption>Roda de conversa</figcaption></figure>
+              <figure><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia" width="797" height="900" loading="lazy"><figcaption>Comunidade tech</figcaption></figure>
             </div>
             <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
             <div class="p-actions">
@@ -824,6 +833,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
       <div class="creds">
         <details class="skill-card reveal">
           <summary class="sk-head"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div><h3>Formação</h3><small>Acadêmica e idiomas</small></div><span class="sk-chev" aria-hidden="true"></span></summary>
+          <figure class="foto-perfil foto-formatura"><img src="assets/palestras/formatura.jpg" alt="Thamires de beca e capelo, sorrindo e estendendo o diploma" width="694" height="900" loading="lazy"><figcaption>Formatura · Sistemas de Informação</figcaption></figure>
           <div class="edu">
             <div class="edu-item"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><b>Pós-graduação em Engenharia da Qualidade de Software</b><small>Centro Universitário Senac · 2023–2024</small></div></div>
             <div class="edu-item"><span class="sk-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#22D3EE"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 20h20"/></svg></span><div><b>Bacharelado em Sistemas de Informação</b><small>UNINASSAU · 2018–2021 · Mentora em Testes de Software</small></div></div>
