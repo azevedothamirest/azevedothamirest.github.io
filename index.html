@@ -54,7 +54,7 @@ img { max-width: 100%; display: block; }
 .hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; background:
   radial-gradient(900px 500px at 85% 15%, rgba(255,255,255,.06), transparent 60%),
   linear-gradient(to bottom, transparent 70%, var(--bg)); }
-.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 760px); gap: 56px; align-items: center; }
 /* Selo "Open to work": o destaque mais forte da página, com o ponto pulsando */
 .otw { display: flex; width: fit-content; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; margin-bottom: 18px; border: 1px solid rgba(var(--accent-rgb),.35); background: rgba(var(--accent-rgb),.07); border-radius: 999px; font-size: 13px; color: var(--text-2); transition: border-color .2s; }
 .otw:hover { border-color: rgba(var(--accent-rgb),.7); }
@@ -564,6 +564,10 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 #pilares .car-btn:focus-visible, #pilares .pilares:focus-visible { outline-color: var(--dest); }
 @media (max-width: 600px) { #pilares .pilares { height: 330px; } #pilares .pilares .pilar h3 { font-size: 19px; } #pilares .pilares .pilar p { font-size: 14.5px; } #pilares .pilares .pilar { height: 296px; width: 84%; transform: translateX(calc(-50% + var(--pos, 0) * 80%)) scale(.84); } #pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); } }
 @media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
+
+/* Terminal no final, junto do contato */
+.contato-term { max-width: 560px; margin: 28px auto 0; }
+.contato-term .terminal { box-shadow: 0 30px 60px rgba(0,0,0,.45); }
 </style>
 </head>
 <body>
@@ -574,8 +578,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menu">☰</button>
     <div class="menu" id="menu">
       <a href="#inicio">Início</a>
-      <a href="#atuacao">Como atuo</a>
       <a href="#perfil">Perfil</a>
+      <a href="#atuacao">Como atuo</a>
       <a href="#projetos">Projetos</a>
       <a href="#competencias">Competências</a>
       <a href="#contato" class="cta"><span class="nav-dot"></span>Open to work</a>
@@ -599,7 +603,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <span>Inglês B2, rumo ao C1</span>
         </div>
         <div class="actions">
-          <a class="btn btn-solid" href="#atuacao">Como atuo →</a>
+          <a class="btn btn-solid" href="#perfil">Conheça meu perfil →</a>
           <div class="cv-split" role="group" aria-label="Baixar currículo">
             <span class="cv-lbl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Currículo</span>
             <a href="assets/Thamires_Azevedo_CV.pdf" download="Thamires Azevedo - curriculo em português.pdf" title="Currículo em português">PT</a>
@@ -611,46 +615,70 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-      <div class="terminal reveal" aria-hidden="true">
-        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
-        <div class="term-body" id="term">
-          <div class="cena" id="cena-testes">
-            <div data-l data-type><span class="c">$</span> <span class="k">npm test thamires</span></div>
-            <div class="g-blank" data-l></div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> atuação <span class="c">.......</span> Produto ⇄ Dev</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> shift-left <span class="c">....</span> desde o backlog</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> retrabalho <span class="c">....</span> ~75% → ~32%</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> críticos <span class="c">......</span> ~28 → ~5</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> regressão <span class="c">.....</span> 3h → 30 min</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> comunidade <span class="c">....</span> +15 mil @qa.thami</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> palestras <span class="c">.....</span> TDC 2023 · 2024</div>
-            <div class="g-blank" data-l></div>
-            <div class="ok" data-l><b>7 passando</b> · 0 falhas</div>
+    </div>
+  </header>
+
+  <!-- ══ Perfil ══ -->
+  <section class="block" id="perfil">
+    <div class="wrap">
+      <div class="about">
+        <div class="reveal">
+          <div class="sec-head about-head">
+        <div>
+          <div class="sec-label">Perfil profissional</div>
+          <h2><span class="h-verde">Técnica</span> e <span class="h-rosa">negócio</span><br>no mesmo teste.</h2>
+        </div>
+      </div>
+
+          <div class="mini-palco" id="mini-palco" aria-label="Fotos de palestras e eventos">
+            <figure class="mini-pola" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626"><figcaption>TDC Connections · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900"><figcaption>Evento tech · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898"><figcaption>TDC Summit Recife · 2024</figcaption></figure>
           </div>
-          <div class="cena" id="cena-gherkin">
-            <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js contratar.feature</span></div>
-            <div class="g-blank" data-l></div>
-            <div data-l><span class="g-kw">Funcionalidade:</span> Contratar a Thamires</div>
-            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
-            <div class="g-blank" data-l></div>
-            <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
-            <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>início imediato</span><span class="g-cur"></span></div>
+          <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
+          <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
+          <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
+          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos abaixo nasceram dessa prática.</p>
+          <div class="highlights">
+            <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
+            <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
+            <div class="hl"><b>CTFL + CPA</b><small>técnica e negócio</small></div>
           </div>
         </div>
-        <div class="stats">
-          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
-          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
-          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        <div class="timeline reveal">
+          <div class="job atual">
+            <div class="job-head"><h3>Buscando nova oportunidade</h3><span class="when agora">agora</span></div>
+            <div class="role">Disponível como QA Sênior — presencial ou híbrido em Recife e região, remoto no Brasil e no exterior</div>
+            <a class="job-link" href="#contato">Vamos conversar →</a>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
+            <div class="role">Senior QA Analyst · QA Pleno · QA Júnior III — fintech, remoto</div>
+            <ul>
+              <li>Estruturei a regressão automatizada de uma squad, redesenhando mais de 50 cenários em Cypress</li>
+              <li>Ampliei a cobertura para fluxos de exceção e reduzi falsos positivos na suíte</li>
+              <li>Integrei os testes ao pipeline de CI/CD e testei contratos de API e fluxos assíncronos com mensageria</li>
+              <li>Modelei e executei casos funcionais e não funcionais em BDD/Gherkin, aproximando QA, Produto e Dev</li>
+              <li>Padronizei a nomenclatura de casos e os critérios de análise de bugs críticos</li>
+              <li>Criei dashboards de métricas de qualidade e documentação usada por QA, Produto e Dev</li>
+              <li>Fui referência de negócio para outras squads e apoiei QAs menos experientes</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Accenture</h3><span class="when">2019 – 2021</span></div>
+            <div class="role">Analista de Teste / QA — consultoria, Recife</div>
+            <ul>
+              <li>Testes funcionais, de regressão, integração, UAT e desempenho em sistemas financeiros</li>
+              <li>Scripts de automação para execuções repetitivas e SQL para validação de dados em massa</li>
+              <li>Gestão de bugs e evidências com interação direta com stakeholders</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- ══ Como atuo ══ -->
   <section class="block" id="atuacao">
@@ -732,68 +760,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         <div class="ganho"><span class="num"><span class="de">~3h</span> <i>→</i> <span class="para" data-de="180" data-para="30" data-pre="" data-suf=" min">30 min</span></span><span class="queda">↓ redução de 83%</span><b>Regressão</b><small>Regressão automatizada e estável: o tempo que ia para conferência manual voltou para o time evoluir o produto.</small></div>
       </div>
       <p class="ganhos-nota">Métricas aproximadas extraídas do meu último emprego, no comparativo entre 2025 e 2026 (até setembro). Sem dados internos da empresa ou do time.</p>
-    </div>
-  </section>
-
-  <!-- ══ Perfil ══ -->
-  <section class="block" id="perfil">
-    <div class="wrap">
-      <div class="about">
-        <div class="reveal">
-          <div class="sec-head about-head">
-        <div>
-          <div class="sec-label">Perfil profissional</div>
-          <h2><span class="h-verde">Técnica</span> e <span class="h-rosa">negócio</span><br>no mesmo teste.</h2>
-        </div>
-      </div>
-
-          <div class="mini-palco" id="mini-palco" aria-label="Fotos de palestras e eventos">
-            <figure class="mini-pola" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626"><figcaption>TDC Connections · 2023</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900"><figcaption>Evento tech · Grafeno</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898"><figcaption>TDC Summit Recife · 2024</figcaption></figure>
-          </div>
-          <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
-          <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
-          <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
-          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos abaixo nasceram dessa prática.</p>
-          <div class="highlights">
-            <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
-            <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
-            <div class="hl"><b>CTFL + CPA</b><small>técnica e negócio</small></div>
-          </div>
-        </div>
-        <div class="timeline reveal">
-          <div class="job atual">
-            <div class="job-head"><h3>Buscando nova oportunidade</h3><span class="when agora">agora</span></div>
-            <div class="role">Disponível como QA Sênior — presencial ou híbrido em Recife e região, remoto no Brasil e no exterior</div>
-            <a class="job-link" href="#contato">Vamos conversar →</a>
-          </div>
-          <div class="job">
-            <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
-            <div class="role">Senior QA Analyst · QA Pleno · QA Júnior III — fintech, remoto</div>
-            <ul>
-              <li>Estruturei a regressão automatizada de uma squad, redesenhando mais de 50 cenários em Cypress</li>
-              <li>Ampliei a cobertura para fluxos de exceção e reduzi falsos positivos na suíte</li>
-              <li>Integrei os testes ao pipeline de CI/CD e testei contratos de API e fluxos assíncronos com mensageria</li>
-              <li>Modelei e executei casos funcionais e não funcionais em BDD/Gherkin, aproximando QA, Produto e Dev</li>
-              <li>Padronizei a nomenclatura de casos e os critérios de análise de bugs críticos</li>
-              <li>Criei dashboards de métricas de qualidade e documentação usada por QA, Produto e Dev</li>
-              <li>Fui referência de negócio para outras squads e apoiei QAs menos experientes</li>
-            </ul>
-          </div>
-          <div class="job">
-            <div class="job-head"><h3>Accenture</h3><span class="when">2019 – 2021</span></div>
-            <div class="role">Analista de Teste / QA — consultoria, Recife</div>
-            <ul>
-              <li>Testes funcionais, de regressão, integração, UAT e desempenho em sistemas financeiros</li>
-              <li>Scripts de automação para execuções repetitivas e SQL para validação de dados em massa</li>
-              <li>Gestão de bugs e evidências com interação direta com stakeholders</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1023,6 +989,46 @@ E deve exibir o período aplicado acima da lista</pre></div>
             <a class="cv-op" href="assets/Thamires_Azevedo_Resume_EN.pdf" download="Thamires Azevedo - resume in english.pdf" lang="en"><b>English</b><span class="seta">↓</span></a>
           </span></div>
         </div>
+      </div>
+      <div class="contato-term">
+      <div class="terminal" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
+        <div class="term-body" id="term">
+          <div class="cena" id="cena-testes">
+            <div data-l data-type><span class="c">$</span> <span class="k">npm test thamires</span></div>
+            <div class="g-blank" data-l></div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> atuação <span class="c">.......</span> Produto ⇄ Dev</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> shift-left <span class="c">....</span> desde o backlog</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> retrabalho <span class="c">....</span> ~75% → ~32%</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> críticos <span class="c">......</span> ~28 → ~5</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> regressão <span class="c">.....</span> 3h → 30 min</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> comunidade <span class="c">....</span> +15 mil @qa.thami</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> palestras <span class="c">.....</span> TDC 2023 · 2024</div>
+            <div class="g-blank" data-l></div>
+            <div class="ok" data-l><b>7 passando</b> · 0 falhas</div>
+          </div>
+          <div class="cena" id="cena-gherkin">
+            <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js contratar.feature</span></div>
+            <div class="g-blank" data-l></div>
+            <div data-l><span class="g-kw">Funcionalidade:</span> Contratar a Thamires</div>
+            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
+            <div class="g-blank" data-l></div>
+            <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
+            <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>início imediato</span><span class="g-cur"></span></div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
+          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
+          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
