@@ -785,12 +785,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
                 <figure class="polaroid" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption><b>Evento tech · Grafeno</b><span>Evento interno de tecnologia: compartilhar conhecimento também dentro de casa.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption><b>TDC Summit Recife · 2024</b><span>Palestrante: Como a Inteligência Artificial Está Redefinindo os Testes de Software.</span></figcaption></figure>
               </div>
-              <div class="car-nav">
-                <button class="car-btn" aria-label="Foto anterior">←</button>
-                <div class="car-dots" aria-hidden="true"></div>
-                <span class="car-num" aria-live="polite">1 / 5</span>
-                <button class="car-btn" aria-label="Próxima foto">→</button>
-              </div>
             </div>
           </div>
         </div>
@@ -1230,10 +1224,8 @@ document.querySelectorAll('dialog').forEach(d => {
 (function () {
   const car = document.getElementById('palco'); if (!car) return;
   const palco = car.querySelector('.pola-palco'), itens = [...palco.children];
-  const [ant, prox] = car.querySelectorAll('.car-btn'), num = car.querySelector('.car-num'), dots = car.querySelector('.car-dots');
   let atual = 0;
   itens.forEach((it, i) => {
-    const d = document.createElement('button'); d.tabIndex = -1; d.addEventListener('click', () => ir(i)); dots.appendChild(d);
     it.addEventListener('click', () => ir(i));
   });
   function ir(i) {
@@ -1246,9 +1238,6 @@ document.querySelectorAll('dialog').forEach(d => {
       it.classList.toggle('longe', Math.abs(pos) > 1);
       it.setAttribute('aria-hidden', pos !== 0);
     });
-    num.textContent = (atual + 1) + ' / ' + itens.length;
-    [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
-    ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
   }
   // Passa sozinha; pausa com o mouse em cima e por um tempo depois de um clique
   let pausa = false, ultimoToque = 0;
@@ -1257,7 +1246,6 @@ document.querySelectorAll('dialog').forEach(d => {
   car.addEventListener('touchstart', () => { ultimoToque = Date.now(); }, { passive: true, capture: true });
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
     setInterval(() => { if (!pausa && !document.hidden && Date.now() - ultimoToque > 8000) ir((atual + 1) % itens.length); }, 3800);
-  ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
   car.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') ir(atual - 1); if (e.key === 'ArrowRight') ir(atual + 1); });
   // Deslizar com o dedo
   let x0 = null;
