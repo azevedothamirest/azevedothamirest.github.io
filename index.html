@@ -457,6 +457,15 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 /* Destaques no título dos projetos */
 .h-rosa { background: linear-gradient(90deg, #F472B6, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .h-verde { color: var(--accent); }
+
+/* @qa.thami: avatar, frase e números */
+.avatar-ig { width: 56px; height: 56px; flex: none; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, #F472B6, #FEBC2E, #F472B6, #A78BFA, #F472B6); }
+.avatar-ig img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--card); display: block; }
+.proj-destaque .frase-qa { font-size: clamp(20px, 2.6vw, 26px); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; color: var(--text); text-wrap: balance; }
+.proj-destaque .frase-sub { font-size: 14.5px; color: var(--text-2); max-width: 62ch; margin-top: -4px; }
+.nums-qa { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 4px; }
+.nums-qa b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: #F9A8D4; font-variant-numeric: tabular-nums; }
+.nums-qa small { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 </style>
 </head>
 <body>
@@ -700,15 +709,16 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 
       <div class="projects">
         <details class="proj proj-destaque reveal" open>
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami</h3></div></div>
-            <p>Ensino QA para quem está começando, em conteúdo, e-book e palestras. Quando era júnior, aprendi quase tudo sozinha; hoje compartilhar esse caminho é um prazer.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="avatar-ig"><img src="assets/palestras/avatar-qathami.jpg" alt="Foto de perfil de Thamires no @qa.thami" width="240" height="240"></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami</h3></div></div>
+            <p class="frase-qa">Aprendi QA sozinha. Hoje ensino para <span class="h-rosa">mais de 15 mil pessoas</span>.</p>
+            <p class="frase-sub">Conteúdo, e-book e palestras para quem está começando na área, porque compartilhar esse caminho é um prazer.</p>
+            <div class="nums-qa">
+              <div><b>15,4 mil</b><small>seguidores</small></div>
+              <div><b>4</b><small>palestras</small></div>
+              <div><b>1</b><small>e-book</small></div>
+            </div></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <div class="project ensino">
           <div class="p-body">
-            <div class="p-stats">
-              <div><b>+15 mil</b><small>seguidores no Instagram</small></div>
-              <div><b>E-book</b><small>para quem começa em QA</small></div>
-              <div><b>TDC</b><small>palestrante em 2023 e 2024</small></div>
-            </div>
             <ul class="bullets">
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>Autora do e-book "Comece por aqui, QA!" (2022), um guia para quem está entrando na área</li>
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
