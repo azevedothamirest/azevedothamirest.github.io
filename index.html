@@ -538,6 +538,19 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .sk-tags .lg-mono { padding: 0; border: 0; border-radius: 4px; background: var(--c); color: #0A0A0A; font: 800 7.5px var(--mono); }
 .formacao { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
 .formacao > .foto-formatura img { aspect-ratio: 1 / 1 !important; object-position: 50% 20% !important; }
+
+/* Thamires em números: contagem e barras de antes e depois */
+.ganho .num .de { color: var(--text-3); font-weight: 700; }
+.ganho .num .para { font-variant-numeric: tabular-nums; }
+.barras { display: grid; gap: 5px; margin: 2px 0 12px; }
+.barras > span { position: relative; height: 8px; border-radius: 99px; }
+.barras em { position: absolute; right: calc(100% + 8px); top: 50%; transform: translateY(-50%); font: 500 10px var(--mono); font-style: normal; color: var(--text-3); display: none; }
+.b-antes { width: 100%; background: var(--line-2); }
+.b-depois { width: var(--w); background: linear-gradient(90deg, var(--accent), #86EFAC); box-shadow: 0 0 12px rgba(var(--accent-rgb),.35); transition: width 1.6s cubic-bezier(.2,.7,.2,1); }
+.ganhos:not(.contou) .b-depois { width: 100%; }
+.ganhos-leg { display: flex; gap: 16px; margin-top: 14px; font: 500 11.5px var(--mono); color: var(--text-3); }
+.ganhos-leg i { display: inline-block; width: 18px; height: 6px; border-radius: 99px; margin-right: 6px; vertical-align: 1px; }
+@media (prefers-reduced-motion: reduce) { .b-depois { transition: none; } .ganhos:not(.contou) .b-depois { width: var(--w); } }
 </style>
 </head>
 <body>
@@ -698,13 +711,14 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-      <div class="numeros-head reveal"><h3>Thamires em números</h3><p>O que mudou no meu último time com a qualidade presente desde o backlog.</p></div>
+      <div class="numeros-head reveal"><h3>Thamires em <span class="h-verde">números</span></h3><p>O que mudou no meu último time com a qualidade presente desde o backlog.</p></div>
       <div class="ganhos reveal">
-        <div class="ganho"><span class="num">~75% <i>→</i> ~32%</span><b>Retrabalho no ano</b><small>Qualidade desde o backlog: quando a demanda já chega clara no desenvolvimento, menos entregas voltam do teste para correção.</small></div>
-        <div class="ganho"><span class="num">~28 <i>→</i> ~5</span><b>Bugs críticos em produção</b><small>Critérios de bug crítico combinados entre QA, Produto e Dev fizeram os problemas graves serem barrados antes de chegar ao cliente.</small></div>
-        <div class="ganho"><span class="num">~29% <i>→</i> ~13%</span><b>Bugs por entrega</b><small>Análise antecipada e testes exploratórios: menos falhas escapando para produção a cada entrega, no 2º semestre.</small></div>
-        <div class="ganho"><span class="num">~3h <i>→</i> 30 min</span><b>Regressão</b><small>Regressão automatizada e estável: o tempo que ia para conferência manual voltou para o time evoluir o produto.</small></div>
+        <div class="ganho"><span class="num"><span class="de">~75%</span> <i>→</i> <span class="para" data-de="75" data-para="32" data-pre="~" data-suf="%">~32%</span></span><span class="barras" aria-hidden="true"><span class="b-antes"><em>2025</em></span><span class="b-depois" style="--w:43%"><em>2026</em></span></span><b>Retrabalho no ano</b><small>Qualidade desde o backlog: quando a demanda já chega clara no desenvolvimento, menos entregas voltam do teste para correção.</small></div>
+        <div class="ganho"><span class="num"><span class="de">~28</span> <i>→</i> <span class="para" data-de="28" data-para="5" data-pre="~" data-suf="">~5</span></span><span class="barras" aria-hidden="true"><span class="b-antes"><em>2025</em></span><span class="b-depois" style="--w:18%"><em>2026</em></span></span><b>Bugs críticos em produção</b><small>Critérios de bug crítico combinados entre QA, Produto e Dev fizeram os problemas graves serem barrados antes de chegar ao cliente.</small></div>
+        <div class="ganho"><span class="num"><span class="de">~29%</span> <i>→</i> <span class="para" data-de="29" data-para="13" data-pre="~" data-suf="%">~13%</span></span><span class="barras" aria-hidden="true"><span class="b-antes"><em>2025</em></span><span class="b-depois" style="--w:45%"><em>2026</em></span></span><b>Bugs por entrega</b><small>Análise antecipada e testes exploratórios: menos falhas escapando para produção a cada entrega, no 2º semestre.</small></div>
+        <div class="ganho"><span class="num"><span class="de">~3h</span> <i>→</i> <span class="para" data-de="180" data-para="30" data-pre="" data-suf=" min">30 min</span></span><span class="barras" aria-hidden="true"><span class="b-antes"><em>2025</em></span><span class="b-depois" style="--w:17%"><em>2026</em></span></span><b>Regressão</b><small>Regressão automatizada e estável: o tempo que ia para conferência manual voltou para o time evoluir o produto.</small></div>
       </div>
+      <div class="ganhos-leg" aria-hidden="true"><span><i style="background:var(--line-2)"></i>2025</span><span><i style="background:var(--accent)"></i>2026 (até setembro)</span></div>
       <p class="ganhos-nota">Métricas aproximadas extraídas do meu último emprego, no comparativo entre 2025 e 2026 (até setembro). Sem dados internos da empresa ou do time.</p>
     </div>
   </section>
@@ -1301,6 +1315,27 @@ document.querySelectorAll('dialog').forEach(d => {
   palco.addEventListener('mouseenter', () => { pausa = true; });
   palco.addEventListener('mouseleave', () => { pausa = false; });
   setInterval(() => { if (!pausa && !document.hidden) { atual = (atual + 1) % n; mostrar(); } }, 3200);
+})();
+
+// Thamires em números: os valores contam do "antes" até o "depois" e as barras encolhem quando a seção aparece
+(function () {
+  const box = document.querySelector('.ganhos'); if (!box) return;
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduz) { box.classList.add('contou'); return; }
+  const alvos = [...box.querySelectorAll('.para')];
+  new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return; o.disconnect();
+    box.classList.add('contou');
+    const t0 = performance.now(), D = 1600;
+    (function quadro(t) {
+      const k = Math.min(1, (t - t0) / D), ease = 1 - Math.pow(1 - k, 3);
+      alvos.forEach(a => {
+        const de = +a.dataset.de, para = +a.dataset.para, v = Math.round(de + (para - de) * ease);
+        a.textContent = a.dataset.pre + v + a.dataset.suf;
+      });
+      if (k < 1) requestAnimationFrame(quadro);
+    })(t0);
+  }, { threshold: .4 }).observe(box);
 })();
 </script>
 </body>
