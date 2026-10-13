@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="versao" content="20261013164427">
+<script>
+// Se o navegador mostrou uma versão antiga guardada, busca a atual e recarrega uma vez
+(function () {
+  try {
+    var atual = document.querySelector('meta[name="versao"]').content;
+    fetch(location.pathname, { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) {
+      var m = t.match(/name="versao" content="(\d+)"/);
+      if (m && m[1] !== atual && sessionStorage.getItem('recarregou') !== m[1]) {
+        sessionStorage.setItem('recarregou', m[1]);
+        location.reload();
+      }
+    }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
+
 <title>Thamires Azevedo | QA Sênior</title>
 <meta name="description" content="Thamires Azevedo — QA Sênior manual e de automação. Testes funcionais, exploratórios e de regressão, automação com Cypress e Playwright, testes de API e BDD.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
