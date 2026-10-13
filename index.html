@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="versao" content="20261013165629">
+<meta name="versao" content="20261013171254">
 <script>
 // Se o navegador mostrou uma versão antiga guardada, busca a atual e recarrega uma vez
 (function () {
@@ -28,7 +28,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@700&family=Cedarville+Cursive&display=swap" rel="stylesheet">
 <style>
 :root {
   --dest: #A78BFA; --dest-claro: #C4B5FD; --dest-rgb: 167,139,250; /* cor de destaque do @qa.thami */
@@ -647,7 +647,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @media (max-width: 600px) { .contato-grid .c-cv { padding: 14px 0 0; margin-left: 0; border-left: 0; border-top: 1px solid var(--line); } }
 
 /* Topo: foto em polaroid */
-.hero-pola { justify-self: center; width: min(360px, 100%); background: #F7F4EE; padding: 14px 14px 56px; border-radius: 4px; box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04); rotate: 3deg; transition: rotate .4s cubic-bezier(.2,.7,.2,1), scale .4s, opacity .7s, transform .7s; }
+.hero-pola { justify-self: center; width: min(360px, 100%); background: #F7F4EE; padding: 14px 14px 0; border-radius: 4px; box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04); rotate: 3deg; transition: rotate .4s cubic-bezier(.2,.7,.2,1), scale .4s, opacity .7s, transform .7s; }
 .hero-pola:hover { rotate: 0deg; scale: 1.02; }
 .hero-pola img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; display: block; border-radius: 2px; }
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-pola { width: min(280px, 80%); order: -1; margin-bottom: 8px; } }
@@ -663,6 +663,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 #pilares .pilares .pilar.centro { box-shadow: 0 0 0 1px rgba(var(--dest-rgb),.5), 0 0 60px rgba(var(--dest-rgb),.22), 0 24px 60px rgba(0,0,0,.5); background: radial-gradient(400px 200px at 0% 0%, rgba(var(--dest-rgb),.22), transparent 70%), linear-gradient(135deg, rgba(var(--dest-rgb),.1), rgba(var(--dest-rgb),.02) 60%), var(--card); }
 #pilares .car-btn { border-color: rgba(var(--dest-rgb),.4); }
 @media (max-width: 600px) { #pilares .pilares { height: 360px; } #pilares .pilares .pilar { height: 320px; padding: 92px 22px 22px; } #pilares .pilares .pilar .p-ico { left: 22px; top: 22px; width: 48px; height: 48px; } #pilares .pilares .pilar h3 { font-size: 21px; } }
+.hero-pola figcaption { font-family: 'Cedarville Cursive', cursive; font-size: 30px; color: #1C1917; text-align: center; white-space: nowrap; height: 62px; display: grid; place-items: center; line-height: 1; }
+@media (max-width: 900px) { .hero-pola figcaption { font-size: 24px; height: 52px; } }
 </style>
 </head>
 <body>
@@ -709,7 +711,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <span class="tag">Testes manuais</span><span class="tag">Automação</span><span class="tag">Cypress</span><span class="tag">Playwright</span><span class="tag">API</span><span class="tag">BDD</span><span class="tag">Métricas</span><span class="tag">IA aplicada a QA</span>
         </div>
       </div>
-      <figure class="hero-pola reveal" aria-label="Foto de Thamires no TDC 2024"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do TDC 2024" width="900" height="898"></figure>
+      <figure class="hero-pola reveal" aria-label="Foto de Thamires no TDC 2024"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do TDC 2024" width="900" height="898"><figcaption>Thamires Azevedo</figcaption></figure>
 
     </div>
   </header>
