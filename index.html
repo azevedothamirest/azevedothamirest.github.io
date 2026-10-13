@@ -557,7 +557,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 
 /* Como trabalho: carrossel em destaque (o do meio maior), detalhes em lilás */
 #pilares .pilares { display: block; position: relative; height: 250px; overflow: hidden; scroll-snap-type: none; touch-action: pan-y; border-radius: 0; }
-#pilares .pilares .pilar { position: absolute; top: 14px; left: 50%; width: min(560px, 82%); min-height: 0; height: 210px; margin: 0; transform: translateX(calc(-50% + var(--pos, 0) * 66%)) scale(.84); opacity: .35; filter: saturate(.4); cursor: pointer;
+#pilares .pilares .pilar { position: absolute; top: 14px; left: 50%; width: min(520px, 60%); min-height: 0; height: 210px; margin: 0; transform: translateX(calc(-50% + var(--pos, 0) * 62%)) scale(.78); opacity: .35; filter: saturate(.4); cursor: pointer;
   transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .45s, filter .45s, border-color .45s, box-shadow .45s; z-index: 1; overflow: hidden; }
 #pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); opacity: 1; filter: none; z-index: 3; cursor: default; border-color: rgba(var(--dest-rgb),.45); box-shadow: 0 0 0 4px rgba(var(--dest-rgb),.06), 0 20px 50px rgba(0,0,0,.4); background: linear-gradient(135deg, rgba(var(--dest-rgb),.1), rgba(var(--dest-rgb),.02) 60%), var(--card); }
 #pilares .pilares .pilar.vizinho { z-index: 2; }
@@ -1325,9 +1325,10 @@ document.querySelectorAll('dialog').forEach(d => {
     it.addEventListener('click', () => ir(i));
   });
   function ir(i) {
-    atual = Math.max(0, Math.min(itens.length - 1, i));
+    const n = itens.length;
+    atual = ((i % n) + n) % n;
     itens.forEach((it, k) => {
-      const pos = k - atual;
+      let pos = k - atual; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n;
       it.style.setProperty('--pos', pos);
       it.classList.toggle('centro', pos === 0);
       it.classList.toggle('vizinho', Math.abs(pos) === 1);
@@ -1336,7 +1337,6 @@ document.querySelectorAll('dialog').forEach(d => {
     });
     num.textContent = (atual + 1) + ' / ' + itens.length;
     [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
-    ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
   }
   ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
   trilho.addEventListener('keydown', e => {
