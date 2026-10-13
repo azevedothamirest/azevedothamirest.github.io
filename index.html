@@ -54,7 +54,7 @@ img { max-width: 100%; display: block; }
 .hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; background:
   radial-gradient(900px 500px at 85% 15%, rgba(255,255,255,.06), transparent 60%),
   linear-gradient(to bottom, transparent 70%, var(--bg)); }
-.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 760px); gap: 56px; align-items: center; }
 /* Selo "Open to work": o destaque mais forte da página, com o ponto pulsando */
 .otw { display: flex; width: fit-content; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; margin-bottom: 18px; border: 1px solid rgba(var(--accent-rgb),.35); background: rgba(var(--accent-rgb),.07); border-radius: 999px; font-size: 13px; color: var(--text-2); transition: border-color .2s; }
 .otw:hover { border-color: rgba(var(--accent-rgb),.7); }
@@ -548,12 +548,16 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .midia { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
 .midia-video, .midia-fotos { display: grid; gap: 12px; min-width: 0; }
 .midia .reel iframe { min-height: 0; aspect-ratio: auto; height: 560px; }
-.midia .pola-palco { height: 470px; }
+.midia .pola-palco { height: 400px; }
+.midia .polaroid { width: 240px; margin-left: -120px; transform: translateX(calc(var(--pos, 0) * 150px)) scale(.68) rotate(var(--tilt)); }
+.midia .polaroid.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .4)); }
+@media (max-width: 600px) { .midia .polaroid { width: 200px; margin-left: -100px; transform: translateX(calc(var(--pos, 0) * 92px)) scale(.6) rotate(var(--tilt)); } .midia .polaroid.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .4)); } .midia .pola-palco { height: 380px; } }
+.midia-fotos .marcos { margin-bottom: 8px; }
 @media (max-width: 760px) { .midia { grid-template-columns: 1fr; } .midia .reel iframe { height: 600px; } .midia .pola-palco { height: 420px; } }
 
 /* Como trabalho: carrossel em destaque (o do meio maior), detalhes em lilás */
 #pilares .pilares { display: block; position: relative; height: 250px; overflow: hidden; scroll-snap-type: none; touch-action: pan-y; border-radius: 0; }
-#pilares .pilares .pilar { position: absolute; top: 14px; left: 50%; width: min(560px, 82%); min-height: 0; height: 210px; margin: 0; transform: translateX(calc(-50% + var(--pos, 0) * 66%)) scale(.84); opacity: .35; filter: saturate(.4); cursor: pointer;
+#pilares .pilares .pilar { position: absolute; top: 14px; left: 50%; width: min(520px, 60%); min-height: 0; height: 210px; margin: 0; transform: translateX(calc(-50% + var(--pos, 0) * 62%)) scale(.78); opacity: .35; filter: saturate(.4); cursor: pointer;
   transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .45s, filter .45s, border-color .45s, box-shadow .45s; z-index: 1; overflow: hidden; }
 #pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); opacity: 1; filter: none; z-index: 3; cursor: default; border-color: rgba(var(--dest-rgb),.45); box-shadow: 0 0 0 4px rgba(var(--dest-rgb),.06), 0 20px 50px rgba(0,0,0,.4); background: linear-gradient(135deg, rgba(var(--dest-rgb),.1), rgba(var(--dest-rgb),.02) 60%), var(--card); }
 #pilares .pilares .pilar.vizinho { z-index: 2; }
@@ -564,6 +568,63 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 #pilares .car-btn:focus-visible, #pilares .pilares:focus-visible { outline-color: var(--dest); }
 @media (max-width: 600px) { #pilares .pilares { height: 330px; } #pilares .pilares .pilar h3 { font-size: 19px; } #pilares .pilares .pilar p { font-size: 14.5px; } #pilares .pilares .pilar { height: 296px; width: 84%; transform: translateX(calc(-50% + var(--pos, 0) * 80%)) scale(.84); } #pilares .pilares .pilar.centro { transform: translateX(-50%) scale(1); } }
 @media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
+
+/* Terminal no final, junto do contato */
+.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: stretch; }
+.contato-grid .contact-card { display: flex; flex-direction: column; }
+.contato-grid .contact-main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.contato-term { align-self: start; }
+.contato-grid .contact-card { grid-template-columns: 1fr; }
+.contato-grid .contact-links { border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
+.contato-grid .c-link { padding: 18px 22px; border-right: 1px solid var(--line); }
+.contato-grid .c-link:nth-child(2n) { border-right: 0; }
+.contato-grid .c-txt b { font-size: 12.5px; overflow-wrap: normal; white-space: nowrap; }
+.contato-grid .c-txt { min-width: 0; }
+.contato-grid .c-cv { grid-column: 1 / -1; border-right: 0; }
+.contato-grid .c-link { gap: 12px; padding: 18px 18px; }
+@media (max-width: 600px) { .contato-grid .contact-links { grid-template-columns: 1fr; } .contato-grid .c-link { border-right: 0; } }
+.contato-term { display: flex; flex-direction: column; gap: 16px; }
+.lt-tag { font: 600 12px var(--mono); color: var(--dest-claro); }
+.lt-head h3 { font-size: 26px; letter-spacing: -.02em; line-height: 1.15; margin: 6px 0 6px; }
+.lt-head p { color: var(--text-2); font-size: 14.5px; }
+.lt-cta { margin-top: 14px; background: #FEBC2E; border-color: #FEBC2E; color: #1A1200; box-shadow: 0 0 0 4px rgba(254,188,46,.14); }
+.lt-cta:hover { background: #FFCB52; border-color: #FFCB52; }
+@media (max-width: 900px) { .contato-grid { grid-template-columns: 1fr; } .contato-term { position: static; } }
+.contato-term .terminal { box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+
+/* Currículo: PT e EN lado a lado */
+.contato-grid .c-cv { align-items: center; }
+.contato-grid .c-cv .c-txt { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+.contato-grid .c-cv .c-txt > small { grid-column: 1 / -1; }
+.contato-grid .cv-op, .contato-grid .cv-op:first-of-type { border: 1px solid var(--line-2); border-radius: 10px; padding: 9px 12px; justify-content: space-between; gap: 8px; }
+.contato-grid .cv-op:hover { border-color: var(--text-3); }
+.contato-grid .cv-op b { font-size: 13.5px; }
+
+/* Contato: lado esquerdo mais compacto */
+.contato-grid .contact-main { padding: 46px 32px 42px; }
+.contato-grid .contact-main .otw { margin-bottom: 22px; }
+.contato-grid .contact-main h2 { font-size: clamp(30px, 3.6vw, 40px); margin-bottom: 8px; }
+.contato-grid .contact-main > p { margin-bottom: 22px; font-size: 14.5px; }
+.contato-grid .modos { gap: 12px; }
+.contato-grid .modo { padding: 11px 14px; gap: 12px; }
+.contato-grid .modo b { line-height: 1.3; }
+.contato-grid .modo small { line-height: 1.3; display: block; }
+.contato-grid .modo-ic { width: 28px; height: 28px; }
+.contato-grid .modo b { font-size: 13.5px; }
+.contato-grid .modo small { font-size: 11.5px; }
+.contato-grid .c-link { padding: 12px 16px; }
+.contato-grid .c-ic { width: 34px; height: 34px; }
+.contato-grid .c-cv .cv-op, .contato-grid .c-cv .cv-op:first-of-type { padding: 7px 12px; }
+
+/* Contato: só os ícones levando a cada lugar */
+.contato-grid .contact-links { display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; padding: 22px 32px; }
+.contato-grid .c-link:not(.c-cv) { flex: none; padding: 0; border: 0; background: none; }
+.contato-grid .c-link:not(.c-cv) .c-txt, .contato-grid .c-link:not(.c-cv) .seta { display: none; }
+.contato-grid .c-link:not(.c-cv) .c-ic { width: 48px; height: 48px; border-radius: 14px; transition: transform .15s, box-shadow .15s; }
+.contato-grid .c-link:not(.c-cv):hover .c-ic { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+.contato-grid .c-link:not(.c-cv):focus-visible .c-ic { outline: 2px solid var(--accent); outline-offset: 3px; }
+.contato-grid .c-cv { flex: 1 1 280px; padding: 0 0 0 16px; margin-left: 4px; border: 0; border-left: 1px solid var(--line); }
+@media (max-width: 600px) { .contato-grid .c-cv { padding: 14px 0 0; margin-left: 0; border-left: 0; border-top: 1px solid var(--line); } }
 </style>
 </head>
 <body>
@@ -574,8 +635,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menu">☰</button>
     <div class="menu" id="menu">
       <a href="#inicio">Início</a>
-      <a href="#atuacao">Como atuo</a>
       <a href="#perfil">Perfil</a>
+      <a href="#atuacao">Como atuo</a>
       <a href="#projetos">Projetos</a>
       <a href="#competencias">Competências</a>
       <a href="#contato" class="cta"><span class="nav-dot"></span>Open to work</a>
@@ -599,7 +660,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <span>Inglês B2, rumo ao C1</span>
         </div>
         <div class="actions">
-          <a class="btn btn-solid" href="#atuacao">Como atuo →</a>
+          <a class="btn btn-solid" href="#perfil">Conheça meu perfil →</a>
           <div class="cv-split" role="group" aria-label="Baixar currículo">
             <span class="cv-lbl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Currículo</span>
             <a href="assets/Thamires_Azevedo_CV.pdf" download="Thamires Azevedo - curriculo em português.pdf" title="Currículo em português">PT</a>
@@ -611,46 +672,70 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-      <div class="terminal reveal" aria-hidden="true">
-        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
-        <div class="term-body" id="term">
-          <div class="cena" id="cena-testes">
-            <div data-l data-type><span class="c">$</span> <span class="k">npm test thamires</span></div>
-            <div class="g-blank" data-l></div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> atuação <span class="c">.......</span> Produto ⇄ Dev</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> shift-left <span class="c">....</span> desde o backlog</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> retrabalho <span class="c">....</span> ~75% → ~32%</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> críticos <span class="c">......</span> ~28 → ~5</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> regressão <span class="c">.....</span> 3h → 30 min</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> comunidade <span class="c">....</span> +15 mil @qa.thami</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> palestras <span class="c">.....</span> TDC 2023 · 2024</div>
-            <div class="g-blank" data-l></div>
-            <div class="ok" data-l><b>7 passando</b> · 0 falhas</div>
+    </div>
+  </header>
+
+  <!-- ══ Perfil ══ -->
+  <section class="block" id="perfil">
+    <div class="wrap">
+      <div class="about">
+        <div class="reveal">
+          <div class="sec-head about-head">
+        <div>
+          <div class="sec-label">Perfil profissional</div>
+          <h2><span class="h-verde">Técnica</span> e <span class="h-rosa">negócio</span><br>no mesmo teste.</h2>
+        </div>
+      </div>
+
+          <div class="mini-palco" id="mini-palco" aria-label="Fotos de palestras e eventos">
+            <figure class="mini-pola" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626"><figcaption>TDC Connections · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900"><figcaption>Evento tech · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898"><figcaption>TDC Summit Recife · 2024</figcaption></figure>
           </div>
-          <div class="cena" id="cena-gherkin">
-            <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js contratar.feature</span></div>
-            <div class="g-blank" data-l></div>
-            <div data-l><span class="g-kw">Funcionalidade:</span> Contratar a Thamires</div>
-            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
-            <div class="g-blank" data-l></div>
-            <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
-            <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>início imediato</span><span class="g-cur"></span></div>
+          <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
+          <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
+          <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
+          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos abaixo nasceram dessa prática.</p>
+          <div class="highlights">
+            <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
+            <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
+            <div class="hl"><b>CTFL + CPA</b><small>técnica e negócio</small></div>
           </div>
         </div>
-        <div class="stats">
-          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
-          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
-          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        <div class="timeline reveal">
+          <div class="job atual">
+            <div class="job-head"><h3>Buscando nova oportunidade</h3><span class="when agora">agora</span></div>
+            <div class="role">Disponível como QA Sênior — presencial ou híbrido em Recife e região, remoto no Brasil e no exterior</div>
+            <a class="job-link" href="#contato">Vamos conversar →</a>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
+            <div class="role">Senior QA Analyst · QA Pleno · QA Júnior III — fintech, remoto</div>
+            <ul>
+              <li>Estruturei a regressão automatizada de uma squad, redesenhando mais de 50 cenários em Cypress</li>
+              <li>Ampliei a cobertura para fluxos de exceção e reduzi falsos positivos na suíte</li>
+              <li>Integrei os testes ao pipeline de CI/CD e testei contratos de API e fluxos assíncronos com mensageria</li>
+              <li>Modelei e executei casos funcionais e não funcionais em BDD/Gherkin, aproximando QA, Produto e Dev</li>
+              <li>Padronizei a nomenclatura de casos e os critérios de análise de bugs críticos</li>
+              <li>Criei dashboards de métricas de qualidade e documentação usada por QA, Produto e Dev</li>
+              <li>Fui referência de negócio para outras squads e apoiei QAs menos experientes</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><h3>Accenture</h3><span class="when">2019 – 2021</span></div>
+            <div class="role">Analista de Teste / QA — consultoria, Recife</div>
+            <ul>
+              <li>Testes funcionais, de regressão, integração, UAT e desempenho em sistemas financeiros</li>
+              <li>Scripts de automação para execuções repetitivas e SQL para validação de dados em massa</li>
+              <li>Gestão de bugs e evidências com interação direta com stakeholders</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- ══ Como atuo ══ -->
   <section class="block" id="atuacao">
@@ -735,75 +820,13 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
     </div>
   </section>
 
-  <!-- ══ Perfil ══ -->
-  <section class="block" id="perfil">
-    <div class="wrap">
-      <div class="about">
-        <div class="reveal">
-          <div class="sec-head about-head">
-        <div>
-          <div class="sec-label">Perfil profissional</div>
-          <h2><span class="h-verde">Técnica</span> e <span class="h-rosa">negócio</span><br>no mesmo teste.</h2>
-        </div>
-      </div>
-
-          <div class="mini-palco" id="mini-palco" aria-label="Fotos de palestras e eventos">
-            <figure class="mini-pola" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626"><figcaption>TDC Connections · 2023</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900"><figcaption>Evento tech · Grafeno</figcaption></figure>
-            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898"><figcaption>TDC Summit Recife · 2024</figcaption></figure>
-          </div>
-          <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
-          <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
-          <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
-          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos abaixo nasceram dessa prática.</p>
-          <div class="highlights">
-            <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
-            <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
-            <div class="hl"><b>CTFL + CPA</b><small>técnica e negócio</small></div>
-          </div>
-        </div>
-        <div class="timeline reveal">
-          <div class="job atual">
-            <div class="job-head"><h3>Buscando nova oportunidade</h3><span class="when agora">agora</span></div>
-            <div class="role">Disponível como QA Sênior — presencial ou híbrido em Recife e região, remoto no Brasil e no exterior</div>
-            <a class="job-link" href="#contato">Vamos conversar →</a>
-          </div>
-          <div class="job">
-            <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
-            <div class="role">Senior QA Analyst · QA Pleno · QA Júnior III — fintech, remoto</div>
-            <ul>
-              <li>Estruturei a regressão automatizada de uma squad, redesenhando mais de 50 cenários em Cypress</li>
-              <li>Ampliei a cobertura para fluxos de exceção e reduzi falsos positivos na suíte</li>
-              <li>Integrei os testes ao pipeline de CI/CD e testei contratos de API e fluxos assíncronos com mensageria</li>
-              <li>Modelei e executei casos funcionais e não funcionais em BDD/Gherkin, aproximando QA, Produto e Dev</li>
-              <li>Padronizei a nomenclatura de casos e os critérios de análise de bugs críticos</li>
-              <li>Criei dashboards de métricas de qualidade e documentação usada por QA, Produto e Dev</li>
-              <li>Fui referência de negócio para outras squads e apoiei QAs menos experientes</li>
-            </ul>
-          </div>
-          <div class="job">
-            <div class="job-head"><h3>Accenture</h3><span class="when">2019 – 2021</span></div>
-            <div class="role">Analista de Teste / QA — consultoria, Recife</div>
-            <ul>
-              <li>Testes funcionais, de regressão, integração, UAT e desempenho em sistemas financeiros</li>
-              <li>Scripts de automação para execuções repetitivas e SQL para validação de dados em massa</li>
-              <li>Gestão de bugs e evidências com interação direta com stakeholders</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ Projetos ══ -->
   <section class="block" id="projetos">
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
           <div class="sec-label">Projetos paralelos</div>
-          <h2>Ferramentas e conteúdo<br>feitos por <span class="h-rosa">uma QA</span>,<br>para <span class="h-verde">QAs</span>.</h2>
+          <h2>Projetos que <span class="h-rosa">nasceram</span><br>da rotina de <span class="h-verde">QA</span>.</h2>
         </div>
         <p>O projeto de ensino onde tudo começou e duas ferramentas que resolvem dores reais do dia a dia. O código das ferramentas é privado; as telas usam dados fictícios.</p>
       </div>
@@ -812,7 +835,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         <details class="proj proj-destaque reveal" open>
           <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="avatar-ig"><img src="assets/palestras/avatar-qathami.jpg" alt="Foto de perfil de Thamires no @qa.thami" width="240" height="240"></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami <a class="ig-mini" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener" aria-label="Abrir @qa.thami no Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram ↗</a></h3></div></div>
             <p class="frase-qa">Aprendi QA sozinha. Hoje ensino para <span class="h-rosa">mais de 15 mil pessoas</span>.</p>
-            <p class="frase-sub">Conteúdo, e-book e palestras para quem está começando na área, porque compartilhar esse caminho é um prazer.</p>
+            <p class="frase-sub">Conteúdo, e-book e palestras para quem está começando, com parceria do Senac.</p>
             <div class="nums-qa">
               <div><b>15,4 mil</b><small>seguidores</small></div>
               <div><b>4</b><small>palestras</small></div>
@@ -821,23 +844,19 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             <div class="temas"><span class="temas-lbl">Alguns dos temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <div class="project ensino">
           <div class="p-body">
-            <ul class="bullets">
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--dest)"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div>Autora do e-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener">"Comece por aqui, QA!" ↗</a> (2022), um guia para quem está entrando na área</div></li>
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
-            </ul>
-            <div class="marcos">
-              <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
-              <div class="marco"><span>2022</span><ul class="sub"><li>E-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener"><em>Comece por aqui, QA!</em> ↗</a></li><li>Participação no QAVerso</li></ul></div>
-              <div class="marco"><span>2023</span><ul class="sub"><li>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></li><li>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</li></ul></div>
-              <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
-            </div>
             <div class="midia">
               <div class="midia-video">
                 <div class="reels-head"><b>Vídeos</b><small>Um pouco do @qa.thami</small></div>
                 <div class="reel"><iframe src="https://www.instagram.com/reel/C8aeILEO84g/embed/" title="Vídeo do @qa.thami no Instagram" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
               </div>
               <div class="midia-fotos">
+                <div class="reels-head"><b>Linha do tempo</b><small>Comunidade e palestras</small></div>
+                <div class="marcos">
+              <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes</em></p></div>
+              <div class="marco"><span>2022</span><p>E-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener"><em>Comece por aqui, QA!</em> ↗</a> · QAVerso</p></div>
+              <div class="marco"><span>2023</span><p>Palestras no <em>TDC Connections</em> e no <em>GDG DevFest Maceió</em></p></div>
+              <div class="marco"><span>2024</span><p>Palestra sobre IA em testes no <em>TDC Summit Recife</em></p></div>
+            </div>
                 <div class="reels-head"><b>Palcos e eventos</b><small>Palestras e encontros</small></div>
                 <div class="pola" id="palco" aria-roledescription="carrossel" aria-label="Fotos de palestras e eventos">
               <div class="pola-palco">
@@ -1001,12 +1020,13 @@ E deve exibir o período aplicado acima da lista</pre></div>
   <!-- ══ Contato ══ -->
   <section class="contact" id="contato">
     <div class="wrap reveal">
+      <div class="contato-grid">
       <div class="contact-card">
         <div class="contact-main">
           <canvas id="grade-contato" aria-hidden="true"></canvas>
           <a class="otw" href="mailto:azevedothamirest@gmail.com"><i></i><b>Open to work</b><span>Disponível para início imediato</span></a>
           <h2>Vamos conversar?</h2>
-          <p>Procuro uma posição como QA Sênior em um time que leve qualidade a sério desde o requisito. Tenho disponibilidade para início imediato, nestes formatos:</p>
+          <p>Procuro uma posição como QA Sênior em um time que leve qualidade a sério desde o requisito. Formatos em que posso atuar:</p>
           <div class="modos">
             <div class="modo"><span class="modo-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F87171"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Presencial ou híbrido</b><small>Recife e região metropolitana</small></div><span class="ok">● disponível</span></div>
             <div class="modo"><span class="modo-ic"><svg width="20" height="14" viewBox="0 0 20 14" aria-label="Bandeira do Brasil" role="img"><rect width="20" height="14" rx="2" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/><path d="M7 6.3c2-.6 4.2-.4 6 .6" stroke="#fff" stroke-width=".7" fill="none"/></svg></span><div><b>Remoto no Brasil</b><small>Qualquer estado</small></div><span class="ok">● disponível</span></div>
@@ -1014,15 +1034,57 @@ E deve exibir o período aplicado acima da lista</pre></div>
           </div>
         </div>
         <div class="contact-links">
-          <a class="c-link" href="mailto:azevedothamirest@gmail.com"><span class="c-ic mail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="c-txt"><small>E-mail</small><b>azevedothamirest@gmail.com</b></span><span class="seta">↗</span></a>
-          <a class="c-link" href="https://www.linkedin.com/in/qathamiresazevedo" target="_blank" rel="noopener"><span class="c-ic in"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></span><span class="c-txt"><small>LinkedIn</small><b>in/qathamiresazevedo</b></span><span class="seta">↗</span></a>
-          <a class="c-link" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener"><span class="c-ic ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span class="c-txt"><small>Instagram · +15 mil</small><b>@qa.thami</b></span><span class="seta">↗</span></a>
-          <a class="c-link" href="https://github.com/azevedothamirest" target="_blank" rel="noopener"><span class="c-ic gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span><span class="c-txt"><small>GitHub</small><b>azevedothamirest</b></span><span class="seta">↗</span></a>
+          <a class="c-link" aria-label="E-mail" title="E-mail" href="mailto:azevedothamirest@gmail.com"><span class="c-ic mail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="c-txt"><small>E-mail</small><b>azevedothamirest@gmail.com</b></span><span class="seta">↗</span></a>
+          <a class="c-link" aria-label="LinkedIn" title="LinkedIn" href="https://www.linkedin.com/in/qathamiresazevedo" target="_blank" rel="noopener"><span class="c-ic in"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></span><span class="c-txt"><small>LinkedIn</small><b>in/qathamiresazevedo</b></span><span class="seta">↗</span></a>
+          <a class="c-link" aria-label="Instagram" title="Instagram" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener"><span class="c-ic ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span class="c-txt"><small>Instagram · +15 mil</small><b>@qa.thami</b></span><span class="seta">↗</span></a>
+          <a class="c-link" aria-label="GitHub" title="GitHub" href="https://github.com/azevedothamirest" target="_blank" rel="noopener"><span class="c-ic gh"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span><span class="c-txt"><small>GitHub</small><b>azevedothamirest</b></span><span class="seta">↗</span></a>
           <div class="c-link c-cv"><span class="c-ic cv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6m-3-3 3 3 3-3"/></svg></span><span class="c-txt"><small>Currículo / Resume</small>
             <a class="cv-op" href="assets/Thamires_Azevedo_CV.pdf" download="Thamires Azevedo - curriculo em português.pdf"><b>Português</b><span class="seta">↓</span></a>
             <a class="cv-op" href="assets/Thamires_Azevedo_Resume_EN.pdf" download="Thamires Azevedo - resume in english.pdf" lang="en"><b>English</b><span class="seta">↓</span></a>
           </span></div>
         </div>
+      </div>
+      <div class="contato-term">
+        <div class="lt-head"><span class="lt-tag">// leu até aqui?</span><h3>Então já sabe o <span class="h-verde">resultado</span>.</h3><p>Todos os testes passaram. Falta só o último passo:</p><a class="btn btn-solid lt-cta" href="mailto:azevedothamirest@gmail.com?subject=Vaga%20de%20QA%20S%C3%AAnior">Me coloque no seu time →</a></div>
+      <div class="terminal" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
+        <div class="term-body" id="term">
+          <div class="cena" id="cena-testes">
+            <div data-l data-type><span class="c">$</span> <span class="k">npm test thamires</span></div>
+            <div class="g-blank" data-l></div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> atuação <span class="c">.......</span> Produto ⇄ Dev</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> shift-left <span class="c">....</span> desde o backlog</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> retrabalho <span class="c">....</span> ~75% → ~32%</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> críticos <span class="c">......</span> ~28 → ~5</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> regressão <span class="c">.....</span> 3h → 30 min</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> comunidade <span class="c">....</span> +15 mil @qa.thami</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> palestras <span class="c">.....</span> TDC 2023 · 2024</div>
+            <div class="g-blank" data-l></div>
+            <div class="ok" data-l><b>7 passando</b> · 0 falhas</div>
+          </div>
+          <div class="cena" id="cena-gherkin">
+            <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js contratar.feature</span></div>
+            <div class="g-blank" data-l></div>
+            <div data-l><span class="g-kw">Funcionalidade:</span> Contratar a Thamires</div>
+            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
+            <div class="g-blank" data-l></div>
+            <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
+            <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>início imediato</span><span class="g-cur"></span></div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>7 anos</b><small>em qualidade</small></div>
+          <div class="stat"><b>5 anos</b><small>em fintech</small></div>
+          <div class="stat"><b>2</b><small>promoções internas</small></div>
+        </div>
+      </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1263,9 +1325,10 @@ document.querySelectorAll('dialog').forEach(d => {
     it.addEventListener('click', () => ir(i));
   });
   function ir(i) {
-    atual = Math.max(0, Math.min(itens.length - 1, i));
+    const n = itens.length;
+    atual = ((i % n) + n) % n;
     itens.forEach((it, k) => {
-      const pos = k - atual;
+      let pos = k - atual; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n;
       it.style.setProperty('--pos', pos);
       it.classList.toggle('centro', pos === 0);
       it.classList.toggle('vizinho', Math.abs(pos) === 1);
@@ -1274,7 +1337,6 @@ document.querySelectorAll('dialog').forEach(d => {
     });
     num.textContent = (atual + 1) + ' / ' + itens.length;
     [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
-    ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
   }
   ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
   trilho.addEventListener('keydown', e => {
@@ -1296,9 +1358,10 @@ document.querySelectorAll('dialog').forEach(d => {
     it.addEventListener('click', () => ir(i));
   });
   function ir(i) {
-    atual = Math.max(0, Math.min(itens.length - 1, i));
+    const n = itens.length;
+    atual = ((i % n) + n) % n;
     itens.forEach((it, k) => {
-      const pos = k - atual;
+      let pos = k - atual; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n;
       it.style.setProperty('--pos', pos);
       it.classList.toggle('centro', pos === 0);
       it.classList.toggle('vizinho', Math.abs(pos) === 1);
