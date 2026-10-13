@@ -422,6 +422,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .fotos-perfil { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; margin: 0 0 22px; }
 .fotos-perfil .foto-perfil { margin: 0; max-width: none; }
 .fotos-perfil .foto-perfil img { aspect-ratio: auto; height: 100%; min-height: 220px; }
+.foto-pe img { aspect-ratio: 4 / 3; object-position: 50% 35%; }
 .foto-formatura { max-width: none; margin: 0 0 14px; }
 .foto-formatura img { aspect-ratio: 16 / 9 !important; object-position: 50% 20% !important; }
 .foto-perfil { margin: 0 0 22px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); position: relative; max-width: 420px; }
@@ -667,10 +668,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-          <div class="fotos-perfil">
-            <figure class="foto-perfil"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption>Palestrante no TDC 2024</figcaption></figure>
-            <figure class="foto-perfil"><img src="assets/palestras/pernambuco.jpg" alt="Thamires de costas, sorrindo, com a bandeira de Pernambuco aberta nos braços" width="754" height="900" loading="lazy"><figcaption>Recife, PE</figcaption></figure>
-          </div>
+          <figure class="foto-perfil foto-pe"><img src="assets/palestras/pernambuco.jpg" alt="Thamires de costas, sorrindo, com a bandeira de Pernambuco aberta nos braços" width="754" height="900" loading="lazy"><figcaption>Recife, PE</figcaption></figure>
           <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
           <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
           <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
@@ -746,7 +744,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
             </ul>
-            <div class="temas"><span class="temas-lbl">Temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div>
+            <div class="temas"><span class="temas-lbl">Alguns dos temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div>
             <div class="marcos">
               <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
               <div class="marco"><span>2022</span><ul class="sub"><li>E-book <em>Comece por aqui, QA!</em></li><li>Participação no QAVerso</li></ul></div>
@@ -765,11 +763,12 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
                 <figure class="polaroid" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption><b>TDC Connections · 2023</b><span>Palestra selecionada: Quality Assurance, o atraso do Brasil e a necessidade de mudanças na visão empresarial.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption><b>Roda de conversa · Grafeno</b><span>Bate-papo em evento de tecnologia da Grafeno, levando QA para conversas com todo o time.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption><b>Evento tech · Grafeno</b><span>Evento interno de tecnologia: compartilhar conhecimento também dentro de casa.</span></figcaption></figure>
+                <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption><b>TDC Summit Recife · 2024</b><span>Palestrante: Como a Inteligência Artificial Está Redefinindo os Testes de Software.</span></figcaption></figure>
               </div>
               <div class="car-nav">
                 <button class="car-btn" aria-label="Foto anterior">←</button>
                 <div class="car-dots" aria-hidden="true"></div>
-                <span class="car-num" aria-live="polite">1 / 4</span>
+                <span class="car-num" aria-live="polite">1 / 5</span>
                 <button class="car-btn" aria-label="Próxima foto">→</button>
               </div>
             </div>
