@@ -425,6 +425,16 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .palco figure:hover img { transform: scale(1.04); }
 @media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { .palco img { transition: none; } }
+
+/* @qa.thami em destaque: rosa suave */
+.proj-destaque { --rosa-rgb: 244,114,182; background: linear-gradient(135deg, rgba(var(--rosa-rgb),.11), rgba(var(--rosa-rgb),.04) 60%), var(--card); border-color: rgba(var(--rosa-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--rosa-rgb),.05), 0 24px 60px rgba(var(--rosa-rgb),.06); }
+.proj-destaque:hover { border-color: rgba(var(--rosa-rgb),.55); }
+.proj-destaque > .project { background: transparent; border-top-color: rgba(var(--rosa-rgb),.2); }
+.proj-destaque .p-emoji { background: rgba(var(--rosa-rgb),.12); border-color: rgba(var(--rosa-rgb),.3); }
+.proj-destaque .proj-toggle { border-color: rgba(var(--rosa-rgb),.4); }
+.proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--rosa-rgb),.2); }
+.proj-destaque .marcos { border-left-color: rgba(var(--rosa-rgb),.35); }
+.p-selo { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 99px; font-size: 10px; letter-spacing: .08em; color: #F9A8D4; background: rgba(244,114,182,.12); border: 1px solid rgba(244,114,182,.3); vertical-align: 1px; }
 </style>
 </head>
 <body>
@@ -663,12 +673,49 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <div class="sec-label">Projetos paralelos</div>
           <h2>Ferramentas e conteúdo<br>feitos por QA, para QAs.</h2>
         </div>
-        <p>Duas ferramentas que resolvem dores reais do dia a dia e um projeto de ensino para quem está começando na área. O código das ferramentas é privado; as telas usam dados fictícios.</p>
+        <p>O projeto de ensino onde tudo começou e duas ferramentas que resolvem dores reais do dia a dia. O código das ferramentas é privado; as telas usam dados fictícios.</p>
       </div>
 
       <div class="projects">
+        <details class="proj proj-destaque reveal">
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami</h3></div></div>
+            <p>Ensino QA para quem está começando, em conteúdo, e-book e palestras. Quando era júnior, aprendi quase tudo sozinha; hoje compartilhar esse caminho é um prazer.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
+        <div class="project ensino">
+          <div class="p-body">
+            <div class="p-stats">
+              <div><b>+15 mil</b><small>seguidores no Instagram</small></div>
+              <div><b>E-book</b><small>para quem começa em QA</small></div>
+              <div><b>TDC</b><small>palestrante em 2023 e 2024</small></div>
+            </div>
+            <ul class="bullets">
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>Autora do e-book "Comece por aqui, QA!" (2022), um guia para quem está entrando na área</li>
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
+            </ul>
+            <div class="marcos">
+              <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
+              <div class="marco"><span>2022</span><p>E-book <em>Comece por aqui, QA!</em> e participação no QAVerso</p></div>
+              <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
+              <div class="marco"><span>2023</span><p>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</p></div>
+              <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
+            </div>
+            <div class="palco" aria-label="Fotos de palestras">
+              <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
+              <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
+              <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
+              <figure><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption>Evento tech · Grafeno</figcaption></figure>
+            </div>
+            <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
+            <div class="p-actions">
+              <a class="btn btn-solid" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener">Ver no Instagram ↗</a>
+              <a class="btn" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener">Ver o e-book ↗</a>
+            </div>
+          </div>
+        </div>
+        </details>
+
         <details class="proj reveal">
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17V9"/></svg></span><div><div class="p-kind">01 · Dashboard</div><h3>QA Pulse</h3></div></div>
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17V9"/></svg></span><div><div class="p-kind">02 · Dashboard</div><h3>QA Pulse</h3></div></div>
             <p>Conecta no Jira, transforma issues em indicadores de qualidade por time e aponta sozinho onde vale olhar.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <article class="project">
           <div class="shot" aria-hidden="true">
@@ -711,9 +758,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           </div>
         </article>
         </details>
-
         <details class="proj reveal">
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><div class="p-kind">02 · Assistente de QA</div><h3>QA Sidekick</h3></div></div>
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><div class="p-kind">03 · Assistente de QA</div><h3>QA Sidekick</h3></div></div>
             <p>Lê uma entrega do Jira como um QA experiente, monta o roteiro de teste e escreve bugs no padrão do time — sempre pedindo confirmação antes de escrever.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <article class="project flip">
           <div class="shot" aria-hidden="true">
@@ -747,42 +793,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             </div>
           </div>
         </article>
-        </details>
-        <details class="proj reveal">
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><div class="p-kind">03 · Ensino e comunidade</div><h3>@qa.thami</h3></div></div>
-            <p>Ensino QA para quem está começando, em conteúdo, e-book e palestras. Quando era júnior, aprendi quase tudo sozinha; hoje compartilhar esse caminho é um prazer.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
-        <div class="project ensino">
-          <div class="p-body">
-            <div class="p-stats">
-              <div><b>+15 mil</b><small>seguidores no Instagram</small></div>
-              <div><b>E-book</b><small>para quem começa em QA</small></div>
-              <div><b>TDC</b><small>palestrante em 2023 e 2024</small></div>
-            </div>
-            <ul class="bullets">
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>Autora do e-book "Comece por aqui, QA!" (2022), um guia para quem está entrando na área</li>
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
-            </ul>
-            <div class="marcos">
-              <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
-              <div class="marco"><span>2022</span><p>E-book <em>Comece por aqui, QA!</em> e participação no QAVerso</p></div>
-              <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
-              <div class="marco"><span>2023</span><p>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</p></div>
-              <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
-            </div>
-            <div class="palco" aria-label="Fotos de palestras">
-              <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
-              <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
-              <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
-              <figure><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption>Evento tech · Grafeno</figcaption></figure>
-            </div>
-            <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
-            <div class="p-actions">
-              <a class="btn btn-solid" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener">Ver no Instagram ↗</a>
-              <a class="btn" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener">Ver o e-book ↗</a>
-            </div>
-          </div>
-        </div>
         </details>
       </div>
     </div>
