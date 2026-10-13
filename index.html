@@ -448,6 +448,10 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
   .reels { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .reel { scroll-snap-align: start; }
 }
+
+/* Destaques no título dos projetos */
+.h-rosa { background: linear-gradient(90deg, #F472B6, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.h-verde { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -684,7 +688,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
       <div class="sec-head reveal">
         <div>
           <div class="sec-label">Projetos paralelos</div>
-          <h2>Ferramentas e conteúdo<br>feitos por QA, para QAs.</h2>
+          <h2>Ferramentas e conteúdo<br>feitos por <span class="h-rosa">uma QA</span>,<br>para <span class="h-verde">QAs</span>.</h2>
         </div>
         <p>O projeto de ensino onde tudo começou e duas ferramentas que resolvem dores reais do dia a dia. O código das ferramentas é privado; as telas usam dados fictícios.</p>
       </div>
