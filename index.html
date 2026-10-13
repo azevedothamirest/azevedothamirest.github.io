@@ -409,6 +409,17 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @keyframes g-pisca { 50% { opacity: .3; } }
 @keyframes g-cursor { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .term-body .g-imed i, .term-body .g-cur { animation: none; } }
+
+/* Fotos: perfil e palestras */
+.foto-perfil { margin: 0 0 22px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); position: relative; max-width: 420px; }
+.foto-perfil img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; }
+.foto-perfil figcaption, .palco figcaption { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
+.palco { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.palco figure { margin: 0; position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.palco img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; display: block; transition: transform .4s; }
+.palco figure:hover img { transform: scale(1.04); }
+@media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } .palco figure:first-child { grid-column: 1 / -1; } .palco figure:first-child img { aspect-ratio: 16 / 10; } }
+@media (prefers-reduced-motion: reduce) { .palco img { transition: none; } }
 </style>
 </head>
 <body>
@@ -592,6 +603,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
+          <figure class="foto-perfil"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption>Palestrante no TDC 2024</figcaption></figure>
           <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
           <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
           <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
@@ -748,6 +760,11 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div class="marco"><span>2022</span><p>E-book <em>Comece por aqui, QA!</em> e participação no QAVerso</p></div>
               <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
               <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
+            </div>
+            <div class="palco" aria-label="Fotos de palestras">
+              <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió</figcaption></figure>
+              <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
+              <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa" width="814" height="900" loading="lazy"><figcaption>Roda de conversa</figcaption></figure>
             </div>
             <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
             <div class="p-actions">
