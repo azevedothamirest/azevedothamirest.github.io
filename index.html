@@ -543,6 +543,13 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .queda { display: inline-block; margin: 0 0 10px; padding: 3px 10px; border-radius: 99px; font: 700 12px var(--mono); color: var(--accent); background: rgba(var(--accent-rgb),.12); border: 1px solid rgba(var(--accent-rgb),.35); }
 .ganho .num .de { color: var(--text-3); font-weight: 700; }
 .ganho .num .para { font-variant-numeric: tabular-nums; }
+
+/* @qa.thami: um vídeo ao lado das polaroids */
+.midia { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.midia-video, .midia-fotos { display: grid; gap: 12px; min-width: 0; }
+.midia .reel iframe { min-height: 0; aspect-ratio: auto; height: 560px; }
+.midia .pola-palco { height: 470px; }
+@media (max-width: 760px) { .midia { grid-template-columns: 1fr; } .midia .reel iframe { height: 600px; } .midia .pola-palco { height: 420px; } }
 </style>
 </head>
 <body>
@@ -811,19 +818,22 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div class="marco"><span>2023</span><ul class="sub"><li>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></li><li>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</li></ul></div>
               <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
             </div>
-            <div class="reels-head"><b>Vídeos</b><small>Dicas e conteúdos do @qa.thami</small></div>
-            <div class="reels" aria-label="Vídeos do @qa.thami">
-              <div class="reel"><iframe src="https://www.instagram.com/reel/C8aeILEO84g/embed/" title="Vídeo do @qa.thami no Instagram (1 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
-              <div class="reel"><iframe src="https://www.instagram.com/reel/CyGQhepgRIP/embed/" title="Vídeo do @qa.thami no Instagram (2 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CyGQhepgRIP/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
-              <div class="reel"><iframe src="https://www.instagram.com/reel/CqNyq5jOCkf/embed/" title="Vídeo do @qa.thami no Instagram (3 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CqNyq5jOCkf/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
-            </div>
-            <div class="pola" id="palco" aria-roledescription="carrossel" aria-label="Fotos de palestras e eventos">
+            <div class="midia">
+              <div class="midia-video">
+                <div class="reels-head"><b>Vídeos</b><small>Um pouco do @qa.thami</small></div>
+                <div class="reel"><iframe src="https://www.instagram.com/reel/C8aeILEO84g/embed/" title="Vídeo do @qa.thami no Instagram" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
+              </div>
+              <div class="midia-fotos">
+                <div class="reels-head"><b>Palcos e eventos</b><small>Palestras e encontros</small></div>
+                <div class="pola" id="palco" aria-roledescription="carrossel" aria-label="Fotos de palestras e eventos">
               <div class="pola-palco">
                 <figure class="polaroid" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption><b>GDG DevFest Maceió · 2023</b><span>Palestra no palco do DevFest, com a Roga DX.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption><b>TDC Connections · 2023</b><span>Palestra selecionada: Quality Assurance, o atraso do Brasil e a necessidade de mudanças na visão empresarial.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption><b>Roda de conversa · Grafeno</b><span>Bate-papo em evento de tecnologia da Grafeno, levando QA para conversas com todo o time.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption><b>Evento tech · Grafeno</b><span>Evento interno de tecnologia: compartilhar conhecimento também dentro de casa.</span></figcaption></figure>
                 <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption><b>TDC Summit Recife · 2024</b><span>Palestrante: Como a Inteligência Artificial Está Redefinindo os Testes de Software.</span></figcaption></figure>
+              </div>
+            </div>
               </div>
             </div>
           </div>
