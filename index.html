@@ -584,6 +584,14 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .lt-cta:hover { background: #3BE476; }
 @media (max-width: 900px) { .contato-grid { grid-template-columns: 1fr; } .contato-term { position: static; } }
 .contato-term .terminal { box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+
+/* Currículo: PT e EN lado a lado */
+.contato-grid .c-cv { align-items: center; }
+.contato-grid .c-cv .c-txt { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+.contato-grid .c-cv .c-txt > small { grid-column: 1 / -1; }
+.contato-grid .cv-op, .contato-grid .cv-op:first-of-type { border: 1px solid var(--line-2); border-radius: 10px; padding: 9px 12px; justify-content: space-between; gap: 8px; }
+.contato-grid .cv-op:hover { border-color: var(--text-3); }
+.contato-grid .cv-op b { font-size: 13.5px; }
 </style>
 </head>
 <body>
