@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0A0A0A;
@@ -113,7 +113,12 @@ section.block { padding: 100px 0; border-top: 1px solid var(--line); }
 .sec-head p { color: var(--text-2); max-width: 420px; font-size: 15px; }
 
 /* ── Projetos ──────────────────────────── */
-.projects { display: grid; gap: 28px; }
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.projects > .proj-destaque, .projects > .proj[open] { grid-column: 1 / -1; }
+.projects > .proj:not(.proj-destaque) > summary { flex-direction: column; align-items: flex-start; }
+.projects > .proj:not(.proj-destaque):not([open]) > summary { height: 100%; }
+.projects > .proj:not(.proj-destaque) > summary .proj-toggle { margin-left: 0; margin-top: auto; }
+@media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
 .project { display: grid; grid-template-columns: 1.05fr .95fr; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: border-color .25s; }
 .project:hover { border-color: var(--line-2); }
 .project.flip .shot { order: 2; border-right: none; border-left: 1px solid var(--line); }
@@ -383,6 +388,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .marco::before { content: ""; position: absolute; left: -4px; top: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 .marco span { font: 600 13px var(--mono); color: var(--accent); padding-top: 2px; }
 .marco p { font-size: 14px; color: var(--text-2); min-width: 0; }
+.marco .sub { list-style: none; display: grid; gap: 6px; font-size: 14px; color: var(--text-2); min-width: 0; padding: 0; margin: 0; }
+.marco .sub li { position: relative; padding-left: 14px; }
+.marco .sub li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 1px; background: var(--text-3); }
 .marco em { color: var(--text); font-style: normal; }
 .proj > .project.ensino { display: block; }
 .proj > .project { border: none; border-top: 1px solid var(--line); border-radius: 0; animation: abrir .2s ease; }
@@ -418,18 +426,12 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .foto-formatura img { aspect-ratio: 16 / 9 !important; object-position: 50% 20% !important; }
 .foto-perfil { margin: 0 0 22px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); position: relative; max-width: 420px; }
 .foto-perfil img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; }
-.foto-perfil figcaption, .palco figcaption { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
-.palco { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.palco figure { margin: 0; position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
-.palco img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; display: block; transition: transform .4s; }
-.palco figure:hover img { transform: scale(1.04); }
-@media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } }
-@media (prefers-reduced-motion: reduce) { .palco img { transition: none; } }
+.foto-perfil figcaption, .fc-cap { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
 
 /* @qa.thami em destaque: rosa suave */
 .proj-destaque { --rosa-rgb: 244,114,182; background: linear-gradient(135deg, rgba(var(--rosa-rgb),.11), rgba(var(--rosa-rgb),.04) 60%), var(--card); border-color: rgba(var(--rosa-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--rosa-rgb),.05), 0 24px 60px rgba(var(--rosa-rgb),.06); }
 .proj-destaque:hover { border-color: rgba(var(--rosa-rgb),.55); }
-.proj-destaque > .project { background: transparent; border-top-color: rgba(var(--rosa-rgb),.2); }
+.proj-destaque > .project, .proj-destaque > .project:hover { background: transparent; border-top-color: rgba(var(--rosa-rgb),.25); transition: none; }
 .proj-destaque .p-emoji { background: rgba(var(--rosa-rgb),.12); border-color: rgba(var(--rosa-rgb),.3); }
 .proj-destaque .proj-toggle { border-color: rgba(var(--rosa-rgb),.4); }
 .proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--rosa-rgb),.2); }
@@ -448,6 +450,59 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
   .reels { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .reel { scroll-snap-align: start; }
 }
+
+/* Destaques no título dos projetos */
+.h-rosa { background: linear-gradient(90deg, #F472B6, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.h-verde { color: var(--accent); }
+
+/* @qa.thami: avatar, frase e números */
+.avatar-ig { width: 56px; height: 56px; flex: none; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, #F472B6, #FEBC2E, #F472B6, #A78BFA, #F472B6); }
+.avatar-ig img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--card); display: block; }
+.proj-destaque .frase-qa { font-size: clamp(20px, 2.6vw, 26px); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; color: var(--text); text-wrap: balance; }
+.proj-destaque .frase-sub { font-size: 14.5px; color: var(--text-2); max-width: 62ch; margin-top: -4px; }
+.nums-qa { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 4px; }
+.nums-qa b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: #F9A8D4; font-variant-numeric: tabular-nums; }
+.nums-qa small { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+
+/* Fotos de palestras como polaroids: a do meio em destaque */
+.pola-palco { position: relative; height: 430px; overflow: hidden; touch-action: pan-y; }
+.polaroid { position: absolute; top: 18px; left: 50%; width: 270px; margin: 0 0 0 -135px; background: #F7F4EE; padding: 12px 12px 0; border-radius: 4px; box-shadow: 0 18px 40px rgba(0,0,0,.45); cursor: pointer;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .45s, filter .45s; transform: translateX(calc(var(--pos, 0) * 230px)) scale(.78) rotate(var(--tilt)); opacity: .55; filter: grayscale(.4) brightness(.8); z-index: 1; }
+.polaroid img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 25%; display: block; border-radius: 2px; }
+.polaroid figcaption { color: #1C1917; padding: 12px 4px 16px; min-height: 64px; }
+.polaroid figcaption b { display: block; font: 700 22px 'Caveat', 'Segoe Print', cursive; line-height: 1.1; }
+.polaroid figcaption span { display: block; font-size: 12.5px; line-height: 1.45; color: #57534E; margin-top: 4px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .45s, opacity .35s; }
+.polaroid.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .4)); opacity: 1; filter: none; z-index: 3; cursor: default; }
+.polaroid.centro figcaption span { max-height: 120px; opacity: 1; }
+.polaroid.vizinho { z-index: 2; }
+.polaroid.longe { opacity: 0; pointer-events: none; }
+@media (max-width: 600px) { .pola-palco { height: 400px; } .polaroid { width: 240px; margin-left: -120px; transform: translateX(calc(var(--pos, 0) * 170px)) scale(.74) rotate(var(--tilt)); } }
+@media (prefers-reduced-motion: reduce) { .polaroid, .polaroid figcaption span { transition: none; } }
+
+/* @qa.thami: botões no topo e temas */
+.acts-topo { margin-top: 0; padding-top: 0; }
+.temas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.temas .chips { display: contents; }
+.temas-lbl { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #F9A8D4; margin-right: 4px; }
+
+.proj-destaque .p-top h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+.ig-mini { display: inline-flex; align-items: center; gap: 5px; line-height: 1.2; font: 600 11px var(--mono); color: #F9A8D4; border: 1px solid rgba(244,114,182,.4); background: rgba(244,114,182,.1); padding: 3px 8px 3px 6px; border-radius: 99px; transition: background .15s; }
+.ig-mini svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
+.ig-mini:hover { background: rgba(244,114,182,.22); }
+.link-rosa { color: #F9A8D4; text-decoration: underline; text-decoration-color: rgba(244,114,182,.45); text-underline-offset: 3px; }
+.link-rosa:hover { text-decoration-color: #F9A8D4; }
+.link-rosa em { color: inherit; }
+
+/* Perfil: polaroids pequenas passando sozinhas */
+.mini-palco { position: relative; height: 295px; margin: 0 0 22px; overflow: hidden; }
+.mini-pola { position: absolute; top: 14px; left: 50%; width: 210px; margin: 0 0 0 -105px; background: #F7F4EE; padding: 9px 9px 0; border-radius: 3px; box-shadow: 0 14px 30px rgba(0,0,0,.45);
+  transform: translateX(calc(var(--pos, 0) * 150px)) scale(.8) rotate(var(--tilt)); opacity: .5; filter: grayscale(.4) brightness(.8); transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s, filter .6s; z-index: 1; }
+.mini-pola img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 25%; display: block; }
+.mini-pola figcaption { font: 700 18px 'Caveat', 'Segoe Print', cursive; color: #1C1917; padding: 8px 2px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-pola.centro { transform: translateX(0) scale(1) rotate(calc(var(--tilt) * .5)); opacity: 1; filter: none; z-index: 3; }
+.mini-pola.vizinho { z-index: 2; }
+.mini-pola.longe { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .mini-pola { transition: none; } }
 </style>
 </head>
 <body>
@@ -631,9 +686,12 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
       </div>
 
-          <div class="fotos-perfil">
-            <figure class="foto-perfil"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption>Palestrante no TDC 2024</figcaption></figure>
-            <figure class="foto-perfil"><img src="assets/palestras/pernambuco.jpg" alt="Thamires de costas, sorrindo, com a bandeira de Pernambuco aberta nos braços" width="754" height="900" loading="lazy"><figcaption>Recife, PE</figcaption></figure>
+          <div class="mini-palco" id="mini-palco" aria-label="Fotos de palestras e eventos">
+            <figure class="mini-pola" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626"><figcaption>TDC Connections · 2023</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900"><figcaption>Evento tech · Grafeno</figcaption></figure>
+            <figure class="mini-pola" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898"><figcaption>TDC Summit Recife · 2024</figcaption></figure>
           </div>
           <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
           <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
@@ -684,32 +742,33 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
       <div class="sec-head reveal">
         <div>
           <div class="sec-label">Projetos paralelos</div>
-          <h2>Ferramentas e conteúdo<br>feitos por QA, para QAs.</h2>
+          <h2>Ferramentas e conteúdo<br>feitos por <span class="h-rosa">uma QA</span>,<br>para <span class="h-verde">QAs</span>.</h2>
         </div>
         <p>O projeto de ensino onde tudo começou e duas ferramentas que resolvem dores reais do dia a dia. O código das ferramentas é privado; as telas usam dados fictícios.</p>
       </div>
 
       <div class="projects">
         <details class="proj proj-destaque reveal" open>
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami</h3></div></div>
-            <p>Ensino QA para quem está começando, em conteúdo, e-book e palestras. Quando era júnior, aprendi quase tudo sozinha; hoje compartilhar esse caminho é um prazer.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="avatar-ig"><img src="assets/palestras/avatar-qathami.jpg" alt="Foto de perfil de Thamires no @qa.thami" width="240" height="240"></span><div><div class="p-kind">01 · Ensino e comunidade <span class="p-selo">onde tudo começou</span></div><h3>@qa.thami <a class="ig-mini" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener" aria-label="Abrir @qa.thami no Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram ↗</a></h3></div></div>
+            <p class="frase-qa">Aprendi QA sozinha. Hoje ensino para <span class="h-rosa">mais de 15 mil pessoas</span>.</p>
+            <p class="frase-sub">Conteúdo, e-book e palestras para quem está começando na área, porque compartilhar esse caminho é um prazer.</p>
+            <div class="nums-qa">
+              <div><b>15,4 mil</b><small>seguidores</small></div>
+              <div><b>4</b><small>palestras</small></div>
+              <div><b>1</b><small>e-book</small></div>
+            </div></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <div class="project ensino">
           <div class="p-body">
-            <div class="p-stats">
-              <div><b>+15 mil</b><small>seguidores no Instagram</small></div>
-              <div><b>E-book</b><small>para quem começa em QA</small></div>
-              <div><b>TDC</b><small>palestrante em 2023 e 2024</small></div>
-            </div>
             <ul class="bullets">
-              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>Autora do e-book "Comece por aqui, QA!" (2022), um guia para quem está entrando na área</li>
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F472B6"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span><div>Autora do e-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener">"Comece por aqui, QA!" ↗</a> (2022), um guia para quem está entrando na área</div></li>
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
             </ul>
+            <div class="temas"><span class="temas-lbl">Alguns dos temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div>
             <div class="marcos">
               <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
-              <div class="marco"><span>2022</span><p>E-book <em>Comece por aqui, QA!</em> e participação no QAVerso</p></div>
-              <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
-              <div class="marco"><span>2023</span><p>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</p></div>
+              <div class="marco"><span>2022</span><ul class="sub"><li>E-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener"><em>Comece por aqui, QA!</em> ↗</a></li><li>Participação no QAVerso</li></ul></div>
+              <div class="marco"><span>2023</span><ul class="sub"><li>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></li><li>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</li></ul></div>
               <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
             </div>
             <div class="reels-head"><b>Vídeos</b><small>Dicas e conteúdos do @qa.thami</small></div>
@@ -718,16 +777,20 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div class="reel"><iframe src="https://www.instagram.com/reel/CyGQhepgRIP/embed/" title="Vídeo do @qa.thami no Instagram (2 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CyGQhepgRIP/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
               <div class="reel"><iframe src="https://www.instagram.com/reel/CqNyq5jOCkf/embed/" title="Vídeo do @qa.thami no Instagram (3 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CqNyq5jOCkf/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
             </div>
-            <div class="palco" aria-label="Fotos de palestras">
-              <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
-              <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
-              <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
-              <figure><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption>Evento tech · Grafeno</figcaption></figure>
-            </div>
-            <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
-            <div class="p-actions">
-              <a class="btn btn-solid" href="https://www.instagram.com/qa.thami/" target="_blank" rel="noopener">Ver no Instagram ↗</a>
-              <a class="btn" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener">Ver o e-book ↗</a>
+            <div class="pola" id="palco" aria-roledescription="carrossel" aria-label="Fotos de palestras e eventos">
+              <div class="pola-palco">
+                <figure class="polaroid" style="--tilt:-3deg"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption><b>GDG DevFest Maceió · 2023</b><span>Palestra no palco do DevFest, com a Roga DX.</span></figcaption></figure>
+                <figure class="polaroid" style="--tilt:2deg"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption><b>TDC Connections · 2023</b><span>Palestra selecionada: Quality Assurance, o atraso do Brasil e a necessidade de mudanças na visão empresarial.</span></figcaption></figure>
+                <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption><b>Roda de conversa · Grafeno</b><span>Bate-papo em evento de tecnologia da Grafeno, levando QA para conversas com todo o time.</span></figcaption></figure>
+                <figure class="polaroid" style="--tilt:3deg"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption><b>Evento tech · Grafeno</b><span>Evento interno de tecnologia: compartilhar conhecimento também dentro de casa.</span></figcaption></figure>
+                <figure class="polaroid" style="--tilt:-2deg"><img src="assets/palestras/tdc-2024.jpg" alt="Thamires sorrindo, com o crachá de palestrante do The Developer's Conference 2024" width="900" height="898" loading="lazy"><figcaption><b>TDC Summit Recife · 2024</b><span>Palestrante: Como a Inteligência Artificial Está Redefinindo os Testes de Software.</span></figcaption></figure>
+              </div>
+              <div class="car-nav">
+                <button class="car-btn" aria-label="Foto anterior">←</button>
+                <div class="car-dots" aria-hidden="true"></div>
+                <span class="car-num" aria-live="polite">1 / 5</span>
+                <button class="car-btn" aria-label="Próxima foto">→</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1161,6 +1224,60 @@ document.querySelectorAll('dialog').forEach(d => {
   });
   trilho.addEventListener('scroll', () => { requestAnimationFrame(marcar); clearTimeout(parou); parou = setTimeout(() => { alvo = atual; }, 150); }, { passive: true });
   marcar();
+})();
+
+// Fotos de palestras: polaroids, a do meio fica em destaque com a descrição
+(function () {
+  const car = document.getElementById('palco'); if (!car) return;
+  const palco = car.querySelector('.pola-palco'), itens = [...palco.children];
+  const [ant, prox] = car.querySelectorAll('.car-btn'), num = car.querySelector('.car-num'), dots = car.querySelector('.car-dots');
+  let atual = 0;
+  itens.forEach((it, i) => {
+    const d = document.createElement('button'); d.tabIndex = -1; d.addEventListener('click', () => ir(i)); dots.appendChild(d);
+    it.addEventListener('click', () => ir(i));
+  });
+  function ir(i) {
+    atual = Math.max(0, Math.min(itens.length - 1, i));
+    itens.forEach((it, k) => {
+      const pos = k - atual;
+      it.style.setProperty('--pos', pos);
+      it.classList.toggle('centro', pos === 0);
+      it.classList.toggle('vizinho', Math.abs(pos) === 1);
+      it.classList.toggle('longe', Math.abs(pos) > 1);
+      it.setAttribute('aria-hidden', pos !== 0);
+    });
+    num.textContent = (atual + 1) + ' / ' + itens.length;
+    [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
+    ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
+  }
+  ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
+  car.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') ir(atual - 1); if (e.key === 'ArrowRight') ir(atual + 1); });
+  // Deslizar com o dedo
+  let x0 = null;
+  palco.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  palco.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) ir(atual + (dx < 0 ? 1 : -1)); x0 = null; });
+  ir(0);
+})();
+
+// Perfil: polaroids pequenas que passam sozinhas (pausa ao passar o mouse e com movimento reduzido)
+(function () {
+  const palco = document.getElementById('mini-palco'); if (!palco) return;
+  const itens = [...palco.children], n = itens.length;
+  let atual = 0, pausa = false;
+  function mostrar() {
+    itens.forEach((it, k) => {
+      let pos = k - atual; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n;
+      it.style.setProperty('--pos', pos);
+      it.classList.toggle('centro', pos === 0);
+      it.classList.toggle('vizinho', Math.abs(pos) === 1);
+      it.classList.toggle('longe', Math.abs(pos) > 1);
+    });
+  }
+  mostrar();
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  palco.addEventListener('mouseenter', () => { pausa = true; });
+  palco.addEventListener('mouseleave', () => { pausa = false; });
+  setInterval(() => { if (!pausa && !document.hidden) { atual = (atual + 1) % n; mostrar(); } }, 3200);
 })();
 </script>
 </body>
