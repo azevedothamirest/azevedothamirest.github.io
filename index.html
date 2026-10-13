@@ -423,13 +423,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .foto-formatura img { aspect-ratio: 16 / 9 !important; object-position: 50% 20% !important; }
 .foto-perfil { margin: 0 0 22px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); position: relative; max-width: 420px; }
 .foto-perfil img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; }
-.foto-perfil figcaption, .palco figcaption { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
-.palco { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.palco figure { margin: 0; position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
-.palco img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; display: block; transition: transform .4s; }
-.palco figure:hover img { transform: scale(1.04); }
-@media (max-width: 600px) { .palco { grid-template-columns: 1fr 1fr; } }
-@media (prefers-reduced-motion: reduce) { .palco img { transition: none; } }
+.foto-perfil figcaption, .fc-cap { position: absolute; left: 10px; bottom: 10px; font: 600 11px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.72); padding: 4px 9px; border-radius: 99px; backdrop-filter: blur(4px); }
 
 /* @qa.thami em destaque: rosa suave */
 .proj-destaque { --rosa-rgb: 244,114,182; background: linear-gradient(135deg, rgba(var(--rosa-rgb),.11), rgba(var(--rosa-rgb),.04) 60%), var(--card); border-color: rgba(var(--rosa-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--rosa-rgb),.05), 0 24px 60px rgba(var(--rosa-rgb),.06); }
@@ -466,6 +460,24 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .nums-qa { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 4px; }
 .nums-qa b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: #F9A8D4; font-variant-numeric: tabular-nums; }
 .nums-qa small { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+
+/* Fotos de palestras como flashcards */
+.flash-trilho { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding: 4px 2px; }
+.flash-trilho::-webkit-scrollbar { display: none; }
+.flashcard { flex: 0 0 min(340px, 78%); aspect-ratio: 4 / 5; scroll-snap-align: start; perspective: 1200px; cursor: pointer; border-radius: 16px; outline: none; }
+.flashcard:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.fc-inner { position: relative; width: 100%; height: 100%; transition: transform .6s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
+.flashcard.virado .fc-inner { transform: rotateY(180deg); }
+.fc-frente, .fc-verso { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid rgba(244,114,182,.3); }
+.fc-frente img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; display: block; }
+.fc-frente::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10,10,10,.65)); }
+.fc-cap { z-index: 1; }
+.fc-dica { position: absolute; top: 10px; right: 10px; z-index: 1; font: 600 10.5px var(--mono); color: #F2F2F2; background: rgba(10,10,10,.6); padding: 4px 8px; border-radius: 99px; }
+.fc-verso { transform: rotateY(180deg); background: linear-gradient(160deg, rgba(244,114,182,.22), rgba(167,139,250,.12)), var(--card-2); padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.fc-verso b { font-size: 19px; letter-spacing: -.01em; color: #F9A8D4; }
+.fc-verso p { font-size: 15px; color: var(--text); line-height: 1.55; }
+.fc-verso small { font: 500 11px var(--mono); color: var(--text-3); margin-top: auto; }
+@media (prefers-reduced-motion: reduce) { .fc-inner { transition: none; } }
 </style>
 </head>
 <body>
@@ -737,11 +749,39 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div class="reel"><iframe src="https://www.instagram.com/reel/CyGQhepgRIP/embed/" title="Vídeo do @qa.thami no Instagram (2 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CyGQhepgRIP/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
               <div class="reel"><iframe src="https://www.instagram.com/reel/CqNyq5jOCkf/embed/" title="Vídeo do @qa.thami no Instagram (3 de 3)" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/CqNyq5jOCkf/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
             </div>
-            <div class="palco" aria-label="Fotos de palestras">
-              <figure><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><figcaption>GDG DevFest Maceió · 2023</figcaption></figure>
-              <figure><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><figcaption>TDC Connections</figcaption></figure>
-              <figure><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><figcaption>Roda de conversa · Grafeno</figcaption></figure>
-              <figure><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><figcaption>Evento tech · Grafeno</figcaption></figure>
+            <div class="flash" id="palco" aria-roledescription="carrossel" aria-label="Fotos de palestras e eventos">
+              <div class="flash-trilho">
+                <div class="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="GDG DevFest Maceió · 2023. Toque para ver mais">
+                  <div class="fc-inner">
+                    <div class="fc-frente"><img src="assets/palestras/devfest-maceio.jpg" alt="Thamires falando ao microfone no palco do GDG DevFest Maceió" width="900" height="650" loading="lazy"><span class="fc-cap">GDG DevFest Maceió · 2023</span><span class="fc-dica">↻ virar</span></div>
+                    <div class="fc-verso"><b>GDG DevFest Maceió · 2023</b><p>Palestra no palco do DevFest, com a Roga DX.</p><small>↻ toque para voltar</small></div>
+                  </div>
+                </div>
+                <div class="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="TDC Connections · 2023. Toque para ver mais">
+                  <div class="fc-inner">
+                    <div class="fc-frente"><img src="assets/palestras/tdc-connections.jpg" alt="Thamires apresentando slides sobre qualidade no TDC Connections" width="900" height="626" loading="lazy"><span class="fc-cap">TDC Connections · 2023</span><span class="fc-dica">↻ virar</span></div>
+                    <div class="fc-verso"><b>TDC Connections · 2023</b><p>Palestra selecionada: Quality Assurance, o atraso do Brasil e a necessidade de mudanças na visão empresarial.</p><small>↻ toque para voltar</small></div>
+                  </div>
+                </div>
+                <div class="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="Roda de conversa · Grafeno. Toque para ver mais">
+                  <div class="fc-inner">
+                    <div class="fc-frente"><img src="assets/palestras/roda-de-conversa.jpg" alt="Thamires sorrindo, sentada durante uma roda de conversa em evento de tecnologia da Grafeno" width="814" height="900" loading="lazy"><span class="fc-cap">Roda de conversa · Grafeno</span><span class="fc-dica">↻ virar</span></div>
+                    <div class="fc-verso"><b>Roda de conversa · Grafeno</b><p>Bate-papo em evento de tecnologia da Grafeno, levando QA para conversas com todo o time.</p><small>↻ toque para voltar</small></div>
+                  </div>
+                </div>
+                <div class="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="Evento tech · Grafeno. Toque para ver mais">
+                  <div class="fc-inner">
+                    <div class="fc-frente"><img src="assets/palestras/comunidade.jpg" alt="Thamires sorrindo, com a mão no rosto, em um evento de tecnologia da Grafeno" width="797" height="900" loading="lazy"><span class="fc-cap">Evento tech · Grafeno</span><span class="fc-dica">↻ virar</span></div>
+                    <div class="fc-verso"><b>Evento tech · Grafeno</b><p>Evento interno de tecnologia: compartilhar conhecimento também dentro de casa.</p><small>↻ toque para voltar</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="car-nav">
+                <button class="car-btn" aria-label="Foto anterior">←</button>
+                <div class="car-dots" aria-hidden="true"></div>
+                <span class="car-num" aria-live="polite">1 / 4</span>
+                <button class="car-btn" aria-label="Próxima foto">→</button>
+              </div>
             </div>
             <div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div>
             <div class="p-actions">
@@ -1178,6 +1218,32 @@ document.querySelectorAll('dialog').forEach(d => {
     if (e.key === 'ArrowLeft') { e.preventDefault(); ir(alvo - 1); }
     if (e.key === 'ArrowRight') { e.preventDefault(); ir(alvo + 1); }
   });
+  trilho.addEventListener('scroll', () => { requestAnimationFrame(marcar); clearTimeout(parou); parou = setTimeout(() => { alvo = atual; }, 150); }, { passive: true });
+  marcar();
+})();
+
+// Fotos de palestras: flashcards que viram ao tocar, em carrossel com setas
+(function () {
+  const car = document.getElementById('palco'); if (!car) return;
+  const trilho = car.querySelector('.flash-trilho'), itens = [...trilho.children];
+  const [ant, prox] = car.querySelectorAll('.car-btn'), num = car.querySelector('.car-num'), dots = car.querySelector('.car-dots');
+  let atual = 0, alvo = 0, parou;
+  const passo = () => itens[1] ? itens[1].offsetLeft - itens[0].offsetLeft : trilho.clientWidth;
+  const ir = i => { alvo = Math.max(0, Math.min(itens.length - 1, i)); trilho.scrollTo({ left: alvo * passo() }); };
+  itens.forEach((it, i) => {
+    const d = document.createElement('button'); d.tabIndex = -1; d.addEventListener('click', () => ir(i)); dots.appendChild(d);
+    const virar = () => { const v = it.classList.toggle('virado'); it.setAttribute('aria-pressed', v); };
+    it.addEventListener('click', virar);
+    it.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); virar(); } });
+  });
+  function marcar() {
+    const max = trilho.scrollWidth - trilho.clientWidth;
+    atual = trilho.scrollLeft >= max - 4 ? itens.length - 1 : Math.round(trilho.scrollLeft / passo());
+    num.textContent = (atual + 1) + ' / ' + itens.length;
+    [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
+    ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
+  }
+  ant.addEventListener('click', () => ir(alvo - 1)); prox.addEventListener('click', () => ir(alvo + 1));
   trilho.addEventListener('scroll', () => { requestAnimationFrame(marcar); clearTimeout(parou); parou = setTimeout(() => { alvo = atual; }, 150); }, { passive: true });
   marcar();
 })();
