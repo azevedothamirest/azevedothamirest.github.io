@@ -388,6 +388,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .marco::before { content: ""; position: absolute; left: -4px; top: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 .marco span { font: 600 13px var(--mono); color: var(--accent); padding-top: 2px; }
 .marco p { font-size: 14px; color: var(--text-2); min-width: 0; }
+.marco .sub { list-style: none; display: grid; gap: 6px; font-size: 14px; color: var(--text-2); min-width: 0; padding: 0; margin: 0; }
+.marco .sub li { position: relative; padding-left: 14px; }
+.marco .sub li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 1px; background: var(--text-3); }
 .marco em { color: var(--text); font-style: normal; }
 .proj > .project.ensino { display: block; }
 .proj > .project { border: none; border-top: 1px solid var(--line); border-radius: 0; animation: abrir .2s ease; }
@@ -735,9 +738,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             </ul>
             <div class="marcos">
               <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
-              <div class="marco"><span>2022</span><p>E-book <em>Comece por aqui, QA!</em> e participação no QAVerso</p></div>
-              <div class="marco"><span>2023</span><p>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></p></div>
-              <div class="marco"><span>2023</span><p>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</p></div>
+              <div class="marco"><span>2022</span><ul class="sub"><li>E-book <em>Comece por aqui, QA!</em></li><li>Participação no QAVerso</li></ul></div>
+              <div class="marco"><span>2023</span><ul class="sub"><li>Palestra selecionada para o TDC Connections: <em>Quality Assurance: o atraso do Brasil e a necessidade de mudanças na visão empresarial</em></li><li>Palestra no <em>GDG DevFest Maceió</em>, com a Roga DX</li></ul></div>
               <div class="marco"><span>2024</span><p>Palestra no TDC Summit Recife: <em>Como a Inteligência Artificial Está Redefinindo os Testes de Software</em></p></div>
             </div>
             <div class="reels-head"><b>Vídeos</b><small>Dicas e conteúdos do @qa.thami</small></div>
