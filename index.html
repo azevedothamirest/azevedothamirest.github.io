@@ -566,7 +566,21 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
 
 /* Terminal no final, junto do contato */
-.contato-term { max-width: 560px; margin: 28px auto 0; }
+.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: start; }
+.contato-grid .contact-card { grid-template-columns: 1fr; }
+.contato-grid .contact-links { border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
+.contato-grid .c-link { padding: 18px 22px; border-right: 1px solid var(--line); }
+.contato-grid .c-link:nth-child(2n) { border-right: 0; }
+.contato-grid .c-txt b { font-size: 12.5px; overflow-wrap: normal; white-space: nowrap; }
+.contato-grid .c-txt { min-width: 0; }
+.contato-grid .c-cv { grid-column: 1 / -1; border-right: 0; }
+.contato-grid .c-link { gap: 12px; padding: 18px 18px; }
+@media (max-width: 600px) { .contato-grid .contact-links { grid-template-columns: 1fr; } .contato-grid .c-link { border-right: 0; } }
+.contato-term { display: grid; gap: 16px; position: sticky; top: 90px; }
+.lt-tag { font: 600 12px var(--mono); color: var(--dest-claro); }
+.lt-head h3 { font-size: 26px; letter-spacing: -.02em; line-height: 1.15; margin: 6px 0 6px; }
+.lt-head p { color: var(--text-2); font-size: 14.5px; }
+@media (max-width: 900px) { .contato-grid { grid-template-columns: 1fr; } .contato-term { position: static; } }
 .contato-term .terminal { box-shadow: 0 30px 60px rgba(0,0,0,.45); }
 </style>
 </head>
@@ -967,6 +981,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
   <!-- ══ Contato ══ -->
   <section class="contact" id="contato">
     <div class="wrap reveal">
+      <div class="contato-grid">
       <div class="contact-card">
         <div class="contact-main">
           <canvas id="grade-contato" aria-hidden="true"></canvas>
@@ -991,6 +1006,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
         </div>
       </div>
       <div class="contato-term">
+        <div class="lt-head"><span class="lt-tag">// leu até aqui?</span><h3>Então já sabe o <span class="h-verde">resultado</span>.</h3><p>Todos os testes passaram. Falta só o seu próximo time.</p></div>
       <div class="terminal" aria-hidden="true">
         <div class="term-bar"><i></i><i></i><i></i><span>~/portfolio</span></div>
         <div class="term-body" id="term">
@@ -1028,6 +1044,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
           <div class="stat"><b>5 anos</b><small>em fintech</small></div>
           <div class="stat"><b>2</b><small>promoções internas</small></div>
         </div>
+      </div>
       </div>
       </div>
     </div>
