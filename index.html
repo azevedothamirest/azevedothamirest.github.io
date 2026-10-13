@@ -429,7 +429,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 /* @qa.thami em destaque: rosa suave */
 .proj-destaque { --rosa-rgb: 244,114,182; background: linear-gradient(135deg, rgba(var(--rosa-rgb),.11), rgba(var(--rosa-rgb),.04) 60%), var(--card); border-color: rgba(var(--rosa-rgb),.35); box-shadow: 0 0 0 4px rgba(var(--rosa-rgb),.05), 0 24px 60px rgba(var(--rosa-rgb),.06); }
 .proj-destaque:hover { border-color: rgba(var(--rosa-rgb),.55); }
-.proj-destaque > .project { background: transparent; border-top-color: rgba(var(--rosa-rgb),.2); }
+.proj-destaque > .project, .proj-destaque > .project:hover { background: transparent; border-top-color: rgba(var(--rosa-rgb),.25); transition: none; }
 .proj-destaque .p-emoji { background: rgba(var(--rosa-rgb),.12); border-color: rgba(var(--rosa-rgb),.3); }
 .proj-destaque .proj-toggle { border-color: rgba(var(--rosa-rgb),.4); }
 .proj-destaque .p-stats, .proj-destaque .p-stats div { border-color: rgba(var(--rosa-rgb),.2); }
