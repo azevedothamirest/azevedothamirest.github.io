@@ -566,7 +566,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 @media (prefers-reduced-motion: reduce) { #pilares .pilares .pilar { transition: none; } }
 
 /* Terminal no final, junto do contato */
-.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: stretch; }
+.contato-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 24px; align-items: start; }
 .contato-grid .contact-card { grid-template-columns: 1fr; }
 .contato-grid .contact-links { border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
 .contato-grid .c-link { padding: 18px 22px; border-right: 1px solid var(--line); }
@@ -577,8 +577,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .contato-grid .c-link { gap: 12px; padding: 18px 18px; }
 @media (max-width: 600px) { .contato-grid .contact-links { grid-template-columns: 1fr; } .contato-grid .c-link { border-right: 0; } }
 .contato-term { display: flex; flex-direction: column; gap: 16px; }
-.contato-term .terminal { flex: 1; display: flex; flex-direction: column; }
-.contato-term .term-body { flex: 1; }
 .lt-tag { font: 600 12px var(--mono); color: var(--dest-claro); }
 .lt-head h3 { font-size: 26px; letter-spacing: -.02em; line-height: 1.15; margin: 6px 0 6px; }
 .lt-head p { color: var(--text-2); font-size: 14.5px; }
@@ -594,6 +592,22 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .contato-grid .cv-op, .contato-grid .cv-op:first-of-type { border: 1px solid var(--line-2); border-radius: 10px; padding: 9px 12px; justify-content: space-between; gap: 8px; }
 .contato-grid .cv-op:hover { border-color: var(--text-3); }
 .contato-grid .cv-op b { font-size: 13.5px; }
+
+/* Contato: lado esquerdo mais compacto */
+.contato-grid .contact-main { padding: 24px 30px 22px; }
+.contato-grid .contact-main .otw { margin-bottom: 16px; }
+.contato-grid .contact-main h2 { font-size: clamp(30px, 3.6vw, 40px); margin-bottom: 8px; }
+.contato-grid .contact-main > p { margin-bottom: 16px; font-size: 14.5px; }
+.contato-grid .modos { gap: 6px; }
+.contato-grid .modo { padding: 6px 12px; gap: 12px; }
+.contato-grid .modo b { line-height: 1.3; }
+.contato-grid .modo small { line-height: 1.3; display: block; }
+.contato-grid .modo-ic { width: 28px; height: 28px; }
+.contato-grid .modo b { font-size: 13.5px; }
+.contato-grid .modo small { font-size: 11.5px; }
+.contato-grid .c-link { padding: 12px 16px; }
+.contato-grid .c-ic { width: 34px; height: 34px; }
+.contato-grid .c-cv .cv-op, .contato-grid .c-cv .cv-op:first-of-type { padding: 7px 12px; }
 </style>
 </head>
 <body>
@@ -999,7 +1013,7 @@ E deve exibir o período aplicado acima da lista</pre></div>
           <canvas id="grade-contato" aria-hidden="true"></canvas>
           <a class="otw" href="mailto:azevedothamirest@gmail.com"><i></i><b>Open to work</b><span>Disponível para início imediato</span></a>
           <h2>Vamos conversar?</h2>
-          <p>Procuro uma posição como QA Sênior em um time que leve qualidade a sério desde o requisito. Tenho disponibilidade para início imediato, nestes formatos:</p>
+          <p>Procuro uma posição como QA Sênior em um time que leve qualidade a sério desde o requisito. Formatos em que posso atuar:</p>
           <div class="modos">
             <div class="modo"><span class="modo-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F87171"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Presencial ou híbrido</b><small>Recife e região metropolitana</small></div><span class="ok">● disponível</span></div>
             <div class="modo"><span class="modo-ic"><svg width="20" height="14" viewBox="0 0 20 14" aria-label="Bandeira do Brasil" role="img"><rect width="20" height="14" rx="2" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/><path d="M7 6.3c2-.6 4.2-.4 6 .6" stroke="#fff" stroke-width=".7" fill="none"/></svg></span><div><b>Remoto no Brasil</b><small>Qualquer estado</small></div><span class="ok">● disponível</span></div>
