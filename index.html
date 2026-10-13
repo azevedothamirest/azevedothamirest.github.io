@@ -481,7 +481,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 
 /* @qa.thami: botões no topo e temas */
 .acts-topo { margin-top: 0; padding-top: 0; }
-.temas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.temas { display: flex; margin-top: 6px; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
 .temas .chips { display: contents; }
 .temas-lbl { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #F9A8D4; margin-right: 4px; }
 
@@ -756,7 +756,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <div><b>15,4 mil</b><small>seguidores</small></div>
               <div><b>4</b><small>palestras</small></div>
               <div><b>1</b><small>e-book</small></div>
-            </div></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
+            </div>
+            <div class="temas"><span class="temas-lbl">Alguns dos temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <div class="project ensino">
           <div class="p-body">
             <ul class="bullets">
@@ -764,7 +765,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Carrosséis e vídeos sobre fundamentos de teste, preparação para a CTFL, cultura de qualidade e carreira</li>
               <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Conteúdo em parceria com o Senac e apoio a QAs em início de carreira</li>
             </ul>
-            <div class="temas"><span class="temas-lbl">Alguns dos temas que ensino</span><div class="chips"><span class="chip">IA em testes</span><span class="chip">Particionamento de equivalência</span><span class="chip">CTFL</span><span class="chip">Cultura de qualidade</span><span class="chip">Ferramentas de teste</span><span class="chip">Monitoramento de testes</span></div></div>
             <div class="marcos">
               <div class="marco"><span>2021</span><p>Seminário <em>Iniciante em Testes: o que você precisa saber!</em></p></div>
               <div class="marco"><span>2022</span><ul class="sub"><li>E-book <a class="link-rosa" href="https://www.amazon.com.br/dp/B0B2B64DGH" target="_blank" rel="noopener"><em>Comece por aqui, QA!</em> ↗</a></li><li>Participação no QAVerso</li></ul></div>
@@ -1250,6 +1250,13 @@ document.querySelectorAll('dialog').forEach(d => {
     [...dots.children].forEach((d, k) => d.classList.toggle('on', k === atual));
     ant.disabled = atual === 0; prox.disabled = atual === itens.length - 1;
   }
+  // Passa sozinha; pausa com o mouse em cima e por um tempo depois de um clique
+  let pausa = false, ultimoToque = 0;
+  car.addEventListener('mouseenter', () => { pausa = true; }); car.addEventListener('mouseleave', () => { pausa = false; });
+  car.addEventListener('click', () => { ultimoToque = Date.now(); }, true);
+  car.addEventListener('touchstart', () => { ultimoToque = Date.now(); }, { passive: true, capture: true });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+    setInterval(() => { if (!pausa && !document.hidden && Date.now() - ultimoToque > 8000) ir((atual + 1) % itens.length); }, 3800);
   ant.addEventListener('click', () => ir(atual - 1)); prox.addEventListener('click', () => ir(atual + 1));
   car.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') ir(atual - 1); if (e.key === 'ArrowRight') ir(atual + 1); });
   // Deslizar com o dedo
