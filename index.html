@@ -135,10 +135,27 @@ section.block { padding: 100px 0; border-top: 1px solid var(--line); }
 
 /* ── Projetos ──────────────────────────── */
 .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.projects > .proj-destaque, .projects > .proj[open] { grid-column: 1 / -1; }
-.projects > .proj:not(.proj-destaque) > summary { flex-direction: column; align-items: flex-start; }
-.projects > .proj:not(.proj-destaque):not([open]) > summary { height: 100%; }
-.projects > .proj:not(.proj-destaque) > summary .proj-toggle { margin-left: 0; margin-top: auto; }
+.projects > .proj-destaque, .projects > .proj-car { grid-column: 1 / -1; min-width: 0; }
+.proj-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+.proj-track::-webkit-scrollbar { display: none; }
+.proj-track > .proj { flex: 0 0 calc(50% - 10px); min-width: 0; scroll-snap-align: start; }
+.proj-track > .proj[open] { flex-basis: 100%; }
+.proj-track.tem-aberto { align-items: flex-start; }
+.proj-track > .proj:not([open]) { min-height: 250px; display: flex; flex-direction: column; }
+.proj-track > .proj > summary { flex-direction: column; align-items: flex-start; }
+.proj-track > .proj:not([open]) > summary { flex: 1; }
+.proj-track > .proj > summary .proj-toggle { margin-left: 0; margin-top: auto; }
+@media (max-width: 760px) { .proj-track > .proj { flex-basis: 88%; } }
+@media (prefers-reduced-motion: reduce) { .proj-track { scroll-behavior: auto; } }
+.proj-novo { border-color: rgba(var(--accent-rgb),.4); background: radial-gradient(420px 200px at 0% 0%, rgba(var(--accent-rgb),.08), transparent 70%), var(--card); }
+.proj-novo:hover { border-color: rgba(var(--accent-rgb),.65); }
+.proj-novo .proj-toggle { border-color: rgba(var(--accent-rgb),.4); }
+.flag-novo { display: inline-flex; align-items: center; gap: 8px; width: fit-content; padding: 4px 11px 4px 9px; border-radius: 99px; font: 700 10.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); background: rgba(var(--accent-rgb),.1); border: 1px solid rgba(var(--accent-rgb),.4); }
+.flag-novo em { font-style: normal; color: #FEBC2E; }
+.flag-novo i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.flag-novo i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: pulso 1.8s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .flag-novo i::after { animation: none; } }
+.privado.aberto { border-color: rgba(var(--accent-rgb),.35); }
 @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
 .project { display: grid; grid-template-columns: 1.05fr .95fr; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: border-color .25s; }
 .project:hover { border-color: var(--line-2); }
@@ -748,7 +765,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <p>Sou QA Sênior com <strong>7 anos de experiência</strong>, os últimos 5 em produtos financeiros. Atuo da análise de requisitos ao acompanhamento pós-deploy, com <strong>testes manuais e automatizados</strong> lado a lado.</p>
           <p>No <strong>manual</strong>, desenho e executo casos funcionais, exploratórios, de regressão e de UAT, investigo o comportamento de ponta a ponta e registro bugs com evidência e severidade pelo impacto real. Na <strong>automação</strong>, uso <strong>Cypress, Playwright e JavaScript</strong>, valido APIs com <strong>Postman</strong> e <strong>testes de contrato</strong>, testo fluxos assíncronos com <strong>mensageria</strong>, integro a suíte ao <strong>CI/CD</strong> e modelo cenários em <strong>BDD/Gherkin</strong>. Sei quando cada um faz mais sentido — e automatizo o que vale a pena repetir.</p>
           <p>Combino domínio técnico com conhecimento de negócio — tenho a certificação <strong>ANBIMA CPA</strong> — para validar o comportamento contra a regra de negócio, não só contra o requisito escrito.</p>
-          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os dois projetos abaixo nasceram dessa prática.</p>
+          <p>Uso <strong>IA no fluxo de QA</strong> para acelerar documentação, cenários e análise, sempre com revisão crítica. Os projetos abaixo nasceram dessa prática.</p>
           <div class="highlights">
             <div class="hl"><b>7 anos</b><small>em QA, 5 em fintech</small></div>
             <div class="hl"><b>Júnior → Sênior</b><small>2 promoções internas</small></div>
@@ -879,7 +896,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <div class="sec-label">Projetos paralelos</div>
           <h2>Projetos que <span class="h-rosa">nasceram</span><br>da rotina de <span class="h-verde">QA</span>.</h2>
         </div>
-        <p>O projeto de ensino onde tudo começou e duas ferramentas que resolvem dores reais do dia a dia. O código das ferramentas é privado; as telas usam dados fictícios.</p>
+        <p>O projeto de ensino onde tudo começou e três ferramentas que resolvem dores reais do dia a dia. O QA Scout tem código aberto; o das outras é privado. As telas usam dados fictícios.</p>
       </div>
 
       <div class="projects">
@@ -924,8 +941,49 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         </div>
         </details>
 
-        <details class="proj reveal">
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17V9"/></svg></span><div><div class="p-kind">02 · Dashboard</div><h3>QA Pulse</h3></div></div>
+        <div class="proj-car" id="proj-car" aria-roledescription="carrossel" aria-label="Ferramentas de QA">
+        <div class="proj-track">
+        <details class="proj proj-novo">
+          <summary class="proj-sum"><div class="proj-sum-txt"><span class="flag-novo"><i></i>Novo projeto <em>· em construção</em></span><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span><div><div class="p-kind">02 · Teste exploratório</div><h3>QA Scout</h3></div></div>
+            <p>Companheiro de teste exploratório baseado em sessões: charter, cronômetro, notas com minuto exato e relatório pronto para o time.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
+        <article class="project">
+          <div class="shot" aria-hidden="true">
+            <div class="cli">
+              <div><span class="c">›</span> <span class="k">Explorar o checkout com CPFs mascarados para descobrir falhas de validação</span></div>
+              <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg> 23:41 / 60:00 · sessão em andamento</div>
+              <div class="c">---</div>
+              <div><span style="color:#F87171">[bug 12:04]</span> CPF com pontos é recusado no pagamento</div>
+              <div><span style="color:#FEBC2E">[dúvida 15:30]</span> Valor em reais arredonda antes do frete?</div>
+              <div><span style="color:#A78BFA">[ideia 18:12]</span> Repetir com fuso de Manaus</div>
+              <div><span style="color:#60A5FA">[obs 21:47]</span> Acentos ok no nome do titular</div>
+              <div class="c">---</div>
+              <div><span class="k">Debriefing · Teste 70% · Bug 20% · Setup 10%</span></div>
+            </div>
+            <div class="shot-cap"><span>Sessão de exemplo · dados fictícios</span><span>qa-scout</span></div>
+          </div>
+          <div class="p-body">
+            <div class="p-stats">
+              <div><b>18</b><small>cartas de heurística</small></div>
+              <div><b>5</b><small>tipos de nota</small></div>
+              <div><b>24</b><small>testes e2e</small></div>
+            </div>
+            <ul class="bullets">
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span>Charter no modelo de Elisabeth Hendrickson, com cronômetro e pausa</li>
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#F87171"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Notas por tipo com atalhos de teclado e prints colados com Ctrl+V</li>
+              <li><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span>Relatório em Markdown para Jira, GitHub ou Slack, e PDF pelo navegador</li>
+            </ul>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">JavaScript</span><span class="chip">localStorage</span><span class="chip">Playwright</span><span class="chip">GitHub Actions</span></div>
+            <div class="privado aberto"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Código aberto · sem servidor, os dados ficam no navegador.</div>
+            <div class="p-actions">
+              <a class="btn btn-solid" href="https://azevedothamirest.github.io/qa-scout/" target="_blank" rel="noopener">Abrir o app ↗</a>
+              <a class="btn" href="https://github.com/azevedothamirest/qa-scout" target="_blank" rel="noopener">Ver código ↗</a>
+            </div>
+          </div>
+        </article>
+        </details>
+
+        <details class="proj">
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#60A5FA"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17V9"/></svg></span><div><div class="p-kind">03 · Dashboard</div><h3>QA Pulse</h3></div></div>
             <p>Conecta no Jira, transforma issues em indicadores de qualidade por time e aponta sozinho onde vale olhar.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <article class="project">
           <div class="shot" aria-hidden="true">
@@ -968,8 +1026,8 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           </div>
         </article>
         </details>
-        <details class="proj reveal">
-          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><div class="p-kind">03 · Assistente de QA</div><h3>QA Sidekick</h3></div></div>
+        <details class="proj">
+          <summary class="proj-sum"><div class="proj-sum-txt"><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#A78BFA"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h1M21 14h1M9 13v2M15 13v2"/></svg></span><div><div class="p-kind">04 ·Assistente de QA</div><h3>QA Sidekick</h3></div></div>
             <p>Lê uma entrega do Jira como um QA experiente, monta o roteiro de teste e escreve bugs no padrão do time — sempre pedindo confirmação antes de escrever.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <article class="project flip">
           <div class="shot" aria-hidden="true">
@@ -1004,6 +1062,14 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           </div>
         </article>
         </details>
+        </div>
+        <div class="car-nav">
+          <button class="car-btn" data-dir="-1" aria-label="Projeto anterior">←</button>
+          <div class="car-dots" aria-hidden="true"></div>
+          <span class="car-num" aria-live="polite"></span>
+          <button class="car-btn" data-dir="1" aria-label="Próximo projeto">→</button>
+        </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1218,6 +1284,30 @@ const revelar = new IntersectionObserver(entradas => {
   entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revelar.unobserve(e.target); } });
 }, { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => revelar.observe(el));
+
+// Carrossel de projetos
+(() => {
+  const car = document.getElementById('proj-car');
+  if (!car) return;
+  const track = car.querySelector('.proj-track'), cards = [...track.children];
+  const [ant, prox] = car.querySelectorAll('.car-btn'), num = car.querySelector('.car-num'), dots = car.querySelector('.car-dots');
+  const pos = c => c.offsetLeft - cards[0].offsetLeft;
+  const atual = () => cards.reduce((m, c, i) => Math.abs(pos(c) - track.scrollLeft) < Math.abs(pos(cards[m]) - track.scrollLeft) ? i : m, 0);
+  const ir = i => { i = Math.max(0, Math.min(cards.length - 1, i)); track.scrollTo({ left: pos(cards[i]) }); };
+  cards.forEach((c, i) => { const b = document.createElement('button'); b.tabIndex = -1; b.onclick = () => ir(i); dots.append(b); });
+  const marcar = () => {
+    const i = atual(), fim = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    [...dots.children].forEach((b, j) => b.classList.toggle('on', j === i));
+    num.textContent = `${i + 1} / ${cards.length}`;
+    ant.disabled = i === 0 && track.scrollLeft < 2; prox.disabled = fim;
+  };
+  ant.onclick = () => ir(atual() - 1);
+  prox.onclick = () => ir(atual() + 1);
+  track.addEventListener('scroll', () => requestAnimationFrame(marcar), { passive: true });
+  cards.forEach((c, i) => c.addEventListener('toggle', () => { track.classList.toggle('tem-aberto', cards.some(x => x.open)); if (c.open) ir(i); marcar(); }));
+  addEventListener('resize', marcar);
+  marcar();
+})();
 
 // Detalhes dos projetos
 document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.open).showModal()));
