@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="versao" content="202610301200">
+<meta name="versao" content="202610301253">
 <script>
 // Se o navegador mostrou uma versão antiga guardada, busca a atual e recarrega uma vez
 (function () {
@@ -707,6 +707,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .rec-tag { font-family: var(--mono, monospace); font-size: 12.5px; color: var(--dest); }
 .rec-acoes { display: flex; flex-wrap: wrap; gap: 8px; }
 .rec-acoes .btn { font-size: 13.5px; padding: 10px 16px; }
+.p-logo { background: none !important; border: 0 !important; padding: 0 !important; }
+.p-logo svg { display: block; }
+h3 .beta { font: 800 11px var(--font); color: #0B0B12; padding: 3px 9px; border-radius: 99px; background: linear-gradient(90deg,#3DF5A7,#3BC9F5 35%,#8B5CF6 70%,#FF79C6); vertical-align: 3px; margin-left: 4px; letter-spacing: 0; }
 .aviso-interno { font-size: 12.5px !important; color: var(--text-3) !important; border-top: 1px dashed var(--line-2); padding-top: 10px; margin-top: 4px; }
 </style>
 </head>
@@ -960,7 +963,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
         <div class="proj-car" id="proj-car" aria-roledescription="carrossel" aria-label="Ferramentas de QA">
         <div class="proj-track">
         <details class="proj proj-novo">
-          <summary class="proj-sum"><div class="proj-sum-txt"><span class="flag-novo"><i></i>Novo projeto <em>· em construção</em></span><div class="p-top"><span class="p-emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#1FD65F"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span><div><div class="p-kind">02 · Extensão do Chrome · App web · MCP</div><h3>QA Scout</h3></div></div>
+          <summary class="proj-sum"><div class="proj-sum-txt"><span class="flag-novo"><i></i>No ar <em>· Chrome Web Store</em></span><div class="p-top"><span class="p-emoji p-logo"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#0F2B33"/><circle cx="32" cy="32" r="25" fill="none" stroke="#296F82" stroke-width="4.3"/><circle cx="32" cy="32" r="15" fill="none" stroke="#1B4E5C" stroke-width="2.6"/><path d="M32 12 L38.5 32 L32 52 L25.5 32 Z" fill="#06171C" opacity=".75" transform="translate(1.8 2.4) rotate(40 32 32)"/><g transform="rotate(40 32 32)"><path d="M32 12 L38.5 32 L32 52 L25.5 32 Z" fill="#296F82"/><path d="M32 32 L38.5 32 L32 52 Z" fill="#8AE3D7"/></g></svg></span><div><div class="p-kind">02 · Extensão do Chrome · App web · MCP</div><h3>QA Scout <small class="beta">beta</small></h3></div></div>
             <p>Companheiro de teste exploratório (SBTM): organiza a sessão, captura cliques e erros sozinho e entrega o relatório pronto. Publicado na Chrome Web Store, com 85 testes automatizados e regressão no CI.</p></div><span class="proj-toggle"><span class="t-ver">Ver projeto</span><span class="t-fechar">Fechar</span><span class="sk-chev" aria-hidden="true"></span></span></summary>
         <article class="project">
           <div class="shot" aria-hidden="true">
