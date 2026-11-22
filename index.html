@@ -893,15 +893,6 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <button class="car-btn" data-dir="1" aria-label="Próximo">→</button>
         </div>
       </div>
-
-      <div class="numeros-head reveal"><h3>Thamires em <span class="h-verde">números</span></h3><p>Resultados de quando a qualidade entra desde o backlog.</p></div>
-      <div class="ganhos reveal">
-        <div class="ganho"><span class="num"><span class="de">~75%</span> <i>→</i> <span class="para" data-de="75" data-para="32" data-pre="~" data-suf="%">~32%</span></span><span class="queda">↓ redução de 57%</span><b>Retrabalho no ano</b><small>Qualidade desde o backlog: quando a demanda já chega clara no desenvolvimento, menos entregas voltam do teste para correção.</small></div>
-        <div class="ganho"><span class="num"><span class="de">~28</span> <i>→</i> <span class="para" data-de="28" data-para="5" data-pre="~" data-suf="">~5</span></span><span class="queda">↓ redução de 82%</span><b>Bugs críticos em produção</b><small>Critérios de bug crítico combinados entre QA, Produto e Dev fizeram os problemas graves serem barrados antes de chegar ao cliente.</small></div>
-        <div class="ganho"><span class="num"><span class="de">~29%</span> <i>→</i> <span class="para" data-de="29" data-para="13" data-pre="~" data-suf="%">~13%</span></span><span class="queda">↓ redução de 55%</span><b>Bugs por entrega</b><small>Análise antecipada e testes exploratórios: menos falhas escapando para produção a cada entrega, no 2º semestre.</small></div>
-        <div class="ganho"><span class="num"><span class="de">~3h</span> <i>→</i> <span class="para" data-de="180" data-para="30" data-pre="" data-suf=" min">30 min</span></span><span class="queda">↓ redução de 83%</span><b>Regressão</b><small>Regressão automatizada e estável: o tempo que ia para conferência manual voltou para o time evoluir o produto.</small></div>
-      </div>
-      <p class="ganhos-nota">Métricas aproximadas extraídas do meu último emprego, no comparativo entre 2025 e 2026 (até setembro). Sem dados internos da empresa ou do time.</p>
     </div>
   </section>
 
@@ -1099,9 +1090,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             <div class="g-blank" data-l></div>
             <div class="g-step t-step" data-l><b class="g-st">✔</b> atuação <span class="c">.......</span> Produto ⇄ Dev</div>
             <div class="g-step t-step" data-l><b class="g-st">✔</b> shift-left <span class="c">....</span> desde o backlog</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> retrabalho <span class="c">....</span> ~75% → ~32%</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> críticos <span class="c">......</span> ~28 → ~5</div>
-            <div class="g-step t-step" data-l><b class="g-st">✔</b> regressão <span class="c">.....</span> 3h → 30 min</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> testes <span class="c">.........</span> manual + automação</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> cenários <span class="c">......</span> BDD/Gherkin</div>
+            <div class="g-step t-step" data-l><b class="g-st">✔</b> qa-scout <span class="c">......</span> no ar</div>
             <div class="g-step t-step" data-l><b class="g-st">✔</b> comunidade <span class="c">....</span> +15 mil @qa.thami</div>
             <div class="g-step t-step" data-l><b class="g-st">✔</b> palestras <span class="c">.....</span> TDC 2023 · 2024</div>
             <div class="g-blank" data-l></div>
@@ -1111,13 +1102,13 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             <div data-l data-type><span class="c">$</span> <span class="k">npx cucumber-js qualidade.feature</span></div>
             <div class="g-blank" data-l></div>
             <div data-l><span class="g-kw">Funcionalidade:</span> Qualidade com a Thamires</div>
-            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Time que leva qualidade a sério</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> um time com retrabalho alto</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> ela entra no refinamento</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> retrabalho ~75% → ~32%</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> bugs críticos ~28 → ~5</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> regressão 3h → 30 min</div>
-            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> ensina QA para +15 mil</div>
+            <div class="g-cen" data-l><span class="g-kw">Cenário:</span> Aprender QA na prática</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Dado</span> alguém começando em QA</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Quando</span> encontra o @qa.thami</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">Então</span> aprende testando de verdade</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> entende BDD na prática</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> automatiza o que vale repetir</div>
+            <div class="g-step" data-l><b class="g-st">✔</b> <span class="g-kw">E</span> passa o conhecimento adiante</div>
             <div class="g-blank" data-l></div>
             <div class="ok" data-l><b>1 cenário</b> · 6 passos passaram</div>
             <div class="c" data-l><span id="g-time">0m2.4s</span> · <span class="g-imed"><i></i>todos verdes</span><span class="g-cur"></span></div>
