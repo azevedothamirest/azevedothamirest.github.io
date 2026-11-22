@@ -738,6 +738,13 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .ev-temas li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
 .ev-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
 @media (max-width: 900px) { .ev-grid { grid-template-columns: 1fr; } }
+.reel-capa { width: 100%; height: 560px; border: 1px solid rgba(var(--dest-rgb),.25); border-radius: 14px; background: radial-gradient(circle at 50% 35%, rgba(var(--dest-rgb),.18), transparent 60%), var(--card); color: var(--text); font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.reel-capa img { width: 72px; height: 72px; border-radius: 50%; border: 2px solid rgba(var(--dest-rgb),.5); }
+.reel-play { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--text); color: var(--bg); font-size: 18px; padding-left: 3px; transition: transform .15s; }
+.reel-capa:hover .reel-play { transform: scale(1.08); }
+.reel-capa small { color: var(--text-3); font-size: 12.5px; }
+.reel-capa:focus-visible { outline: 2px solid var(--dest); outline-offset: 3px; }
+@media (max-width: 760px) { .reel-capa { height: 600px; } }
 </style>
 </head>
 <body>
@@ -912,7 +919,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
             <div class="midia">
               <div class="midia-video">
                 <div class="reels-head"><b>Vídeos</b><small>Um pouco do @qa.thami</small></div>
-                <div class="reel"><iframe src="https://www.instagram.com/reel/C8aeILEO84g/embed/" title="Vídeo do @qa.thami no Instagram" loading="lazy" allowtransparency="true" allowfullscreen scrolling="no"></iframe><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
+                <div class="reel"><button type="button" class="reel-capa" data-src="https://www.instagram.com/reel/C8aeILEO84g/embed/" aria-label="Carregar vídeo do @qa.thami do Instagram"><img src="assets/palestras/avatar-qathami.jpg" alt="" width="96" height="96"><span class="reel-play" aria-hidden="true">▶</span><b>Assistir vídeo</b><small>carrega o Instagram aqui</small></button><a href="https://www.instagram.com/reel/C8aeILEO84g/" target="_blank" rel="noopener">Abrir no Instagram ↗</a></div>
               </div>
               <div class="midia-fotos">
                 <div class="reels-head"><b>Linha do tempo</b><small>Comunidade e palestras</small></div>
@@ -1442,6 +1449,14 @@ document.querySelectorAll('dialog').forEach(d => {
   if (document.fonts) document.fonts.ready.then(ajustar);
 })();
 
+
+// Vídeo do Instagram só carrega no clique: o embed rouba o foco e faz a página pular sozinha
+document.querySelectorAll('.reel-capa').forEach(b => b.addEventListener('click', () => {
+  const f = document.createElement('iframe');
+  Object.assign(f, { src: b.dataset.src, title: 'Vídeo do @qa.thami no Instagram', allowFullscreen: true });
+  f.setAttribute('allowtransparency', 'true'); f.setAttribute('scrolling', 'no');
+  b.replaceWith(f);
+}));
 </script>
 </body>
 </html>
