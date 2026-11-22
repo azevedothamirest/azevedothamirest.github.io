@@ -729,6 +729,7 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
 .aviso-interno { font-size: 12.5px !important; color: var(--text-3) !important; border-top: 1px dashed var(--line-2); padding-top: 10px; margin-top: 4px; }
 /* Para eventos: bio pronta, temas e foto */
 .ev-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+.ev-grid.ev-um { grid-template-columns: 1fr; max-width: 640px; }
 .ev-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
 .ev-card h3 { font-size: 17px; }
 .ev-bio { color: var(--text-2); font-size: 15px; line-height: 1.65; }
@@ -1006,17 +1007,9 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           <div class="sec-label">Para eventos</div>
           <h2>Quer me levar para o <span class="h-rosa">seu palco</span>?</h2>
         </div>
-        <p>Tudo o que organizadores costumam pedir, num lugar só: bio pronta, temas que eu falo e foto para divulgação.</p>
+        <p>Falo sobre qualidade de software para quem está começando e para quem já está no dia a dia. Se algum desses temas combina com o seu evento, me chama.</p>
       </div>
-      <div class="ev-grid reveal">
-        <div class="ev-card">
-          <h3>Mini bio</h3>
-          <p class="ev-bio" id="ev-bio">Thamires Azevedo é QA há sete anos e criadora do @qa.thami, onde ensina qualidade de software para mais de 15 mil pessoas. Autora do e-book “Comece por aqui, QA!”, já palestrou no TDC Connections, no TDC Summit Recife e no GDG DevFest Maceió, falando sobre carreira em QA, cultura de qualidade e IA aplicada a testes.</p>
-          <div class="ev-acoes">
-            <button class="btn btn-solid" type="button" id="ev-copiar">Copiar bio</button>
-            <a class="btn btn-ghost" href="assets/palestras/tdc-2024.jpg" download="Thamires Azevedo - foto.jpg">Baixar foto</a>
-          </div>
-        </div>
+      <div class="ev-grid ev-um reveal">
         <div class="ev-card">
           <h3>Temas que eu falo</h3>
           <ul class="ev-temas">
@@ -1461,16 +1454,6 @@ document.querySelectorAll('dialog').forEach(d => {
   if (document.fonts) document.fonts.ready.then(ajustar);
 })();
 
-// Para eventos: copiar a bio
-(() => {
-  const b = document.getElementById('ev-copiar'), bio = document.getElementById('ev-bio');
-  if (!b || !bio) return;
-  b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(bio.textContent.trim()); b.textContent = 'Bio copiada ✓'; }
-    catch { getSelection().selectAllChildren(bio); b.textContent = 'Selecionei, é só copiar'; }
-    setTimeout(() => { b.textContent = 'Copiar bio'; }, 2500);
-  });
-})();
 </script>
 </body>
 </html>
