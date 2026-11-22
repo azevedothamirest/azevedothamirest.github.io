@@ -249,6 +249,14 @@ dialog::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(4px); }
 .job .when.agora { color: var(--accent); font-weight: 600; }
 .job-link { display: inline-block; font-size: 13.5px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--line-2); padding-bottom: 1px; }
 .job-link:hover { border-color: var(--accent); }
+/* Nova empresa: texto "carregando" (skeleton com blur) até poder contar */
+.sk { display: inline-block; height: .8em; border-radius: 6px; vertical-align: middle; filter: blur(2.5px);
+  background: linear-gradient(90deg, var(--line-2) 0%, rgba(var(--accent-rgb),.35) 50%, var(--line-2) 100%); background-size: 200% 100%; animation: sk 1.6s ease-in-out infinite; }
+.job-head .sk { height: 1em; }
+.job.nova ul { list-style: none; padding-left: 0; display: grid; gap: 10px; margin-top: 10px; }
+.job.nova .role { margin-top: 6px; }
+@keyframes sk { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { .sk { animation: none; } }
 .job.atual::before { background: var(--accent); border-color: var(--accent);  }
 /* Anel que se expande a partir da bolinha, igual ao selo Open to work */
 .job.atual::after { content: ''; position: absolute; left: -25.5px; top: 6px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); animation: pulso 1.8s ease-out infinite; pointer-events: none; }
@@ -787,6 +795,15 @@ details.skill-card[open] > summary ~ * { animation: abrir .2s ease; }
           </div>
         </div>
         <div class="timeline reveal">
+          <div class="job atual nova" aria-label="Nova empresa, em breve">
+            <div class="job-head"><h3><span class="sk" style="width:9em"></span></h3><span class="when agora">2026 – agora</span></div>
+            <div class="role" aria-hidden="true"><span class="sk" style="width:62%"></span></div>
+            <ul aria-hidden="true">
+              <li><span class="sk" style="width:88%"></span></li>
+              <li><span class="sk" style="width:74%"></span></li>
+              <li><span class="sk" style="width:81%"></span></li>
+            </ul>
+          </div>
           <div class="job">
             <div class="job-head"><h3>Grafeno</h3><span class="when">2021 – out/2026</span></div>
             <div class="role">QA Sênior · QA Pleno · QA Júnior III — fintech, remoto</div>
